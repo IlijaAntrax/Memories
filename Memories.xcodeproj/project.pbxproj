@@ -54,6 +54,7 @@
 		5BC6D8D9219DE0F700C80446 = {
 			isa = PBXGroup;
 			children = (
+				5BEE0916219DE8E50043E54E /* ProjectDocumentation */,
 				5BC6D8E4219DE0F700C80446 /* Memories */,
 				5BC6D8E3219DE0F700C80446 /* Products */,
 				00C7F529351487D27097200B /* Pods */,
@@ -81,6 +82,13 @@
 				5BEE0914219DE5EF0043E54E /* GoogleService-Info.plist */,
 			);
 			path = Memories;
+			sourceTree = "<group>";
+		};
+		5BEE0916219DE8E50043E54E /* ProjectDocumentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ProjectDocumentation;
 			sourceTree = "<group>";
 		};
 		A9B4D945BDEAAB061A60CEFF /* Frameworks */ = {
