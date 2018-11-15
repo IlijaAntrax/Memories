@@ -13,6 +13,7 @@
 		5BC6D8ED219DE0F900C80446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BC6D8EC219DE0F900C80446 /* Assets.xcassets */; };
 		5BC6D8F0219DE0F900C80446 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BC6D8EE219DE0F900C80446 /* LaunchScreen.storyboard */; };
 		5BEE0915219DE5EF0043E54E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE0914219DE5EF0043E54E /* GoogleService-Info.plist */; };
+		5BEE0918219DE9750043E54E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE0917219DE9750043E54E /* README.md */; };
 		D0CBDB44CF86F69FE5386D23 /* Pods_Memories.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15DCF83CB69CAA1C8F6B44B3 /* Pods_Memories.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		5BC6D8EF219DE0F900C80446 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BC6D8F1219DE0F900C80446 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5BEE0914219DE5EF0043E54E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5BEE0917219DE9750043E54E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5D00EBB5709A1528950FA9E7 /* Pods-Memories.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memories.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Memories/Pods-Memories.debug.xcconfig"; sourceTree = "<group>"; };
 		AAC8AA4997EFFB50631972DE /* Pods-Memories.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memories.release.xcconfig"; path = "Pods/Target Support Files/Pods-Memories/Pods-Memories.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,6 +89,7 @@
 		5BEE0916219DE8E50043E54E /* ProjectDocumentation */ = {
 			isa = PBXGroup;
 			children = (
+				5BEE0917219DE9750043E54E /* README.md */,
 			);
 			path = ProjectDocumentation;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			files = (
 				5BC6D8F0219DE0F900C80446 /* LaunchScreen.storyboard in Resources */,
 				5BEE0915219DE5EF0043E54E /* GoogleService-Info.plist in Resources */,
+				5BEE0918219DE9750043E54E /* README.md in Resources */,
 				5BC6D8ED219DE0F900C80446 /* Assets.xcassets in Resources */,
 				5BC6D8EB219DE0F700C80446 /* Main.storyboard in Resources */,
 			);
