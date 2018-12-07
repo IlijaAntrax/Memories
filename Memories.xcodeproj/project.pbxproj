@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B79FB9921A068DD00670313 /* launch_bgd_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5B79FB9821A068DD00670313 /* launch_bgd_image.jpg */; };
 		5BC6D8E6219DE0F700C80446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC6D8E5219DE0F700C80446 /* AppDelegate.swift */; };
 		5BC6D8E8219DE0F700C80446 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC6D8E7219DE0F700C80446 /* ViewController.swift */; };
 		5BC6D8EB219DE0F700C80446 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BC6D8E9219DE0F700C80446 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		15DCF83CB69CAA1C8F6B44B3 /* Pods_Memories.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Memories.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B79FB9821A068DD00670313 /* launch_bgd_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launch_bgd_image.jpg; sourceTree = "<group>"; };
 		5BC6D8E2219DE0F700C80446 /* Memories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BC6D8E5219DE0F700C80446 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5BC6D8E7219DE0F700C80446 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +55,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5B79FB9621A0689900670313 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5B79FB9721A068AD00670313 /* Images */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5B79FB9721A068AD00670313 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				5B79FB9821A068DD00670313 /* launch_bgd_image.jpg */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		5BC6D8D9219DE0F700C80446 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +93,7 @@
 		5BC6D8E4219DE0F700C80446 /* Memories */ = {
 			isa = PBXGroup;
 			children = (
+				5B79FB9621A0689900670313 /* Resources */,
 				5BC6D8E5219DE0F700C80446 /* AppDelegate.swift */,
 				5BC6D8E7219DE0F700C80446 /* ViewController.swift */,
 				5BC6D8E9219DE0F700C80446 /* Main.storyboard */,
@@ -164,6 +183,7 @@
 			files = (
 				5BC6D8F0219DE0F900C80446 /* LaunchScreen.storyboard in Resources */,
 				5BEE0915219DE5EF0043E54E /* GoogleService-Info.plist in Resources */,
+				5B79FB9921A068DD00670313 /* launch_bgd_image.jpg in Resources */,
 				5BEE0918219DE9750043E54E /* README.md in Resources */,
 				5BC6D8ED219DE0F900C80446 /* Assets.xcassets in Resources */,
 				5BC6D8EB219DE0F700C80446 /* Main.storyboard in Resources */,
