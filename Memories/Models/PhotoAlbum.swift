@@ -12,6 +12,7 @@ let k_PHOTOALBUM_NAME = "name"
 let k_PHOTOALBUM_OWNER = "owner"
 let k_PHOTOALBUM_DATE = "creationDate"
 let k_PHOTOALBUM_IMAGES = "images"
+let k_PHOTOALBUM_USERS = "users"
 
 class PhotoAlbum: NSObject
 {
@@ -22,7 +23,7 @@ class PhotoAlbum: NSObject
     var creationDate: Date = Date()
     var photos = [Photo]()
     
-    init(withID id:String, name:String, date:Date, photos:[Photo])
+    init(withID id:String, name:String, date:Date, owner:String, photos:[Photo])
     {
         self._id = id
         self.name = name
@@ -35,6 +36,7 @@ class PhotoAlbum: NSObject
         return PhotoAlbum(withID: key,
                           name: (dictionary[k_PHOTOALBUM_NAME] as? String) ?? "",
                           date: (dictionary[k_PHOTOALBUM_DATE] as? String)?.getDate() ?? Date(),
+                          owner: dictionary[k_PHOTOALBUM_OWNER] as? String ?? "",
                           photos: PhotoController.getPhotos(fromData: dictionary[k_PHOTOALBUM_IMAGES] as? NSDictionary ?? NSDictionary()))
     }
 

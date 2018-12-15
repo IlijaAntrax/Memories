@@ -13,6 +13,7 @@ let k_USER_EMAIL = "email"
 let k_USER_FIRSTNAME = "firstname"
 let k_USER_LASTNAME = "lastname"
 let k_USER_IMGURL = "profileUrl"
+let k_USER_SHARED = "shared"
 
 class User: NSObject
 {
@@ -43,4 +44,5 @@ class User: NSObject
                     lastname: dictionary[k_USER_LASTNAME] as? String ?? "",
                     imgUrl: dictionary[k_USER_IMGURL] as? String ?? "")
     }
+    
 }

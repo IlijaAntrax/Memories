@@ -20,6 +20,22 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        test()
+    }
+    
+    func test()
+    {
+        //UserController.getUser(forEmail: "st_antrax_pa@gmail.com") { (user) in }
+        //UserController.getUser(forID: "userskey_2g2iXujeV5MvXIcFolkxcB94gNu1") { (user) in }
+        //UserController.getUsersOnAlbum(forAlbumId: "-L554opJg3yrXVnJCshW") { (users) in }
+        //PhotoAlbumController.getAlbum(forAlbumId: "-L554opJg3yrXVnJCshW") { (photoAlbum) in }
+        //PhotoAlbumController.getAlbums(forUserId: "st_antrax") { (albums) in }
+        //PhotoAlbumController.getSharedAlbums(forUserId: "userskey_2g2iXujeV5MvXIcFolkxcB94gNu1") { (albums) in }
+        //PhotoAlbumController.getSharedAlbums(forUserEmail: "st_antrax_pa@gmail.com") { (albums) in }
+    }
 
 }
 

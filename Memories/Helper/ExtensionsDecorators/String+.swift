@@ -26,4 +26,9 @@ extension String
     {
         return url.path.replacingOccurrences(of: "/https:/", with: "https://")
     }
+    
+    static func uniqeKey() -> String
+    {
+        return NSUUID().uuidString.lowercased() + "_" + "\(Date().timeIntervalSince1970)".replacingOccurrences(of: ".", with: "+")
+    }
 }
