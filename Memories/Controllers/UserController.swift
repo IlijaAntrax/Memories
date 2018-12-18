@@ -11,6 +11,7 @@ import FirebaseDatabase
 
 class UserController:FirebaseController
 {
+    //READ
     static func getUser(forEmail email:String, completionHandler:@escaping (User) -> ())
     {
         let userQuery = dbRef.child(k_db_users).queryOrdered(byChild: k_USER_EMAIL).queryEqual(toValue: email)
@@ -52,6 +53,41 @@ class UserController:FirebaseController
                 }
                 completionHandler(users)
             }
+        }
+    }
+    
+    //WRITE
+    static func addMyAccount(user:User)
+    {
+        let userQuery = dbRef.child(k_db_users).child(user.ID)
+        
+        let userDictionary = NSMutableDictionary()
+        userDictionary.setValue(user.username, forKey: k_USER_USERNAME)
+        userDictionary.setValue(user.email, forKey: k_USER_EMAIL)
+        userDictionary.setValue(user.firstname, forKey: k_USER_FIRSTNAME)
+        userDictionary.setValue(user.lastname, forKey: k_USER_LASTNAME)
+        userDictionary.setValue(user.profileImgUrl?.absoluteString, forKey: k_USER_IMGURL)
+        
+        userQuery.setValue(userDictionary)
+    }
+    
+    static func addUserOnAlbum(user:User, album:PhotoAlbum)
+    {
+        let userQuery = dbRef.child(k_db_users).child(user.ID).child(k_USER_SHARED).childByAutoId()
+        userQuery.setValue(album.ID)
+        
+        let albumQuery = dbRef.child(k_db_albums).child(album.ID).child(k_PHOTOALBUM_USERS).child(user.ID)
+        let userDictionary = NSMutableDictionary()
+        userDictionary.setValue(user.username, forKey: k_USER_USERNAME)
+        userDictionary.setValue(user.email, forKey: k_USER_EMAIL)
+        albumQuery.setValue(userDictionary)
+    }
+    
+    static func addUsersOnAlbum(users:[User], album:PhotoAlbum)
+    {
+        for user in users
+        {
+            self.addUserOnAlbum(user: user, album: album)
         }
     }
 }

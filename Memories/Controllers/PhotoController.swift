@@ -12,6 +12,7 @@ import FirebaseStorage
 
 class PhotoController:FirebaseController
 {
+    //READ
     static func getPhotos(fromData data:NSDictionary) -> [Photo]
     {
         var photos = [Photo]()
@@ -46,6 +47,27 @@ class PhotoController:FirebaseController
         }
     }
     
+    //WRITE
+    static func addPhotoToAlbum(photo:Photo, album:PhotoAlbum)
+    {
+        let photoQuery = dbRef.child(k_db_albums).child(album.ID).child(k_PHOTOALBUM_IMAGES).childByAutoId()
+        
+        let photoDictionary = NSMutableDictionary()
+        photoDictionary.setValue(photo.imgUrl?.absoluteString, forKey: k_PHOTO_URL)
+        photoDictionary.setValue(photo.filter.rawValue, forKey: k_PHOTO_FILTER)
+        photoDictionary.setValue(photo.transform.toArray(), forKey: k_PHOTO_TRANSFORM)
+        
+        photoQuery.setValue(photoDictionary)
+    }
+    
+    static func addPhotosToAlbum(photos:[Photo], album:PhotoAlbum)
+    {
+        for photo in photos
+        {
+            self.addPhotoToAlbum(photo: photo, album: album)
+        }
+    }
+    
     static func uploadImage(image:UIImage, completionHandler:@escaping (URL?) -> ())
     {
         if let imageData = UIImageJPEGRepresentation(image, 1.0)
@@ -71,4 +93,5 @@ class PhotoController:FirebaseController
             }
         }
     }
+    
 }

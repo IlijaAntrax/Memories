@@ -33,8 +33,13 @@ class ViewController: UIViewController {
         //UserController.getUsersOnAlbum(forAlbumId: "-L554opJg3yrXVnJCshW") { (users) in }
         //PhotoAlbumController.getAlbum(forAlbumId: "-L554opJg3yrXVnJCshW") { (photoAlbum) in }
         //PhotoAlbumController.getAlbums(forUserId: "st_antrax") { (albums) in }
-        //PhotoAlbumController.getSharedAlbums(forUserId: "userskey_2g2iXujeV5MvXIcFolkxcB94gNu1") { (albums) in }
+        //PhotoAlbumController.getSharedAlbums(forUserId: "userskey_sqG4983JzOMShuJ8g4VnVgZKu3G3") { (albums) in }
         //PhotoAlbumController.getSharedAlbums(forUserEmail: "st_antrax_pa@gmail.com") { (albums) in }
+        //RemoteNotificationController.getNotifications(forUserId: "userskey_2g2iXujeV5MvXIcFolkxcB94gNu1") { (notifications) in }
+        
+        //UserController.addMyAccount(user: User.init(withID: "userskey_sqG4983JzOMShuJ8g4VnVgZKu3G3", username: "bobinesovic", email: "bobinesovic_pa@gmail.com", firstname: "Slobodan", lastname: "Nesovic", imgUrl: "fakeUrl"))
+        //UserController.addUserOnAlbum(user: User.init(withID: "userskey_sqG4983JzOMShuJ8g4VnVgZKu3G3", username: "bobinesovic", email: "bobinesovic_pa@gmail.com", firstname: "Slobodan", lastname: "Nesovic", imgUrl: "fakeUrl"), album: PhotoAlbum.init(withID: "-L554opJg3yrXVnJCshW", name: "Amsterdam", date: Date(), owner: "st_antrax", photos: [Photo]()))
+        PhotoAlbumController.addPhotoAlbum(album: PhotoAlbum.init(withID: "", name: "Bukurest", date: Date(), owner: "st_antrax_pa@gmail.com", photos: [Photo]()))
     }
 
 }

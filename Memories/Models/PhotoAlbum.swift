@@ -23,11 +23,17 @@ class PhotoAlbum: NSObject
     var creationDate: Date = Date()
     var photos = [Photo]()
     
+    var ID:String
+    {
+        return self._id ?? ""
+    }
+    
     init(withID id:String, name:String, date:Date, owner:String, photos:[Photo])
     {
         self._id = id
         self.name = name
         self.creationDate = date
+        self.owner = owner
         self.photos = photos
     }
     

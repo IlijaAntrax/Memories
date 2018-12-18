@@ -10,6 +10,7 @@ import Foundation
 
 class PhotoAlbumController:FirebaseController
 {
+    //READ
     static func getAlbum(forAlbumId albumId:String, completionHandler:@escaping (PhotoAlbum) -> ())
     {
         let albumQuery = dbRef.child(k_db_albums).child(albumId)
@@ -58,6 +59,23 @@ class PhotoAlbumController:FirebaseController
                     })
                 }
             }
+            else if let albumKeys = dataSnapshot.value as? NSDictionary
+            {
+                var albumsCount = albumKeys.allKeys.count
+                var albums = [PhotoAlbum]()
+                
+                for key in albumKeys.allKeys
+                {
+                    self.getAlbum(forAlbumId: albumKeys[key] as! String, completionHandler: { (album) in
+                        albumsCount -= 1
+                        albums.append(album)
+                        if albumsCount == 0
+                        {
+                            completionHandler(albums)
+                        }
+                    })
+                }
+            }
         }
     }
     
@@ -92,5 +110,34 @@ class PhotoAlbumController:FirebaseController
                 }
             }
         }
+    }
+    
+    //WRITE
+    static func addPhotoAlbum(album:PhotoAlbum)
+    {
+        let albumQuery = dbRef.child(k_db_albums).childByAutoId()
+        
+        let albumDictionary = NSMutableDictionary()
+        albumDictionary.setValue(album.name, forKey: k_PHOTOALBUM_NAME)
+        albumDictionary.setValue(album.creationDate.description, forKey: k_PHOTOALBUM_DATE)
+        albumDictionary.setValue(album.owner, forKey: k_PHOTOALBUM_OWNER)
+        
+        albumQuery.setValue(albumDictionary)
+    }
+    
+    static func addPhotoAlbum(album:PhotoAlbum, withPhotos photos:[Photo], withUsers users:[User])
+    {
+        let albumQuery = dbRef.child(k_db_albums).childByAutoId()
+        let albumKey = albumQuery.key
+        
+        let albumDictionary = NSMutableDictionary()
+        albumDictionary.setValue(album.name, forKey: k_PHOTOALBUM_NAME)
+        albumDictionary.setValue(album.creationDate.description, forKey: k_PHOTOALBUM_DATE)
+        albumDictionary.setValue(album.owner, forKey: k_PHOTOALBUM_OWNER)
+        
+        albumQuery.setValue(albumDictionary)
+        
+        PhotoController.addPhotosToAlbum(photos: photos, album: PhotoAlbum.initWith(key: albumKey, dictionary: albumDictionary))
+        UserController.addUsersOnAlbum(users: users, album: PhotoAlbum.initWith(key: albumKey, dictionary: albumDictionary))
     }
 }

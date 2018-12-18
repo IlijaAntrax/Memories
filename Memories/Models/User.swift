@@ -25,6 +25,11 @@ class User: NSObject
     var profileImgUrl:URL?
     var profileImg:UIImage?
     
+    var ID:String
+    {
+        return self._id ?? ""
+    }
+    
     init(withID id:String, username:String, email:String, firstname:String, lastname:String, imgUrl:String)
     {
         self._id = id
