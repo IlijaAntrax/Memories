@@ -39,7 +39,9 @@ class ViewController: UIViewController {
         
         //UserController.addMyAccount(user: User.init(withID: "userskey_sqG4983JzOMShuJ8g4VnVgZKu3G3", username: "bobinesovic", email: "bobinesovic_pa@gmail.com", firstname: "Slobodan", lastname: "Nesovic", imgUrl: "fakeUrl"))
         //UserController.addUserOnAlbum(user: User.init(withID: "userskey_sqG4983JzOMShuJ8g4VnVgZKu3G3", username: "bobinesovic", email: "bobinesovic_pa@gmail.com", firstname: "Slobodan", lastname: "Nesovic", imgUrl: "fakeUrl"), album: PhotoAlbum.init(withID: "-L554opJg3yrXVnJCshW", name: "Amsterdam", date: Date(), owner: "st_antrax", photos: [Photo]()))
-        PhotoAlbumController.addPhotoAlbum(album: PhotoAlbum.init(withID: "", name: "Bukurest", date: Date(), owner: "st_antrax_pa@gmail.com", photos: [Photo]()))
+        //PhotoAlbumController.addPhotoAlbum(album: PhotoAlbum.init(withID: "", name: "Bukurest", date: Date(), owner: "st_antrax_pa@gmail.com", photos: [Photo]()))
+        //PhotoController.deletePhotoFromAlbum(photo: Photo.init(withID: "-L6_qCG-uOLD9PZRCfcy", imgUrl: "", transform: CATransform3D.init(), filter: 1))
+        //PhotoAlbumController.deletePhotoAlbum(PhotoAlbum.init(withID: "albumkey1", name: "", date: Date(), owner: "", photos: [Photo]()))
     }
 
 }

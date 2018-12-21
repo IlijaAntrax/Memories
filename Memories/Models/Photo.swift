@@ -21,6 +21,11 @@ class Photo: NSObject
     var transform = CATransform3DIdentity
     var filter: FilterType = FilterType.NoFilter
     
+    var ID:String
+    {
+        return self._id ?? ""
+    }
+    
     init(withID id:String, imgUrl:String, transform:CATransform3D, filter:Int)
     {
         self._id = id

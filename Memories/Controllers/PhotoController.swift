@@ -94,4 +94,11 @@ class PhotoController:FirebaseController
         }
     }
     
+    //DELETE
+    static func deletePhoto(_ photo: Photo, fromAlbum album:PhotoAlbum)
+    {
+        let photoQuery = dbRef.child(k_db_albums).child(album.ID).child(k_PHOTOALBUM_IMAGES).child(photo.ID)
+        
+        photoQuery.removeValue()
+    }
 }

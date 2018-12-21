@@ -140,4 +140,33 @@ class PhotoAlbumController:FirebaseController
         PhotoController.addPhotosToAlbum(photos: photos, album: PhotoAlbum.initWith(key: albumKey, dictionary: albumDictionary))
         UserController.addUsersOnAlbum(users: users, album: PhotoAlbum.initWith(key: albumKey, dictionary: albumDictionary))
     }
+    
+    //DELETE
+    static func deletePhotoAlbum(_ photoAlbum: PhotoAlbum)
+    {
+        let albumID = photoAlbum.ID
+        
+        UserController.getUsersOnAlbum(forAlbumId: albumID) { (users) in
+            for user in users
+            {
+                let userAlbumQuery = dbRef.child(k_db_users).child(user.ID).child(k_USER_SHARED).queryEqual(toValue: user.ID).ref
+                userAlbumQuery.observeSingleEvent(of: .value, with: { (data) in
+                    if let albums = data.value as? [String]
+                    {
+                        for sharedAlbumId in albums
+                        {
+                            if (sharedAlbumId == albumID)
+                            {
+                                let sharedAlbumQuery = dbRef.child(k_db_users).child(user.ID).child(k_USER_SHARED).child(sharedAlbumId)
+                                sharedAlbumQuery.removeValue()
+                            }
+                        }
+                    }
+                })
+            }
+            
+            let albumQuery = dbRef.child(k_db_albums).child(albumID)
+            albumQuery.removeValue()
+        }
+    }
 }
