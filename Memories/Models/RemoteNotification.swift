@@ -21,6 +21,11 @@ class RemoteNotification: NSObject
     var actionType: ActionType = .none
     var objectActionId: String?
     
+    var ID:String
+    {
+        return self._id ?? ""
+    }
+    
     init(withId id:String, title:String, body:String, action:String, objectId:String)
     {
         self._id = id

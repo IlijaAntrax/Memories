@@ -14,6 +14,7 @@
 		5BA66BE821C187B700E5C54B /* PhotoAlbumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA66BE721C187B700E5C54B /* PhotoAlbumController.swift */; };
 		5BA66BEA21C18EBA00E5C54B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA66BE921C18EBA00E5C54B /* User.swift */; };
 		5BA66BEC21C18ED800E5C54B /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA66BEB21C18ED800E5C54B /* UserController.swift */; };
+		5BA79F7E21CD6DC8004C15EA /* ModeliPodataka.docx in Resources */ = {isa = PBXBuildFile; fileRef = 5BA79F7D21CD6DC8004C15EA /* ModeliPodataka.docx */; };
 		5BB71D8B21C041B60065642D /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB71D8A21C041B60065642D /* Photo.swift */; };
 		5BB71D9321C0438B0065642D /* YUCIFilterConstructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB71D8E21C0438B0065642D /* YUCIFilterConstructor.m */; };
 		5BB71D9421C0438B0065642D /* YUCIRGBToHSL.cikernel in Resources */ = {isa = PBXBuildFile; fileRef = 5BB71D8F21C0438B0065642D /* YUCIRGBToHSL.cikernel */; };
@@ -44,6 +45,7 @@
 		5BA66BE721C187B700E5C54B /* PhotoAlbumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumController.swift; sourceTree = "<group>"; };
 		5BA66BE921C18EBA00E5C54B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5BA66BEB21C18ED800E5C54B /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		5BA79F7D21CD6DC8004C15EA /* ModeliPodataka.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ModeliPodataka.docx; sourceTree = "<group>"; };
 		5BB71D8A21C041B60065642D /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		5BB71D8D21C0438B0065642D /* YUCIRGBToneCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YUCIRGBToneCurve.h; sourceTree = "<group>"; };
 		5BB71D8E21C0438B0065642D /* YUCIFilterConstructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUCIFilterConstructor.m; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		5BEE0916219DE8E50043E54E /* ProjectDocumentation */ = {
 			isa = PBXGroup;
 			children = (
+				5BA79F7D21CD6DC8004C15EA /* ModeliPodataka.docx */,
 				5BF2689821BAEC5900D1E66C /* ArchitectureDesign.docx */,
 				5BEE0917219DE9750043E54E /* README.md */,
 			);
@@ -284,6 +287,7 @@
 				5BB71D9521C0438B0065642D /* YUCIRGBToneCurve.cikernel in Resources */,
 				5BC6D8ED219DE0F900C80446 /* Assets.xcassets in Resources */,
 				5BC6D8EB219DE0F700C80446 /* Main.storyboard in Resources */,
+				5BA79F7E21CD6DC8004C15EA /* ModeliPodataka.docx in Resources */,
 				5BB71D9421C0438B0065642D /* YUCIRGBToHSL.cikernel in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

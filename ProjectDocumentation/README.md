@@ -5,3 +5,4 @@ IOS application for collecting pictures and sharing them with your friends.
 ArchitectureDesign.docx
 
 ---Faza 2.---
+ModeliPodataka.docx
