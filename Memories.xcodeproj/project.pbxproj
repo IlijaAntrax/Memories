@@ -30,6 +30,8 @@
 		5BC6D8EB219DE0F700C80446 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BC6D8E9219DE0F700C80446 /* Main.storyboard */; };
 		5BC6D8ED219DE0F900C80446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BC6D8EC219DE0F900C80446 /* Assets.xcassets */; };
 		5BC6D8F0219DE0F900C80446 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BC6D8EE219DE0F900C80446 /* LaunchScreen.storyboard */; };
+		5BDDED2721D2D699008B8428 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDED2621D2D699008B8428 /* State.swift */; };
+		5BDDED2A21D2D6EC008B8428 /* MyAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDED2921D2D6EB008B8428 /* MyAccount.swift */; };
 		5BEE0915219DE5EF0043E54E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE0914219DE5EF0043E54E /* GoogleService-Info.plist */; };
 		5BEE0918219DE9750043E54E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE0917219DE9750043E54E /* README.md */; };
 		5BF2689921BAEC5900D1E66C /* ArchitectureDesign.docx in Resources */ = {isa = PBXBuildFile; fileRef = 5BF2689821BAEC5900D1E66C /* ArchitectureDesign.docx */; };
@@ -65,6 +67,8 @@
 		5BC6D8EC219DE0F900C80446 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BC6D8EF219DE0F900C80446 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BC6D8F1219DE0F900C80446 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BDDED2621D2D699008B8428 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		5BDDED2921D2D6EB008B8428 /* MyAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccount.swift; sourceTree = "<group>"; };
 		5BEE0914219DE5EF0043E54E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BEE0917219DE9750043E54E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5BF2689821BAEC5900D1E66C /* ArchitectureDesign.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArchitectureDesign.docx; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 		5BB71D9721C043B70065642D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				5BDDED2521D2D65D008B8428 /* State */,
 				5BA66BE021C183AF00E5C54B /* ExtensionsDecorators */,
 				5BB71D9821C044130065642D /* FilterStore.swift */,
 				5BB71D8C21C0438B0065642D /* Filters */,
@@ -186,6 +191,7 @@
 		5BC6D8E4219DE0F700C80446 /* Memories */ = {
 			isa = PBXGroup;
 			children = (
+				5BDDED2821D2D6CA008B8428 /* Account */,
 				5BB71D8821C03E5C0065642D /* Models */,
 				5BB71D8921C03E650065642D /* Controllers */,
 				5BB71D9721C043B70065642D /* Helper */,
@@ -199,6 +205,22 @@
 				5BEE0914219DE5EF0043E54E /* GoogleService-Info.plist */,
 			);
 			path = Memories;
+			sourceTree = "<group>";
+		};
+		5BDDED2521D2D65D008B8428 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				5BDDED2621D2D699008B8428 /* State.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		5BDDED2821D2D6CA008B8428 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				5BDDED2921D2D6EB008B8428 /* MyAccount.swift */,
+			);
+			path = Account;
 			sourceTree = "<group>";
 		};
 		5BEE0916219DE8E50043E54E /* ProjectDocumentation */ = {
@@ -355,10 +377,12 @@
 				5BB71D9621C0438B0065642D /* YUCIRGBToneCurve.m in Sources */,
 				5BA66BEC21C18ED800E5C54B /* UserController.swift in Sources */,
 				5BBFDBB421C525C0006578FB /* FirebaseController.swift in Sources */,
+				5BDDED2A21D2D6EC008B8428 /* MyAccount.swift in Sources */,
 				5BB71D8B21C041B60065642D /* Photo.swift in Sources */,
 				5BB71D9B21C050510065642D /* PhotoAlbum.swift in Sources */,
 				5BB71D9921C044130065642D /* FilterStore.swift in Sources */,
 				5BA66BEA21C18EBA00E5C54B /* User.swift in Sources */,
+				5BDDED2721D2D699008B8428 /* State.swift in Sources */,
 				5BC6D8E8219DE0F700C80446 /* ViewController.swift in Sources */,
 				5BC6D8E6219DE0F700C80446 /* AppDelegate.swift in Sources */,
 				5BA66BE821C187B700E5C54B /* PhotoAlbumController.swift in Sources */,
