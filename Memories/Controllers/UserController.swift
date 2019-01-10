@@ -57,18 +57,20 @@ class UserController:FirebaseController
     }
     
     //WRITE
-    static func addMyAccount(user:User)
+    static func addMyAccount(user:User) -> User
     {
-        let userQuery = dbRef.child(k_db_users).child(user.ID)
+        let userQuery = dbRef.child(k_db_users).childByAutoId()
         
         let userDictionary = NSMutableDictionary()
         userDictionary.setValue(user.username, forKey: k_USER_USERNAME)
         userDictionary.setValue(user.email, forKey: k_USER_EMAIL)
-        userDictionary.setValue(user.firstname, forKey: k_USER_FIRSTNAME)
-        userDictionary.setValue(user.lastname, forKey: k_USER_LASTNAME)
-        userDictionary.setValue(user.profileImgUrl?.absoluteString, forKey: k_USER_IMGURL)
+//        userDictionary.setValue(user.firstname, forKey: k_USER_FIRSTNAME)
+//        userDictionary.setValue(user.lastname, forKey: k_USER_LASTNAME)
+//        userDictionary.setValue(user.profileImgUrl?.absoluteString, forKey: k_USER_IMGURL)
         
         userQuery.setValue(userDictionary)
+        
+        return User(withID: userQuery.key, username: user.username, email: user.email, firstname: "", lastname: "", imgUrl: "")
     }
     
     static func addUserOnAlbum(user:User, album:PhotoAlbum)
@@ -89,5 +91,20 @@ class UserController:FirebaseController
         {
             self.addUserOnAlbum(user: user, album: album)
         }
+    }
+    
+    //UPDATE
+    static func updateMyAccount(user:User)
+    {
+        let userQuery = dbRef.child(k_db_users).child(user.ID)
+        
+        let userDictionary = NSMutableDictionary()
+        userDictionary.setValue(user.username, forKey: k_USER_USERNAME)
+        userDictionary.setValue(user.email, forKey: k_USER_EMAIL)
+        userDictionary.setValue(user.firstname, forKey: k_USER_FIRSTNAME)
+        userDictionary.setValue(user.lastname, forKey: k_USER_LASTNAME)
+        userDictionary.setValue(user.profileImgUrl?.absoluteString, forKey: k_USER_IMGURL)
+        
+        userQuery.setValue(userDictionary)
     }
 }

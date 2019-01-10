@@ -23,15 +23,14 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if (MyAccount.sharedInstance.isLoggedIn == false)
+        if (MyAccount.sharedInstance.isLoggedIn == false) //Load from local settings
         {
-            self.showLoginVC()
+            performSegue(withIdentifier: "LoginSegueIdentifier", sender: self.view)
         }
-    }
-    
-    func showLoginVC()
-    {
-        performSegue(withIdentifier: "LoginSegueIdentifier", sender: self.view)
+        else
+        {
+            performSegue(withIdentifier: "HomeSegueIdentifier", sender: self)
+        }
     }
 
 }

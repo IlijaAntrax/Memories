@@ -46,6 +46,9 @@
 		5B33CE1D21E53A0900FE2DAF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B33CE1C21E53A0900FE2DAF /* LoginViewController.swift */; };
 		5B79FB9921A068DD00670313 /* launch_bgd_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5B79FB9821A068DD00670313 /* launch_bgd_image.jpg */; };
 		5BA1B87C21E7BF89006F7C16 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1B87B21E7BF89006F7C16 /* RegisterViewController.swift */; };
+		5BA1B88221E7C5B8006F7C16 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1B88121E7C5B8006F7C16 /* Settings.swift */; };
+		5BA1B88621E7C6EC006F7C16 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5BA1B88421E7C6EC006F7C16 /* SF-Pro-Display-Regular.otf */; };
+		5BA1B88721E7C6EC006F7C16 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5BA1B88521E7C6EC006F7C16 /* SF-Pro-Display-Bold.otf */; };
 		5BA66BE221C183D800E5C54B /* CATransform3D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA66BE121C183D800E5C54B /* CATransform3D+.swift */; };
 		5BA66BE421C1873A00E5C54B /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA66BE321C1873A00E5C54B /* String+.swift */; };
 		5BA66BE621C187AA00E5C54B /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA66BE521C187AA00E5C54B /* PhotoController.swift */; };
@@ -117,6 +120,9 @@
 		5B33CE1C21E53A0900FE2DAF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5B79FB9821A068DD00670313 /* launch_bgd_image.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = launch_bgd_image.jpg; sourceTree = "<group>"; };
 		5BA1B87B21E7BF89006F7C16 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		5BA1B88121E7C5B8006F7C16 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		5BA1B88421E7C6EC006F7C16 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		5BA1B88521E7C6EC006F7C16 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		5BA66BE121C183D800E5C54B /* CATransform3D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransform3D+.swift"; sourceTree = "<group>"; };
 		5BA66BE321C1873A00E5C54B /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		5BA66BE521C187AA00E5C54B /* PhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
@@ -258,6 +264,36 @@
 			path = Documents;
 			sourceTree = "<group>";
 		};
+		5BA1B87F21E7C56B006F7C16 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				5BA1B88121E7C5B8006F7C16 /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		5BA1B88021E7C589006F7C16 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				5BB71D8D21C0438B0065642D /* YUCIRGBToneCurve.h */,
+				5BB71D8E21C0438B0065642D /* YUCIFilterConstructor.m */,
+				5BB71D8F21C0438B0065642D /* YUCIRGBToHSL.cikernel */,
+				5BB71D9021C0438B0065642D /* YUCIRGBToneCurve.cikernel */,
+				5BB71D9121C0438B0065642D /* YUCIFilterConstructor.h */,
+				5BB71D9221C0438B0065642D /* YUCIRGBToneCurve.m */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
+		5BA1B88321E7C6D3006F7C16 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5BA1B88521E7C6EC006F7C16 /* SF-Pro-Display-Bold.otf */,
+				5BA1B88421E7C6EC006F7C16 /* SF-Pro-Display-Regular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		5BA66BE021C183AF00E5C54B /* ExtensionsDecorators */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,12 +329,8 @@
 		5BB71D8C21C0438B0065642D /* Filters */ = {
 			isa = PBXGroup;
 			children = (
-				5BB71D8D21C0438B0065642D /* YUCIRGBToneCurve.h */,
-				5BB71D8E21C0438B0065642D /* YUCIFilterConstructor.m */,
-				5BB71D8F21C0438B0065642D /* YUCIRGBToHSL.cikernel */,
-				5BB71D9021C0438B0065642D /* YUCIRGBToneCurve.cikernel */,
-				5BB71D9121C0438B0065642D /* YUCIFilterConstructor.h */,
-				5BB71D9221C0438B0065642D /* YUCIRGBToneCurve.m */,
+				5BB71D9821C044130065642D /* FilterStore.swift */,
+				5BA1B88021E7C589006F7C16 /* Files */,
 			);
 			path = Filters;
 			sourceTree = "<group>";
@@ -306,10 +338,11 @@
 		5BB71D9721C043B70065642D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				5BA1B87F21E7C56B006F7C16 /* Settings */,
 				5BDDED2521D2D65D008B8428 /* State */,
 				5BA66BE021C183AF00E5C54B /* ExtensionsDecorators */,
-				5BB71D9821C044130065642D /* FilterStore.swift */,
 				5BB71D8C21C0438B0065642D /* Filters */,
+				5BA1B88321E7C6D3006F7C16 /* Fonts */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -484,6 +517,8 @@
 				5B33CE0F21E5357500FE2DAF /* profile_default_cover.jpg in Resources */,
 				5B33CE0121E5357500FE2DAF /* text_holder_selected.png in Resources */,
 				5B33CE1621E5357500FE2DAF /* notification_active.png in Resources */,
+				5BA1B88621E7C6EC006F7C16 /* SF-Pro-Display-Regular.otf in Resources */,
+				5BA1B88721E7C6EC006F7C16 /* SF-Pro-Display-Bold.otf in Resources */,
 				5B33CE0D21E5357500FE2DAF /* photo_mask.png in Resources */,
 				5B33CE0321E5357500FE2DAF /* notification_inactive.png in Resources */,
 				5B33CE0A21E5357500FE2DAF /* empty_image.png in Resources */,
@@ -568,6 +603,7 @@
 				5BA66BEA21C18EBA00E5C54B /* User.swift in Sources */,
 				5BDDED2721D2D699008B8428 /* State.swift in Sources */,
 				5BC6D8E8219DE0F700C80446 /* ViewController.swift in Sources */,
+				5BA1B88221E7C5B8006F7C16 /* Settings.swift in Sources */,
 				5BC6D8E6219DE0F700C80446 /* AppDelegate.swift in Sources */,
 				5BA66BE821C187B700E5C54B /* PhotoAlbumController.swift in Sources */,
 			);
