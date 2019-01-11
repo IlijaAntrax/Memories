@@ -9,10 +9,8 @@
 import UIKit
 import FirebaseAuth
 
-class RegisterViewController: UIViewController, UITextFieldDelegate {
+class RegisterViewController: KeyboardViewController {
 
-    @IBOutlet weak var contentViewBottomConstr: NSLayoutConstraint!
-    
     @IBOutlet weak var usernameTxtField: UITextField!
     @IBOutlet weak var emailTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
@@ -34,10 +32,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         self.rePasswordTxtField.font = Settings.sharedInstance.fontRegularSizeMedium()
         
         loader.isHidden = true
-        
-        //Observers
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
     }
     
 
@@ -54,13 +48,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBAction func register(_ sender: Any)
     {
         guard let username = self.usernameTxtField.text, let email = self.emailTxtField.text, let password = self.passwordTxtField.text, let rePassword = self.rePasswordTxtField.text else {
-            //Show alert missing username, email or password
+            //TODO: Show alert missing username, email or password
             return
         }
 
         if password != rePassword
         {
-            //Show alert unmatching passwords
+            //TODO: Show alert unmatching passwords
         }
         else
         {
@@ -71,66 +65,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                 let myUser = UserController.addMyAccount(user: User.init(withID: "", username: username, email: email, firstname: "", lastname: "", imgUrl: ""))
                 MyAccount.sharedInstance.logIn(user: myUser)
                 
-                loader.stopAnimating()
+                self.loader.stopAnimating()
                 self.navigationController?.dismiss(animated: true, completion: nil)
             }
         }
     }
     
-
-    // MARK: Keyboard animations
-    var isKeyboardShown = false
-    
-    @objc func keyboardWillShow()
-    {
-        isKeyboardShown = true
-    }
-    
-    @objc func keyboardWillHide()
-    {
-        isKeyboardShown = false
-    }
-    
-    func hideKeyboardIfNeeded() -> Bool
-    {
-        if isKeyboardShown
-        {
-            self.view.endEditing(true)
-            
-            self.animateView(constant: 0)
-            
-            return true
-        }
-        return false
-    }
-    
-    func animateView(constant: CGFloat)
-    {
-        UIView.animate(withDuration: k_KEYBOARD_ANIM_DURATION)
-        {
-            self.contentViewBottomConstr.constant = constant
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    // MARK: TextField Delegate
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
-    {
-        return true
-    }
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool
-    {
-        self.animateView(constant: -(UIScreen.main.bounds.size.height * 0.3))
-        
-        return true
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool
-    {
-        self.animateView(constant: 0)
-        textField.resignFirstResponder()
-        
-        return true
-    }
 }

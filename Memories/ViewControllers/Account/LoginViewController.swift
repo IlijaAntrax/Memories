@@ -9,10 +9,8 @@
 import UIKit
 import FirebaseAuth
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: KeyboardViewController {
 
-    @IBOutlet weak var contentViewBottomConstr: NSLayoutConstraint!
-    
     @IBOutlet weak var usernameTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
     
@@ -28,10 +26,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.passwordTxtField.font = Settings.sharedInstance.fontRegularSizeMedium()
         
         loader.isHidden = true
-        
-        //Observers
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
     }
     
 
@@ -48,7 +42,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func loginUser()
     {
         guard let email = self.usernameTxtField.text, let password = self.passwordTxtField.text else {
-            //Show alert missing email or password
+            //TODO: Show alert missing email or password
             return
         }
         
@@ -58,7 +52,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if let err = error
             {
-                //Show alert with error
+                //TODO: Show alert with error
                 print(err)
             }
             else if let user = user
@@ -91,59 +85,4 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    // MARK: Keyboard animations
-    var isKeyboardShown = false
-    
-    @objc func keyboardWillShow()
-    {
-        isKeyboardShown = true
-    }
-    
-    @objc func keyboardWillHide()
-    {
-        isKeyboardShown = false
-    }
-    
-    func hideKeyboardIfNeeded() -> Bool
-    {
-        if isKeyboardShown
-        {
-            self.view.endEditing(true)
-            
-            self.animateView(constant: 0)
-            
-            return true
-        }
-        return false
-    }
-    
-    func animateView(constant: CGFloat)
-    {
-        UIView.animate(withDuration: k_KEYBOARD_ANIM_DURATION)
-        {
-            self.contentViewBottomConstr.constant = constant
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    // MARK: TextField Delegate
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
-    {
-        return true
-    }
-    
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool
-    {
-        self.animateView(constant: -(UIScreen.main.bounds.size.height * 0.3))
-        
-        return true
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool
-    {
-        self.animateView(constant: 0)
-        textField.resignFirstResponder()
-        
-        return true
-    }
 }

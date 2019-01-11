@@ -44,15 +44,32 @@ class UserController:FirebaseController
     {
         let usersQuery = dbRef.child(k_db_albums).child(albumId).child(k_PHOTOALBUM_USERS)
         usersQuery.observeSingleEvent(of: .value) { (dataSnapshot) in
+            var users = [User]()
             if let usersDictionaries = dataSnapshot.value as? NSDictionary
             {
-                var users = [User]()
                 for userDict in usersDictionaries.enumerated()
                 {
                     users.append(User.initWith(key: userDict.element.key as! String, dictionary: userDict.element.value as! NSDictionary))
                 }
-                completionHandler(users)
             }
+            completionHandler(users)
+        }
+    }
+    
+    static func searchUsers(byUsername name:String, completionHandler:@escaping ([User]) -> ())
+    {
+        let usersRef = self.dbRef.child("users").queryOrdered(byChild: k_USER_USERNAME).queryStarting(atValue: name)
+        
+        usersRef.observeSingleEvent(of: .value) { (dataSnapshot) in
+            var users = [User]()
+            if let usersDictionaries = dataSnapshot.value as? NSDictionary
+            {
+                for userDict in usersDictionaries.enumerated()
+                {
+                    users.append(User.initWith(key: userDict.element.key as! String, dictionary: userDict.element.value as! NSDictionary))
+                }
+            }
+            completionHandler(users)
         }
     }
     

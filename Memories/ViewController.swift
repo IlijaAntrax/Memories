@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        UIApplication.shared.statusBarView?.backgroundColor = Settings.sharedInstance.primaryColor()
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,14 +25,16 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if (MyAccount.sharedInstance.isLoggedIn == false) //Load from local settings
-        {
-            performSegue(withIdentifier: "LoginSegueIdentifier", sender: self.view)
-        }
-        else
-        {
-            performSegue(withIdentifier: "HomeSegueIdentifier", sender: self)
-        }
+//        if (MyAccount.sharedInstance.isLoggedIn == false) //Load from local settings
+//        {
+//            performSegue(withIdentifier: "LoginSegueIdentifier", sender: self.view)
+//        }
+//        else
+//        {
+//            performSegue(withIdentifier: "HomeSegueIdentifier", sender: self)
+//        }
+        
+        performSegue(withIdentifier: "HomeSegueIdentifier", sender: self)
     }
 
 }
