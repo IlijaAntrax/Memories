@@ -18,6 +18,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordTxtField: UITextField!
     @IBOutlet weak var rePasswordTxtField: UITextField!
     
+    @IBOutlet weak var loader: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,6 +32,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         self.emailTxtField.font = Settings.sharedInstance.fontRegularSizeMedium()
         self.passwordTxtField.font = Settings.sharedInstance.fontRegularSizeMedium()
         self.rePasswordTxtField.font = Settings.sharedInstance.fontRegularSizeMedium()
+        
+        loader.isHidden = true
         
         //Observers
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
@@ -60,9 +64,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         }
         else
         {
+            loader.isHidden = false
+            loader.startAnimating()
+            
             Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                 let myUser = UserController.addMyAccount(user: User.init(withID: "", username: username, email: email, firstname: "", lastname: "", imgUrl: ""))
                 MyAccount.sharedInstance.logIn(user: myUser)
+                
+                loader.stopAnimating()
                 self.navigationController?.dismiss(animated: true, completion: nil)
             }
         }

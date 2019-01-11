@@ -16,6 +16,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
     
+    @IBOutlet weak var loader: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,6 +26,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.passwordTxtField.delegate = self
         self.usernameTxtField.font = Settings.sharedInstance.fontRegularSizeMedium()
         self.passwordTxtField.font = Settings.sharedInstance.fontRegularSizeMedium()
+        
+        loader.isHidden = true
         
         //Observers
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
@@ -48,6 +52,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
+        loader.isHidden = false
+        loader.startAnimating()
+        
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if let err = error
             {
@@ -59,6 +66,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 //Retrive user from database and set MyAccount
                 UserController.getUser(forEmail: user.email ?? email, completionHandler: { (myUser) in
                     MyAccount.sharedInstance.logIn(user: myUser)
+                    
+                    self.loader.stopAnimating()
                     
                     self.dismiss(animated: true, completion: nil)
                 })

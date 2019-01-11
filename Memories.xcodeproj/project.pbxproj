@@ -49,6 +49,7 @@
 		5BA1B88221E7C5B8006F7C16 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1B88121E7C5B8006F7C16 /* Settings.swift */; };
 		5BA1B88621E7C6EC006F7C16 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5BA1B88421E7C6EC006F7C16 /* SF-Pro-Display-Regular.otf */; };
 		5BA1B88721E7C6EC006F7C16 /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5BA1B88521E7C6EC006F7C16 /* SF-Pro-Display-Bold.otf */; };
+		5BA1B88A21E7E1AF006F7C16 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1B88921E7E1AF006F7C16 /* HomeViewController.swift */; };
 		5BA66BE221C183D800E5C54B /* CATransform3D+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA66BE121C183D800E5C54B /* CATransform3D+.swift */; };
 		5BA66BE421C1873A00E5C54B /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA66BE321C1873A00E5C54B /* String+.swift */; };
 		5BA66BE621C187AA00E5C54B /* PhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA66BE521C187AA00E5C54B /* PhotoController.swift */; };
@@ -63,6 +64,7 @@
 		5BB71D9621C0438B0065642D /* YUCIRGBToneCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB71D9221C0438B0065642D /* YUCIRGBToneCurve.m */; };
 		5BB71D9921C044130065642D /* FilterStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB71D9821C044130065642D /* FilterStore.swift */; };
 		5BB71D9B21C050510065642D /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB71D9A21C050510065642D /* PhotoAlbum.swift */; };
+		5BBC004021E90E2B00193C99 /* ModelKomunikacije.docx in Resources */ = {isa = PBXBuildFile; fileRef = 5BBC003F21E90E2B00193C99 /* ModelKomunikacije.docx */; };
 		5BBFDBB021C502D6006578FB /* RemoteNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFDBAF21C502D6006578FB /* RemoteNotification.swift */; };
 		5BBFDBB221C5032F006578FB /* RemoteNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFDBB121C5032F006578FB /* RemoteNotificationController.swift */; };
 		5BBFDBB421C525C0006578FB /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBFDBB321C525C0006578FB /* FirebaseController.swift */; };
@@ -123,6 +125,7 @@
 		5BA1B88121E7C5B8006F7C16 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		5BA1B88421E7C6EC006F7C16 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		5BA1B88521E7C6EC006F7C16 /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		5BA1B88921E7E1AF006F7C16 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5BA66BE121C183D800E5C54B /* CATransform3D+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CATransform3D+.swift"; sourceTree = "<group>"; };
 		5BA66BE321C1873A00E5C54B /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		5BA66BE521C187AA00E5C54B /* PhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoController.swift; sourceTree = "<group>"; };
@@ -139,6 +142,7 @@
 		5BB71D9221C0438B0065642D /* YUCIRGBToneCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YUCIRGBToneCurve.m; sourceTree = "<group>"; };
 		5BB71D9821C044130065642D /* FilterStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterStore.swift; sourceTree = "<group>"; };
 		5BB71D9A21C050510065642D /* PhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
+		5BBC003F21E90E2B00193C99 /* ModelKomunikacije.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ModelKomunikacije.docx; sourceTree = "<group>"; };
 		5BBFDBAF21C502D6006578FB /* RemoteNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNotification.swift; sourceTree = "<group>"; };
 		5BBFDBB121C5032F006578FB /* RemoteNotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteNotificationController.swift; sourceTree = "<group>"; };
 		5BBFDBB321C525C0006578FB /* FirebaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				5BA1B87A21E7BF64006F7C16 /* Account */,
+				5BA1B88821E7E183006F7C16 /* Home */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 		5BA1B87E21E7C0A6006F7C16 /* Documents */ = {
 			isa = PBXGroup;
 			children = (
+				5BBC003F21E90E2B00193C99 /* ModelKomunikacije.docx */,
 				5BA79F7D21CD6DC8004C15EA /* ModeliPodataka.docx */,
 			);
 			path = Documents;
@@ -292,6 +298,14 @@
 				5BA1B88421E7C6EC006F7C16 /* SF-Pro-Display-Regular.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		5BA1B88821E7E183006F7C16 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5BA1B88921E7E1AF006F7C16 /* HomeViewController.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		5BA66BE021C183AF00E5C54B /* ExtensionsDecorators */ = {
@@ -526,6 +540,7 @@
 				5B33CDFC21E5357500FE2DAF /* sign_in_btn.png in Resources */,
 				5BA79F7E21CD6DC8004C15EA /* ModeliPodataka.docx in Resources */,
 				5B33CDF821E5357500FE2DAF /* bg.jpg in Resources */,
+				5BBC004021E90E2B00193C99 /* ModelKomunikacije.docx in Resources */,
 				5B33CE0921E5357500FE2DAF /* close_btn.png in Resources */,
 				5BB71D9421C0438B0065642D /* YUCIRGBToHSL.cikernel in Resources */,
 			);
@@ -592,6 +607,7 @@
 				5B33CE1D21E53A0900FE2DAF /* LoginViewController.swift in Sources */,
 				5BBFDBB221C5032F006578FB /* RemoteNotificationController.swift in Sources */,
 				5BA66BE221C183D800E5C54B /* CATransform3D+.swift in Sources */,
+				5BA1B88A21E7E1AF006F7C16 /* HomeViewController.swift in Sources */,
 				5BB71D9621C0438B0065642D /* YUCIRGBToneCurve.m in Sources */,
 				5BA66BEC21C18ED800E5C54B /* UserController.swift in Sources */,
 				5BBFDBB421C525C0006578FB /* FirebaseController.swift in Sources */,
