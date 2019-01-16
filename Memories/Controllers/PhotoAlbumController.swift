@@ -11,6 +11,36 @@ import Foundation
 class PhotoAlbumController:FirebaseController
 {
     //READ
+    static func getAlbumsCount(forUserId userId:String, completionHandler:@escaping (Int) -> ())
+    {
+        let albumsQuery = dbRef.child(k_db_albums).queryOrdered(byChild: k_PHOTOALBUM_OWNER).queryEqual(toValue: userId)
+        albumsQuery.observeSingleEvent(of: .value) { (dataSnapshot) in
+            if let albumsArray = dataSnapshot.value as? NSDictionary
+            {
+                completionHandler(albumsArray.count)
+            }
+            else
+            {
+                completionHandler(0)
+            }
+        }
+    }
+    
+    static func getAlbumsCount(forUserEmail email:String, completionHandler:@escaping (Int) -> ())
+    {
+        let albumsQuery = dbRef.child(k_db_albums).queryOrdered(byChild: k_PHOTOALBUM_OWNER).queryEqual(toValue: email)
+        albumsQuery.observeSingleEvent(of: .value) { (dataSnapshot) in
+            if let albumsArray = dataSnapshot.value as? NSDictionary
+            {
+                completionHandler(albumsArray.count)
+            }
+            else
+            {
+                completionHandler(0)
+            }
+        }
+    }
+    
     static func getAlbum(forAlbumId albumId:String, completionHandler:@escaping (PhotoAlbum) -> ())
     {
         let albumQuery = dbRef.child(k_db_albums).child(albumId)
@@ -34,6 +64,37 @@ class PhotoAlbumController:FirebaseController
                     albums.append(PhotoAlbum.initWith(key: albumData.element.key as! String, dictionary: albumData.element.value as! NSDictionary))
                 }
                 completionHandler(albums)
+            }
+        }
+    }
+    
+    static func getAlbums(forUserEmail email:String, completionHandler:@escaping ([PhotoAlbum]) -> ())
+    {
+        let albumsQuery = dbRef.child(k_db_albums).queryOrdered(byChild: k_PHOTOALBUM_OWNER).queryEqual(toValue: email)
+        albumsQuery.observeSingleEvent(of: .value) { (dataSnapshot) in
+            if let albumsArray = dataSnapshot.value as? NSDictionary
+            {
+                var albums = [PhotoAlbum]()
+                for albumData in albumsArray.enumerated()
+                {
+                    albums.append(PhotoAlbum.initWith(key: albumData.element.key as! String, dictionary: albumData.element.value as! NSDictionary))
+                }
+                completionHandler(albums)
+            }
+        }
+    }
+    
+    static func getSharedAlbumsCount(forUserId userId:String, completionHandler:@escaping (Int) -> ())
+    {
+        let sharedQuery = dbRef.child(k_db_users).child(userId).child(k_USER_SHARED)
+        sharedQuery.observeSingleEvent(of: .value) { (dataSnapshot) in
+            if let albumsKeys = dataSnapshot.value as? [String]
+            {
+                completionHandler(albumsKeys.count)
+            }
+            else
+            {
+                completionHandler(0)
             }
         }
     }

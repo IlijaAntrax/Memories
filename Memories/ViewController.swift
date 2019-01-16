@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ViewController: UIViewController {
 
@@ -25,16 +26,24 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        if (MyAccount.sharedInstance.isLoggedIn == false) //Load from local settings
-//        {
-//            performSegue(withIdentifier: "LoginSegueIdentifier", sender: self.view)
-//        }
-//        else
-//        {
-//            performSegue(withIdentifier: "HomeSegueIdentifier", sender: self)
-//        }
-        
-        performSegue(withIdentifier: "HomeSegueIdentifier", sender: self)
+        if let myUser = Auth.auth().currentUser
+        {
+            UserController.getUser(forEmail: myUser.email ?? "", completionHandler: { (myUser) in
+                MyAccount.sharedInstance.logIn(user: myUser)
+                if (MyAccount.sharedInstance.isLoggedIn == false) //Load from local settings
+                {
+                    self.performSegue(withIdentifier: "LoginSegueIdentifier", sender: self.view)
+                }
+                else
+                {
+                    self.performSegue(withIdentifier: "HomeSegueIdentifier", sender: self)
+                }
+            })
+        }
+        else
+        {
+            performSegue(withIdentifier: "LoginSegueIdentifier", sender: self.view)
+        }
     }
 
 }

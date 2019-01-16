@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyAlbumsViewController: UIViewController {
+class MyAlbumsViewController: HomeViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,5 +26,11 @@ class MyAlbumsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func loadAlbum(completionHandler: @escaping ([PhotoAlbum]) -> ()) {
+        PhotoAlbumController.getAlbums(forUserEmail: MyAccount.sharedInstance.email ?? "") { (albums) in
+            completionHandler(albums)
+        }
+    }
 
 }

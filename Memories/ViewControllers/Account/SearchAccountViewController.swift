@@ -87,7 +87,7 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FirebaseUserCell", for: indexPath) as! UserCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserCell", for: indexPath) as! UserCell
         
         cell.user = usersList[indexPath.item]
         

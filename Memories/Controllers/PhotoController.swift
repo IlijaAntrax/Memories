@@ -30,7 +30,7 @@ class PhotoController:FirebaseController
     
     static func downloadImage(fromUrl url:URL, completionHandler:@escaping (UIImage?) -> ())
     {
-        let reference = Storage.storage().reference(forURL: url.absoluteString)
+        let reference = Storage.storage().reference(forURL: url.path.replaceUrl(url))
         
         reference.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
             if let imageData = data
