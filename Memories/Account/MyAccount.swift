@@ -42,6 +42,14 @@ final class MyAccount
         }
     }
     
+    var username: String?
+    {
+        get
+        {
+            return state.username(account: self)
+        }
+    }
+    
     func logIn(user: User)
     {
         self.state = LoggedInState(user: user)

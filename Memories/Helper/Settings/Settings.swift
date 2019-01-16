@@ -8,6 +8,11 @@
 
 import UIKit
 
+//MARK: Notifications observers
+let NotificationPhotosAddedToAlbum = "NotificationPhotosAddedToAlbum"
+let NotificationDeletePhotoFromAlbum = "NotificationDeletePhotoFromAlbum"
+let NotificationAddUsersOnAlbum = "NotificationAddUsersOnAlbum"
+
 let k_KEYBOARD_ANIM_DURATION = 0.3
 
 class Settings: NSObject
@@ -23,6 +28,11 @@ class Settings: NSObject
     func isPhone() -> Bool
     {
         return UIDevice.current.userInterfaceIdiom == .phone
+    }
+    
+    func emptyAlbumImage() -> UIImage
+    {
+        return UIImage(named: "empty_image.png")!
     }
     
     //MARK: Colors
@@ -80,5 +90,15 @@ class Settings: NSObject
     func fontBoldSizeLarge() -> UIFont
     {
         return UIFont(name: "SFProDisplay-Bold", size: isPhone() ? (UIScreen.main.bounds.size.width * 0.07) : (UIScreen.main.bounds.size.width * 0.0575))!
+    }
+    
+    func activityIndicatorColor() -> UIColor
+    {
+        return UIColor.init(red: 80/255, green: 109/255, blue: 238/255, alpha: 1.0)
+    }
+    
+    func activityIndicatorBgdColor() -> UIColor
+    {
+        return UIColor.init(red: 241/255, green: 241/255, blue: 241/255, alpha: 1.0)
     }
 }

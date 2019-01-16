@@ -12,12 +12,14 @@ let k_NOTIFICATION_TITLE = "title"
 let k_NOTIFICATION_BODY = "body"
 let k_NOTIFICATION_ACTION = "action"
 let k_NOTIFICATION_OBJECT = "object"
+let k_NOTIFICATION_DATE = "date"
 
 class RemoteNotification: NSObject
 {
     private var _id: String?
     var messageTitle: String = ""
     var messageBody: String = ""
+    var date: Date = Date()
     var actionType: ActionType = .none
     var objectActionId: String?
     
@@ -26,11 +28,12 @@ class RemoteNotification: NSObject
         return self._id ?? ""
     }
     
-    init(withId id:String, title:String, body:String, action:String, objectId:String)
+    init(withId id:String, title:String, body:String, date:String, action:String, objectId:String)
     {
         self._id = id
         self.messageTitle = title
         self.messageBody = body
+        self.date = date.getDate() ?? Date()
         self.actionType = ActionType(rawValue: action) ?? .none
         self.objectActionId = objectId
     }
@@ -40,6 +43,7 @@ class RemoteNotification: NSObject
         return RemoteNotification(withId: key,
                                   title: dictionary[k_NOTIFICATION_TITLE] as? String ?? "",
                                   body: dictionary[k_NOTIFICATION_BODY] as? String ?? "",
+                                  date: dictionary[k_NOTIFICATION_DATE] as? String ?? "",
                                   action: dictionary[k_NOTIFICATION_ACTION] as? String ?? ActionType.none.rawValue,
                                   objectId: dictionary[k_NOTIFICATION_OBJECT] as? String ?? "")
     }
