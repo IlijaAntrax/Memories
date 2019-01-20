@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 final class MyAccount
 {
@@ -42,12 +43,17 @@ final class MyAccount
         }
     }
     
-    var username: String?
+    var myUser: User?
     {
         get
         {
-            return state.username(account: self)
+            return state.myUser(account: self)
         }
+    }
+    
+    func setProfileImage(image:UIImage)
+    {
+        state.myUser(account: self)?.profileImg = image
     }
     
     func logIn(user: User)

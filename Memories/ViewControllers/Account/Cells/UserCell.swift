@@ -21,6 +21,27 @@ class UserCell:UICollectionViewCell
         
         usernameLbl.font = Settings.sharedInstance.fontRegularSizeMedium()
         usernameLbl.textColor = Settings.sharedInstance.grayNormalColor()
+        
+        self.profileImgView.contentMode = UIViewContentMode.scaleAspectFill
+        self.profileImgView.image = UIImage(named: "profie_icon.png")
+        profileImgView.addObserver(self, forKeyPath: "bounds", options: .new, context: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?)
+    {
+        if let key = keyPath
+        {
+            if key == "bounds"
+            {
+                if let imgView = object as? UIImageView
+                {
+                    if imgView == self.profileImgView
+                    {
+                        addMask(forView: profileImgView)
+                    }
+                }
+            }
+        }
     }
     
     var user:User?
@@ -29,9 +50,44 @@ class UserCell:UICollectionViewCell
         {
             if let user = user
             {
-                profileImgView.image = user.profileImg ?? UIImage(named: "profie_icon.png")
+                if let profileImg = user.profileImg
+                {
+                    profileImgView.image = profileImg
+                }
+                else
+                {
+                    PhotoController.downloadProfilePhoto(forUserID: user.ID) { (image) in
+                        if let img = image
+                        {
+                            self.profileImgView.image = img
+                            self.user?.profileImg = img
+                        }
+                        else
+                        {
+                            self.profileImgView.image = UIImage(named: "profie_icon.png")
+                        }
+                    }
+                }
+                
                 usernameLbl.text = user.username
             }
+        }
+    }
+    
+    func addMask(forView maskView:UIView)
+    {
+        if maskView.layer.mask == nil
+        {
+            let maskImg = UIImage(named: "profile_image_mask")!
+            let mask = CALayer()
+            mask.contents = maskImg.cgImage
+            mask.frame = CGRect.init(x: 0.0, y: 0.0, width: maskView.frame.width, height: maskView.frame.height)
+            maskView.layer.mask = mask
+            maskView.layer.masksToBounds = true
+        }
+        else
+        {
+            maskView.layer.mask?.frame = CGRect.init(x: 0.0, y: 0.0, width: maskView.frame.width, height: maskView.frame.height)
         }
     }
 }

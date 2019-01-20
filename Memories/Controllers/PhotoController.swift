@@ -30,15 +30,39 @@ class PhotoController:FirebaseController
     
     static func downloadImage(fromUrl url:URL, completionHandler:@escaping (UIImage?) -> ())
     {
-        let reference = Storage.storage().reference(forURL: url.path.replaceUrl(url))
-        
-        reference.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
-            if let imageData = data
-            {
-                if let image = UIImage(data: imageData)
+        if url.isValid()
+        {
+            let reference = Storage.storage().reference(forURL: url.path.replaceUrl(url))
+            
+            reference.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
+                if let imageData = data
                 {
-                    completionHandler(image)
+                    if let image = UIImage(data: imageData)
+                    {
+                        completionHandler(image)
+                    }
                 }
+                else
+                {
+                    completionHandler(nil)
+                }
+            }
+        }
+        else
+        {
+            completionHandler(nil)
+        }
+    }
+    
+    static func downloadProfilePhoto(forUserID id:String, completionHandler:@escaping (UIImage?) -> ())
+    {
+        let userQuery = dbRef.child(k_db_users).child(id).child(k_USER_IMGURL)
+        userQuery.observeSingleEvent(of: .value) { (dataSnapshot) in
+            if let url = dataSnapshot.value as? String
+            {
+                PhotoController.downloadImage(fromUrl: URL(fileURLWithPath: url), completionHandler: { (image) in
+                    completionHandler(image)
+                })
             }
             else
             {
@@ -68,13 +92,13 @@ class PhotoController:FirebaseController
         }
     }
     
-    static func uploadImage(image:UIImage, completionHandler:@escaping (URL?) -> ())
+    private static func uploadImage(image:UIImage, toFolder folder:String, completionHandler:@escaping (URL?) -> ())
     {
         if let imageData = UIImageJPEGRepresentation(image, 1.0)
         {
             let imageUrlName = String.uniqeKey() + ".jpg"
             
-            let imgRef = Storage.storage().reference().child("albumsImages/\(imageUrlName)")
+            let imgRef = Storage.storage().reference().child("\(folder)/\(imageUrlName)")
             print(imgRef.fullPath)
             
             _ = imgRef.putData(imageData, metadata: nil) { (metadata, error) in
@@ -90,6 +114,30 @@ class PhotoController:FirebaseController
                     // Uh-oh, an error occurred!
                     completionHandler(nil)
                 }
+            }
+        }
+    }
+    
+    static func uploadAlbumImage(image:UIImage, completionHandler:@escaping (URL?) -> ())
+    {
+        self.uploadImage(image: image, toFolder: "albumsImages") { (url) in
+            completionHandler(url)
+        }
+    }
+    
+    static func uploadProfileImage(image:UIImage, forUserID id:String, completionHandler:@escaping (Bool) -> ())
+    {
+        //TODO: check if need to delete current, or make another function for that
+        self.uploadImage(image: image, toFolder: "profileimages") { (url) in
+            if let imgUrl = url
+            {
+                let userQuery = dbRef.child(k_db_users).child(id).child(k_USER_IMGURL)
+                userQuery.setValue(imgUrl.absoluteString)
+                completionHandler(true)
+            }
+            else
+            {
+                completionHandler(false)
             }
         }
     }

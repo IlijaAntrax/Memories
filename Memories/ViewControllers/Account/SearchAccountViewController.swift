@@ -16,6 +16,7 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
     
     @IBOutlet weak var loader: UIActivityIndicatorView!
     
+    private var selectedUser: User?
     private var usersList = [User]()
     
     override func viewDidLoad() {
@@ -32,15 +33,16 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+         if segue.identifier == "FriendsAccountOverviewSegue"
+         {
+            if let accountVC = segue.destination as? FriendAccountOverviewViewController
+            {
+                accountVC.userAccount = self.selectedUser
+            }
+        }
     }
-    */
     
     func searchUsersBy(name: String)
     {
@@ -96,7 +98,8 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        
+        self.selectedUser = usersList[indexPath.row]
+        self.performSegue(withIdentifier: "FriendsAccountOverviewSegue", sender: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize

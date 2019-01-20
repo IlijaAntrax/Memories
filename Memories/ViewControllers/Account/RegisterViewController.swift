@@ -21,7 +21,7 @@ class RegisterViewController: KeyboardViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // Do any additional setup after loading the view.        
         self.usernameTxtField.delegate = self
         self.emailTxtField.delegate = self
         self.passwordTxtField.delegate = self

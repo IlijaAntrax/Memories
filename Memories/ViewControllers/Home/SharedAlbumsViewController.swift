@@ -77,6 +77,6 @@ class SharedAlbumsViewController: HomeViewController {
     {
         let insset:CGFloat = collectionView.frame.width * 0.02
         
-        return UIEdgeInsets.init(top: 0.0, left: insset, bottom: 0.0, right: insset)
+        return UIEdgeInsets.init(top: insset, left: insset, bottom: 0.0, right: insset)
     }
 }

@@ -13,7 +13,7 @@ protocol State
     func isLoggedIn(account: MyAccount) -> Bool
     func userId(account: MyAccount) -> String?
     func email(account: MyAccount) -> String?
-    func username(account: MyAccount) -> String?
+    func myUser(account: MyAccount) -> User?
 }
 
 class LoggedOutState: State
@@ -33,7 +33,7 @@ class LoggedOutState: State
         return nil
     }
     
-    func username(account: MyAccount) -> String?
+    func myUser(account: MyAccount) -> User?
     {
         return nil
     }
@@ -41,7 +41,7 @@ class LoggedOutState: State
 
 class LoggedInState: State
 {
-    let user: User
+    var user: User
     
     init(user: User)
     {
@@ -63,8 +63,8 @@ class LoggedInState: State
         return self.user.email
     }
     
-    func username(account: MyAccount) -> String?
+    func myUser(account: MyAccount) -> User?
     {
-        return self.user.username
+        return self.user
     }
 }

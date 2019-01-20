@@ -14,12 +14,9 @@ extension String
     {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss" //Your date format
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00") //Current time zone
-        if let string = self.components(separatedBy: " +").first
-        {
-            return dateFormatter.date(from: string)
-        }
-        return nil
+        dateFormatter.timeZone = TimeZone.current //Current time zone
+        
+        return dateFormatter.date(from: self)
     }
     
     func replaceUrl(_ url:URL) -> String
