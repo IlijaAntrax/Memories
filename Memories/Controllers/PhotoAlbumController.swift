@@ -180,7 +180,7 @@ class PhotoAlbumController:FirebaseController
         
         let albumDictionary = NSMutableDictionary()
         albumDictionary.setValue(album.name, forKey: k_PHOTOALBUM_NAME)
-        albumDictionary.setValue(album.creationDate.description, forKey: k_PHOTOALBUM_DATE)
+        albumDictionary.setValue(album.creationDate.getString(), forKey: k_PHOTOALBUM_DATE)
         albumDictionary.setValue(album.owner, forKey: k_PHOTOALBUM_OWNER)
         
         albumQuery.setValue(albumDictionary)
@@ -193,7 +193,7 @@ class PhotoAlbumController:FirebaseController
         
         let albumDictionary = NSMutableDictionary()
         albumDictionary.setValue(album.name, forKey: k_PHOTOALBUM_NAME)
-        albumDictionary.setValue(album.creationDate.description, forKey: k_PHOTOALBUM_DATE)
+        albumDictionary.setValue(album.creationDate.getString(), forKey: k_PHOTOALBUM_DATE)
         albumDictionary.setValue(album.owner, forKey: k_PHOTOALBUM_OWNER)
         
         albumQuery.setValue(albumDictionary)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class MyAlbumsViewController: HomeViewController {
 
@@ -14,6 +15,13 @@ class MyAlbumsViewController: HomeViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(animated)
+        
+        self.albumsCollection.reloadItems(at: [IndexPath(row: 0, section: 0)])
     }
     
 
@@ -30,6 +38,24 @@ class MyAlbumsViewController: HomeViewController {
     override func loadAlbum(completionHandler: @escaping ([PhotoAlbum]) -> ()) {
         PhotoAlbumController.getAlbums(forUserEmail: MyAccount.sharedInstance.email ?? "") { (albums) in
             completionHandler(albums)
+        }
+    }
+    
+    //MARK: Collection delegate
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        if indexPath.item == 0 // profile cell
+        {
+            let profileCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserProfileCell", for: indexPath) as? UserProfileCell
+            
+            profileCell?.myProfileHeaderView.setup(withDelegate: self, andUser: MyAccount.sharedInstance.myUser)
+            profileCell?.myProfileHeaderView.uploadImgBtn.isHidden = true
+            
+            return profileCell!
+        }
+        else
+        {
+            return super.collectionView(collectionView, cellForItemAt: indexPath)
         }
     }
 

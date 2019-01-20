@@ -83,10 +83,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     {
         let album = PhotoAlbum(withID: "", name: albumName, date: Date(), owner: MyAccount.sharedInstance.email ?? "", photos: [Photo]())
         
-        self.albums.append(album)
         PhotoAlbumController.addPhotoAlbum(album: album)
         
-        albumsCollection.reloadData()
+        self.loadAlbum { (photoAlbums) in
+            self.albums = photoAlbums
+            self.albumsCollection.reloadData()
+        }
     }
     
     //MARK: CollectionView delegate, data source
@@ -101,7 +103,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         {
             let profileCell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserProfileCell", for: indexPath) as? UserProfileCell
             
-            profileCell?.setup()
+            profileCell?.myProfileHeaderView.setup(withUser: MyAccount.sharedInstance.myUser)
             
             return profileCell!
         }
@@ -129,7 +131,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     {
         if indexPath.item == 0
         {
-            //TODO: show profile, or do nothing
+            self.tabBarController?.selectedIndex = 2
         }
         else if indexPath.item == 1
         {

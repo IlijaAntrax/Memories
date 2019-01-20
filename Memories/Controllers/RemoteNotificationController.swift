@@ -44,7 +44,7 @@ class RemoteNotificationController:FirebaseController
         let notificationDictionary = NSMutableDictionary()
         notificationDictionary.setValue(notification.messageTitle, forKey: k_NOTIFICATION_TITLE)
         notificationDictionary.setValue(notification.messageBody, forKey: k_NOTIFICATION_BODY)
-        notificationDictionary.setValue(notification.date.description, forKey: k_NOTIFICATION_DATE)
+        notificationDictionary.setValue(notification.date.getString(), forKey: k_NOTIFICATION_DATE)
         notificationDictionary.setValue(notification.actionType.rawValue, forKey: k_NOTIFICATION_ACTION)
         notificationDictionary.setValue(notification.objectActionId, forKey: k_NOTIFICATION_OBJECT)
         
