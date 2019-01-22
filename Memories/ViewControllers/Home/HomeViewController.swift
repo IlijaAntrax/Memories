@@ -37,7 +37,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if segue.identifier == "AlbumSegueIdentifier"
+        if segue.identifier == "MyAlbumSegueIdentifier" || segue.identifier == "SharedAlbumSegueIdentifier"
         {
             if let albumVC = segue.destination as? AlbumViewController
             {
@@ -50,7 +50,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     {
         self.selectedAlbumIndex = index
         
-        performSegue(withIdentifier: "AlbumSegueIdentifier", sender: self)
+        if self is MyAlbumsViewController {
+            performSegue(withIdentifier: "MyAlbumSegueIdentifier", sender: self)
+        } else if self is SharedAlbumsViewController {
+            performSegue(withIdentifier: "SharedAlbumSegueIdentifier", sender: self)
+        }
     }
     
     func loadAlbum(completionHandler:@escaping ([PhotoAlbum]) -> ())

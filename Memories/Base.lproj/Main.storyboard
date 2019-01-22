@@ -314,8 +314,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="fdl-Qo-20X">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.31372549020000001" green="0.42745098040000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
@@ -423,7 +421,7 @@
                     <navigationItem key="navigationItem" title="Shared" id="UB0-V4-qzC"/>
                     <connections>
                         <outlet property="albumsCollection" destination="ju7-tM-OTi" id="WnY-bX-h9U"/>
-                        <segue destination="xbn-Jw-29O" kind="show" identifier="AlbumSegueIdentifier" id="kxT-cL-1vs"/>
+                        <segue destination="xbn-Jw-29O" kind="show" identifier="SharedAlbumSegueIdentifier" id="kxT-cL-1vs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kJ2-ar-sHP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1080,7 +1078,7 @@
                     <navigationItem key="navigationItem" title="My Albums" id="dUY-XV-wyy"/>
                     <connections>
                         <outlet property="albumsCollection" destination="Mu5-gI-s5V" id="s6i-Pi-ctU"/>
-                        <segue destination="xbn-Jw-29O" kind="show" identifier="AlbumSegueIdentifier" id="4Yl-Vc-vlv"/>
+                        <segue destination="xbn-Jw-29O" kind="show" identifier="MyAlbumSegueIdentifier" id="4Yl-Vc-vlv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dsa-4o-MrL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1416,7 +1414,7 @@
         <!--Search-->
         <scene sceneID="WZW-xp-X5S">
             <objects>
-                <viewController storyboardIdentifier="SearchUsersVC" id="Bdv-fN-hS1" customClass="SearchAccountViewController" customModule="Memories" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchAccountViewController" id="Bdv-fN-hS1" customClass="SearchAccountViewController" customModule="Memories" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="P9P-zu-V0u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1913,6 +1911,9 @@
                                             <constraint firstAttribute="width" secondItem="vR9-RA-AQo" secondAttribute="height" multiplier="110:148" id="DkM-ri-2aN"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="add_user.png"/>
+                                        <connections>
+                                            <action selector="inviteUserAction:" destination="xbn-Jw-29O" eventType="touchUpInside" id="su3-Zb-faJ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2038,6 +2039,7 @@
                     <navigationItem key="navigationItem" id="dat-7A-UQ0"/>
                     <connections>
                         <outlet property="contentView" destination="IBw-a5-yVP" id="gX9-67-zWJ"/>
+                        <outlet property="inviteUserBtn" destination="vR9-RA-AQo" id="Rmm-h5-hes"/>
                         <outlet property="photosCollection" destination="wmm-kI-uWa" id="qxN-kw-eiq"/>
                         <outlet property="usersCollection" destination="0cz-lo-LOc" id="cpF-Q0-YOU"/>
                         <segue destination="aAz-ys-ZAn" kind="show" identifier="GallerySegueIdentifier" id="VdO-Tk-xAx"/>
@@ -2196,7 +2198,6 @@
                                             </collectionView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M4H-W7-ahb">
                                                 <rect key="frame" x="0.0" y="0.0" width="66.5" height="66.5"/>
-                                                <color key="backgroundColor" red="0.0" green="0.45185004340000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="M4H-W7-ahb" secondAttribute="height" multiplier="1:1" id="X0k-P6-YCM"/>
                                                 </constraints>

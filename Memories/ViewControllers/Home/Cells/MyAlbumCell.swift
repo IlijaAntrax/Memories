@@ -70,6 +70,7 @@ class MyAlbumCell: AlbumCell, UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserCell", for: indexPath) as! UserCell
         
         cell.user = usersList[indexPath.item]
+        cell.usernameLbl.font = Settings.sharedInstance.fontRegularSizeSmall()
         
         return cell
     }

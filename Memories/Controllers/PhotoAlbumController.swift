@@ -92,6 +92,10 @@ class PhotoAlbumController:FirebaseController
             {
                 completionHandler(albumsKeys.count)
             }
+            else if let albumsDict = dataSnapshot.value as? NSDictionary
+            {
+                completionHandler(albumsDict.allKeys.count)
+            }
             else
             {
                 completionHandler(0)

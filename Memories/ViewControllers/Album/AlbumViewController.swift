@@ -13,11 +13,14 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
     private let cellsInRow:Int = 2
     private let insetOffset:CGFloat = 10.0
     
+    var isSharedAlbum = false
     var photoAlbum: PhotoAlbum?
+    var albumUsers = [User]()
     
     var selectedPhoto: Photo?
     
     @IBOutlet weak var contentView:UIView!
+    @IBOutlet weak var inviteUserBtn: UIButton!
     
     @IBOutlet weak var usersCollection: UICollectionView!
     @IBOutlet weak var photosCollection: UICollectionView!
@@ -27,44 +30,16 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        addDeleteBtn()
-        
+
         photosCollection.delegate = self
         photosCollection.dataSource = self
         
         usersCollection.delegate = self
         usersCollection.dataSource = self
         
-        //NotificationCenter.default.addObserver(self, selector: #selector(reloadAlbum), name: NSNotification.Name.init(rawValue: NotificationPhotosAddedToAlbum), object: nil)
-        //NotificationCenter.default.addObserver(self, selector: #selector(showDeleteAlert(_:)), name: NSNotification.Name.init(rawValue: NotificationDeletePhotoFromAlbum), object: nil)
+        self.loadUsersForAlbum()
         
         setup()
-    }
-    
-    func setup()
-    {
-        if let album = photoAlbum
-        {
-            print(album.name)
-        }
-    }
-    
-    func addDeleteBtn()
-    {
-        let btnWidth = (navigationController?.navigationBar.frame.height)!
-        deleteBtn = UIButton(type: .custom)
-        deleteBtn.frame = CGRect(x: 0.0, y: 0.0, width: btnWidth, height: btnWidth)
-        deleteBtn.setBackgroundImage(UIImage(named: "done.png"), for: .normal)
-        deleteBtn.addTarget(self, action: #selector(deletePhotosAction), for: .touchUpInside)
-        
-        let deleteBarItem = UIBarButtonItem(customView: deleteBtn)
-        let currWidth = deleteBarItem.customView?.widthAnchor.constraint(equalToConstant: btnWidth)
-        currWidth?.isActive = true
-        let currHeight = deleteBarItem.customView?.heightAnchor.constraint(equalToConstant: btnWidth)
-        currHeight?.isActive = true
-        
-        self.navigationItem.rightBarButtonItem = deleteBarItem
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -87,7 +62,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         {
             if let searchUsersVC = segue.destination as? SearchAccountViewController
             {
-                //searchUsersVC.sharedAlbum = self.photoAlbum
+                searchUsersVC.albumToShare = self.photoAlbum
             }
         }
         else if segue.identifier == "PhotoSegueIdentifier"
@@ -95,6 +70,33 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             if let photoEditVC = segue.destination as? PhotoViewController
             {
                 photoEditVC.photo = self.selectedPhoto
+            }
+        }
+    }
+    
+    func setup()
+    {
+        if self.isSharedAlbum
+        {
+            self.inviteUserBtn.isHidden = true
+        }
+    }
+    
+    func loadUsersForAlbum()
+    {
+        UserController.getUsersOnAlbum(forAlbumId: photoAlbum?.ID ?? "") { (users) in
+            self.albumUsers = users
+            if self.isSharedAlbum {
+                if let owner = self.photoAlbum?.owner {
+                    UserController.getUser(forEmail: owner, completionHandler: { (user) in
+                        self.albumUsers.insert(user, at: 0)
+                        self.usersCollection.reloadData()
+                    })
+                } else {
+                    self.usersCollection.reloadData()
+                }
+            } else {
+                self.usersCollection.reloadData()
             }
         }
     }
@@ -137,12 +139,21 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         performSegue(withIdentifier: "gallerySegueIdentifier", sender: self)
     }
     
+    @IBAction func inviteUserAction(_ sender: Any)
+    {
+        if let searchVC = self.storyboard?.instantiateViewController(withIdentifier: "SearchAccountViewController") as? SearchAccountViewController {
+            searchVC.albumToShare = self.photoAlbum
+            self.navigationController?.pushViewController(searchVC, animated: true)
+        }
+    }
+    
+    
     //MARK: Collection view delegate, data source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         if collectionView == usersCollection
         {
-            return 6
+            return albumUsers.count
         }
         else
         {
@@ -162,7 +173,8 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserCell", for: indexPath) as! UserCell
             
-            //cell.user = usersList[indexPath.item]
+            cell.user = albumUsers[indexPath.item]
+            cell.usernameLbl.font = Settings.sharedInstance.fontRegularSizeSmall()
             
             return cell
         }

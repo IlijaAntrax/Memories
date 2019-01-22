@@ -16,6 +16,8 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
     
     @IBOutlet weak var loader: UIActivityIndicatorView!
     
+    var albumToShare: PhotoAlbum?
+    
     private var selectedUser: User?
     private var usersList = [User]()
     
@@ -67,6 +69,21 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
             //TODO: show alert no users
         }
     }
+    
+    func showAddUserAlert()
+    {
+        let alert = UIAlertController(title: "Add user", message: "Are you sure you want to add \(selectedUser?.username ?? "") on album \(albumToShare?.name ?? "")?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.cancel, handler:nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler:{ (action) in
+            UserController.addUserOnAlbum(user: self.selectedUser!, album: self.albumToShare!)
+            let confirmAlert = UIAlertController(title: "User added", message: "User \(self.selectedUser?.username ?? "") is added on album.", preferredStyle: UIAlertControllerStyle.alert)
+            confirmAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:nil))
+            self.present(confirmAlert, animated: true, completion: nil)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
 
     //MARK: UITextFiled delegate
     override func textFieldShouldReturn(_ textField: UITextField) -> Bool
@@ -99,7 +116,11 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         self.selectedUser = usersList[indexPath.row]
-        self.performSegue(withIdentifier: "FriendsAccountOverviewSegue", sender: self)
+        if self.albumToShare != nil {
+            self.showAddUserAlert()
+        } else {
+            self.performSegue(withIdentifier: "FriendsAccountOverviewSegue", sender: self)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize

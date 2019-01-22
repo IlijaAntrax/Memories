@@ -86,13 +86,6 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
         
     }
     
-    @IBAction func closeBtnPressed(_ sender: Any)
-    {
-        //TODO: update photo
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
     //MARK: Collection view delegate, data source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
