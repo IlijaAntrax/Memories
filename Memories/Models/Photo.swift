@@ -29,7 +29,7 @@ class Photo: NSObject
     init(withID id:String, imgUrl:String, transform:CATransform3D, filter:Int)
     {
         self._id = id
-        self.imgUrl = URL(fileURLWithPath: imgUrl)
+        self.imgUrl = URL(string: imgUrl)
         self.transform = transform
         self.filter = FilterType(rawValue: filter)!
     }

@@ -32,9 +32,9 @@ class PhotoController:FirebaseController
     {
         if url.isValid()
         {
-            let reference = Storage.storage().reference(forURL: url.path.replaceUrl(url))
+            let reference = Storage.storage().reference(forURL: url.absoluteString)
             
-            reference.getData(maxSize: 4 * 1024 * 1024) { (data, error) in
+            reference.getData(maxSize: 8 * 1024 * 1024) { (data, error) in
                 if let imageData = data
                 {
                     if let image = UIImage(data: imageData)
@@ -60,7 +60,7 @@ class PhotoController:FirebaseController
         userQuery.observeSingleEvent(of: .value) { (dataSnapshot) in
             if let url = dataSnapshot.value as? String
             {
-                PhotoController.downloadImage(fromUrl: URL(fileURLWithPath: url), completionHandler: { (image) in
+                PhotoController.downloadImage(fromUrl: URL(string: url)!, completionHandler: { (image) in
                     completionHandler(image)
                 })
             }
@@ -122,6 +122,16 @@ class PhotoController:FirebaseController
     {
         self.uploadImage(image: image, toFolder: "albumsImages") { (url) in
             completionHandler(url)
+        }
+    }
+    
+    static func uploadImageToAlbum(image: UIImage, photoAlbum: PhotoAlbum?)
+    {
+        PhotoController.uploadAlbumImage(image: image) { (photoUrl) in
+            let photo = Photo.init(withID: "", imgUrl: photoUrl?.absoluteString ?? "", transform: CATransform3DIdentity, filter: FilterType.NoFilter.rawValue)
+            photo.img = image
+            photoAlbum?.photos.append(photo)
+            PhotoController.addPhotoToAlbum(photo: photo, album: photoAlbum!)
         }
     }
     

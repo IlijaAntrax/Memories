@@ -19,11 +19,6 @@ extension String
         return dateFormatter.date(from: self)
     }
     
-    func replaceUrl(_ url:URL) -> String
-    {
-        return url.path.replacingOccurrences(of: "/https:/", with: "https://")
-    }
-    
     static func uniqeKey() -> String
     {
         return NSUUID().uuidString.lowercased() + "_" + "\(Date().timeIntervalSince1970)".replacingOccurrences(of: ".", with: "+")

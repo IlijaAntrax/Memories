@@ -12,13 +12,14 @@ class GalleryCell: UICollectionViewCell {
     
     @IBOutlet weak var photoView: UIImageView!
     
-    @IBOutlet weak var selectionBgdView: UIView!
     @IBOutlet weak var selectionImgView: UIImageView!
     
     override func awakeFromNib()
     {
         super.awakeFromNib()
         
+        self.photoView.contentMode = UIViewContentMode.scaleAspectFill
+        self.selectionImgView.isHidden = true
     }
     
     func setupCell(withImage image: UIImage)
@@ -33,12 +34,10 @@ class GalleryCell: UICollectionViewCell {
             if isPictureSelected
             {
                 selectionImgView.isHidden = false
-                selectionBgdView.isHidden = false
             }
             else
             {
                 selectionImgView.isHidden = true
-                selectionBgdView.isHidden = true
             }
         }
     }

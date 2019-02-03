@@ -68,14 +68,20 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func setupAssetCollcetion()
     {
-        let fetchOptions = PHFetchOptions()
-        
-        let collection:PHFetchResult = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
-        
-        if let first_Obj:AnyObject = collection.firstObject
-        {
-            //found the album
-            self.assetCollection = first_Obj as! PHAssetCollection
+        PHPhotoLibrary.requestAuthorization { (status) in
+            if status == .authorized {
+                let fetchOptions = PHFetchOptions()
+                
+                let collection:PHFetchResult = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: fetchOptions)
+                
+                if let first_Obj:AnyObject = collection.firstObject
+                {
+                    //found the album
+                    self.assetCollection = first_Obj as? PHAssetCollection
+                }
+            } else {
+                //TODO: Show allert
+            }
         }
     }
     
@@ -83,7 +89,7 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
     {
         if let cellSize = (galleryCollectionView.collectionViewLayout as? UICollectionViewFlowLayout)?.itemSize
         {
-            self.assetThumbnailSize = CGSize(width: cellSize.width * 2.0, height: cellSize.height * 2.0)
+            self.assetThumbnailSize = CGSize(width: cellSize.width * 4.0, height: cellSize.height * 4.0)
         }
         
         self.requestOptions = PHImageRequestOptions()
@@ -107,23 +113,6 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
     func prepareOptionsForFecthing()
     {
         
-    }
-    
-    func photosLoadedFromGallery()
-    {
-        if imagesFromGallery.count > 0
-        {
-            for image in imagesFromGallery
-            {
-                //TODO: add photo
-//                let photo = Photo(image: image)
-//                photoAlbum?.add(photo)
-            }
-            
-            NotificationCenter.default.post(name: Notification.Name.init(rawValue: NotificationPhotosAddedToAlbum), object: nil)
-        }
-        
-        navigationController?.popViewController(animated: true)
     }
     
     //MARK: Activity loader
@@ -170,9 +159,14 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
                 PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode: PHImageContentMode.default, options: self.requestOptions, resultHandler: {(result, info)in
                     if let image = result
                     {
-                        self.imagesFromGallery.append(image)
+                        PhotoController.uploadAlbumImage(image: image) { (photoUrl) in
+                            let photo = Photo.init(withID: "", imgUrl: photoUrl?.absoluteString ?? "", transform: CATransform3DIdentity, filter: FilterType.NoFilter.rawValue)
+                            photo.img = image
+                            self.photoAlbum?.photos.append(photo)
+                            PhotoController.addPhotoToAlbum(photo: photo, album: self.photoAlbum!)
+                            dispacthGroup.leave()
+                        }
                     }
-                    dispacthGroup.leave()
                 })
                 
             }
@@ -180,7 +174,7 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         dispacthGroup.notify(queue: DispatchQueue.main) {
             self.hideLoader()
-            self.photosLoadedFromGallery()
+            self.navigationController?.popViewController(animated: true)
         }
     }
     

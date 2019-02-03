@@ -10,8 +10,8 @@ import UIKit
 
 class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
-    private let cellsInRow:Int = 2
-    private let insetOffset:CGFloat = 10.0
+    private let cellsInRow:Int = 3
+    private let insetOffset:CGFloat = 5.0
     
     var isSharedAlbum = false
     var photoAlbum: PhotoAlbum?
@@ -136,7 +136,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     func addPhotos()
     {
-        performSegue(withIdentifier: "gallerySegueIdentifier", sender: self)
+        performSegue(withIdentifier: "GallerySegueIdentifier", sender: self)
     }
     
     @IBAction func inviteUserAction(_ sender: Any)
