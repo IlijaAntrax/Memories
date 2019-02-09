@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol UserProfileDelegate:class {
+    func userSelected(_ user:User)
+}
+
 class MyAlbumCell: AlbumCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var peopleCountLbl:UILabel!
     
     @IBOutlet weak var albumUsersCollection: UICollectionView!
+    
+    weak var userDelegate:UserProfileDelegate?
     
     override func awakeFromNib()
     {
@@ -77,8 +83,7 @@ class MyAlbumCell: AlbumCell, UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        print("User selected")
-        //TODO: show profile, feature
+        self.userDelegate?.userSelected(self.usersList[indexPath.row])
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize

@@ -10,6 +10,7 @@ import UIKit
 
 class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+    var photoAlbum:PhotoAlbum?
     var photo:Photo?
     var selectedFilter = FilterType.NoFilter
     
@@ -46,8 +47,7 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
         NotificationCenter.default.addObserver(self, selector: #selector(photoTransformed(_:)), name: NSNotification.Name.init(imageEditingEndedNotificaiton), object: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.filtersCollection.reloadData()
@@ -58,6 +58,13 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         photoView.addSubview(editorImageView)
         editorImageView.initialPosition()
+        editorImageView.layer.transform = self.photo!.transform
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        PhotoController.updatePhoto(self.photo!, atAlbum: self.photoAlbum!)
     }
 
     /*
