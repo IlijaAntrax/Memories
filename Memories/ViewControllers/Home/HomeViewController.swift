@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UserProfileDelegate {
 
     private var selectedAlbumIndex:Int = 0
     var albums:[PhotoAlbum] = [PhotoAlbum]()
@@ -95,6 +95,23 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
+    //MARK: User Profile Delegate
+    func userSelected(_ user: User)
+    {
+        if let userVC = self.storyboard?.instantiateViewController(withIdentifier: "FriendAccountOverviewViewController") as? FriendAccountOverviewViewController {
+            userVC.userAccount = user
+            self.navigationController?.pushViewController(userVC, animated: true)
+        }
+    }
+    
+    func addNewUserOnAlbum(_ album: PhotoAlbum)
+    {
+        if let usersVC = self.storyboard?.instantiateViewController(withIdentifier: "SearchAccountViewController") as? SearchAccountViewController {
+            usersVC.albumToShare = album
+            self.navigationController?.pushViewController(usersVC, animated: true)
+        }
+    }
+    
     //MARK: CollectionView delegate, data source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
@@ -126,6 +143,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             let myAlbumCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumCell", for: indexPath) as? MyAlbumCell
             
             myAlbumCell?.album = self.albums[indexPath.item - 2]
+            myAlbumCell?.userDelegate = self
             
             return myAlbumCell!
         }

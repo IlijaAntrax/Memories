@@ -176,4 +176,17 @@ class PhotoController:FirebaseController
             }
         }
     }
+    
+    //UPDATE
+    static func updatePhoto(_ photo:Photo, atAlbum album:PhotoAlbum)
+    {
+        let photoQuery = dbRef.child(k_db_albums).child(album.ID).child(k_PHOTOALBUM_IMAGES).child(photo.ID)
+        
+        let photoDictionary = NSMutableDictionary()
+        photoDictionary.setValue(photo.imgUrl?.absoluteString, forKey: k_PHOTO_URL)
+        photoDictionary.setValue(photo.filter.rawValue, forKey: k_PHOTO_FILTER)
+        photoDictionary.setValue(photo.transform.toArray(), forKey: k_PHOTO_TRANSFORM)
+        
+        photoQuery.setValue(photoDictionary)
+    }
 }

@@ -70,6 +70,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             if let photoEditVC = segue.destination as? PhotoViewController
             {
                 photoEditVC.photo = self.selectedPhoto
+                photoEditVC.photoAlbum = self.photoAlbum
             }
         }
     }
@@ -197,8 +198,10 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
     {
         if collectionView == usersCollection
         {
-            print("User selected")
-            //TODO: show profile, feature, delete user from album on handle press long?
+            if let userVC = self.storyboard?.instantiateViewController(withIdentifier: "FriendAccountOverviewViewController") as? FriendAccountOverviewViewController {
+                userVC.userAccount = self.albumUsers[indexPath.row]
+                self.navigationController?.pushViewController(userVC, animated: true)
+            }
         }
         else
         {
