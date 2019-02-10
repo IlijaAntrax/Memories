@@ -15,5 +15,9 @@ class MyAccountOverviewViewController:AccountOverviewViewController
         super.viewDidLoad()
         
         self.userAccount = MyAccount.sharedInstance.myUser
+        
+        self.firstnameTxtField.isUserInteractionEnabled = false
+        self.lastnameTxtField.isUserInteractionEnabled = false
+        self.emailTxtField.isUserInteractionEnabled = false
     }
 }

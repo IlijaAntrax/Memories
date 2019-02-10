@@ -10,6 +10,7 @@ import UIKit
 
 protocol UserProfileDelegate:class {
     func userSelected(_ user:User)
+    func addNewUserOnAlbum(_ album:PhotoAlbum)
 }
 
 class MyAlbumCell: AlbumCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -55,14 +56,12 @@ class MyAlbumCell: AlbumCell, UICollectionViewDelegate, UICollectionViewDataSour
     
     @IBAction func addUserBtnPressed(_ sender: Any)
     {
-        //TODO: show add users for album
         self.addNew()
     }
     
     override func addNew()
     {
-        //add new user on album, send notification show add users screen
-        //NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: NotificationPhotosAddedToAlbum), object: self.album)
+        self.userDelegate?.addNewUserOnAlbum(self.album!)
     }
     
     //MARK: Collection view delegate, data source

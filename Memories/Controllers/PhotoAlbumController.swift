@@ -177,6 +177,28 @@ class PhotoAlbumController:FirebaseController
         }
     }
     
+    static func getSharedАlbumsWith(user: User, forUserId id:String, completionHandler:@escaping ([PhotoAlbum]) -> ())
+    {
+        var sharedAlbums = [PhotoAlbum]()
+        self.getAlbums(forUserEmail: user.email) { (albums) in
+            var cnt = 0
+            for album in albums {
+                UserController.getUsersOnAlbum(forAlbumId: album.ID, completionHandler: { (users) in
+                    cnt += 1
+                    for user in users {
+                        if (user.ID == id) {
+                            sharedAlbums.append(album)
+                            break
+                        }
+                    }
+                    if (cnt == albums.count) {
+                        completionHandler(sharedAlbums)
+                    }
+                })
+            }
+        }
+    }
+    
     //WRITE
     static func addPhotoAlbum(album:PhotoAlbum)
     {

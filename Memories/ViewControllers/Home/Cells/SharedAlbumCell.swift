@@ -14,9 +14,8 @@ class SharedAlbumCell: AlbumCell {
     {
         super.awakeFromNib()
         
-        albumNameLbl.font = Settings.sharedInstance.fontBoldSizeMedium()
+        albumNameLbl.font = Settings.sharedInstance.fontBoldSizeSmall()
         albumNameLbl.textColor = Settings.sharedInstance.grayDarkColor()
-        albumNameLbl.adjustsFontSizeToFitWidth = true
     }
     
     override func setup(album: PhotoAlbum)

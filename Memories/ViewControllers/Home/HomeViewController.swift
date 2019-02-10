@@ -104,6 +104,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
+    func addNewUserOnAlbum(_ album: PhotoAlbum)
+    {
+        if let usersVC = self.storyboard?.instantiateViewController(withIdentifier: "SearchAccountViewController") as? SearchAccountViewController {
+            usersVC.albumToShare = album
+            self.navigationController?.pushViewController(usersVC, animated: true)
+        }
+    }
+    
     //MARK: CollectionView delegate, data source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
