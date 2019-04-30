@@ -47,6 +47,10 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         super.viewDidAppear(animated)
         
         self.photosCollection.reloadData()
+        PhotoAlbumController.getAlbum(forAlbumId: self.photoAlbum!.ID) { (album) in
+            self.photoAlbum = album
+            self.photosCollection.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)

@@ -34,7 +34,7 @@ class PhotoController:FirebaseController
         {
             let reference = Storage.storage().reference(forURL: url.absoluteString)
             
-            reference.getData(maxSize: 8 * 1024 * 1024) { (data, error) in
+            reference.getData(maxSize: 10 * 1024 * 1024) { (data, error) in
                 if let imageData = data
                 {
                     if let image = UIImage(data: imageData)
@@ -94,7 +94,7 @@ class PhotoController:FirebaseController
     
     private static func uploadImage(image:UIImage, toFolder folder:String, completionHandler:@escaping (URL?) -> ())
     {
-        if let imageData = UIImageJPEGRepresentation(image, 1.0)
+        if let imageData = UIImageJPEGRepresentation(image, 0.5)
         {
             let imageUrlName = String.uniqeKey() + ".jpg"
             

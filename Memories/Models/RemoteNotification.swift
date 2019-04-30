@@ -8,6 +8,8 @@
 
 import UIKit
 
+let k_NOTIFICATION_ARRAY = "notification"
+let k_NOTIFICATION_TOKEN = "token"
 let k_NOTIFICATION_TITLE = "title"
 let k_NOTIFICATION_BODY = "body"
 let k_NOTIFICATION_ACTION = "action"

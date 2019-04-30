@@ -20,9 +20,20 @@ enum ActionType:String
 class RemoteNotificationController:FirebaseController
 {
     //READ
+    static func getToken(forUserId userId:String, completitionHandler:@escaping(String) -> ())
+    {
+        let tokenQuery = dbRef.child(k_db_notifications).child(userId).child(k_NOTIFICATION_TOKEN)
+        tokenQuery.observe(.value) { (dataSnapshot) in
+            if let token = dataSnapshot.value as? String
+            {
+                completitionHandler(token)
+            }
+        }
+    }
+    
     static func getNotifications(forUserId userId:String, completionHandler:@escaping ([RemoteNotification]) -> ())
     {
-        let notificationQuery = dbRef.child(k_db_notifications).child(userId)
+        let notificationQuery = dbRef.child(k_db_notifications).child(userId).child(k_NOTIFICATION_ARRAY)
         notificationQuery.observeSingleEvent(of: .value) { (dataSnapshot) in
             if let notificationsArray = dataSnapshot.value as? NSDictionary
             {
@@ -37,9 +48,16 @@ class RemoteNotificationController:FirebaseController
     }
     
     //WRITE
+    static func setToken(token: String, forUser user:User)
+    {
+        let tokenQuery = dbRef.child(k_db_notifications).child(user.ID).child(k_NOTIFICATION_TOKEN)
+        
+        tokenQuery.setValue(token)
+    }
+    
     static func addNotification(notification:RemoteNotification, forUser user:User)
     {
-        let notificationQuery = dbRef.child(k_db_notifications).child(user.ID).childByAutoId()
+        let notificationQuery = dbRef.child(k_db_notifications).child(user.ID).child(k_NOTIFICATION_ARRAY).childByAutoId()
         
         let notificationDictionary = NSMutableDictionary()
         notificationDictionary.setValue(notification.messageTitle, forKey: k_NOTIFICATION_TITLE)

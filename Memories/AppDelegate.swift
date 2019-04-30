@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
+        MyAccount.sharedInstance.token = "-L1_wSB-uSDDF2fRCfcA23y"
+        
         return true
     }
 

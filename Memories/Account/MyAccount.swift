@@ -51,6 +51,19 @@ final class MyAccount
         }
     }
     
+    private var _token:String?
+    var token: String?
+    {
+        get
+        {
+            return self._token
+        }
+        set
+        {
+            self._token = newValue
+        }
+    }
+    
     func setProfileImage(image:UIImage)
     {
         state.myUser(account: self)?.profileImg = image
@@ -58,11 +71,15 @@ final class MyAccount
     
     func logIn(user: User)
     {
+        if let token = self._token {
+            RemoteNotificationController.setToken(token: token, forUser: user)
+        }
         self.state = LoggedInState(user: user)
     }
     
     func logOut()
     {
+        self.token = nil
         self.state = LoggedOutState()
     }
 }
