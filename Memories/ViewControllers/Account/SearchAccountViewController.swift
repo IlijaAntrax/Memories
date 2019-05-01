@@ -48,15 +48,15 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
     
     func searchUsersBy(name: String)
     {
-        self.usersList.removeAll()
-        self.usersCollection.reloadData()
-        
         if name != ""
         {
             self.loader.isHidden = false
             self.loader.startAnimating()
             
             UserController.searchUsers(byUsername: name) { (users) in
+                self.usersList.removeAll()
+                self.usersCollection.reloadData()
+                
                 self.usersList = users
                 self.usersCollection.reloadData()
                 
@@ -67,6 +67,7 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
         else
         {
             //TODO: show alert no users
+            
         }
     }
     
@@ -90,10 +91,23 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
     {
         textField.resignFirstResponder()
         
-        if let prefixName = textField.text
-        {
-            searchUsersBy(name: prefixName)
+        return true
+    }
+    
+    override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        var currentString = ""
+        if range.length == 0 {
+            if let tfs = textField.text {
+                currentString = tfs
+            }
+            currentString.append(string)
+        } else {
+            currentString = textField.text!
+            currentString.removeLast()
         }
+        
+        print(currentString)
+        searchUsersBy(name: currentString)
         
         return true
     }
@@ -108,7 +122,7 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserCell", for: indexPath) as! UserCell
         
-        cell.user = usersList[indexPath.item]
+        cell.setUser(usersList[indexPath.item])
         
         return cell
     }

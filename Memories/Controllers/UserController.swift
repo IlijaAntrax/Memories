@@ -66,7 +66,14 @@ class UserController:FirebaseController
             {
                 for userDict in usersDictionaries.enumerated()
                 {
-                    users.append(User.initWith(key: userDict.element.key as! String, dictionary: userDict.element.value as! NSDictionary))
+                    let userDictionary = userDict.element.value as! NSDictionary
+                    if let username = userDictionary[k_USER_USERNAME] as? String
+                    {
+                        if username.starts(with: name)
+                        {
+                            users.append(User.initWith(key: userDict.element.key as! String, dictionary: userDictionary))
+                        }
+                    }
                 }
             }
             completionHandler(users)

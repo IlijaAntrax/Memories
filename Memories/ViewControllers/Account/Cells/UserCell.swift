@@ -44,6 +44,22 @@ class UserCell:UICollectionViewCell
         }
     }
     
+    func setUser(_ user:User)
+    {
+        if let currentUser = self.user
+        {
+            if currentUser.ID != user.ID
+            {
+                self.profileImgView.image = UIImage(named: "profie_icon.png")
+                self.user = user
+            }
+        }
+        else
+        {
+            self.user = user
+        }
+    }
+    
     var user:User?
     {
         didSet
