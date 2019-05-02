@@ -147,6 +147,10 @@ class MyProfileHeaderView:UIView
         PhotoAlbumController.getSharedAlbumsCount(forUserId: user?.ID ?? "") { (cnt) in
             self.sharedCntLbl.text = "\(cnt)"
         }
+        
+        UserController.getFriendsCount(forUserId: user?.ID ?? "") { (cnt) in
+            self.friendsCntLbl.text = "\(cnt)"
+        }
     }
     
     @IBAction func uploadProfileIm(_ sender: Any)

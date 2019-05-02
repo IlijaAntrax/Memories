@@ -14,6 +14,7 @@ let k_USER_FIRSTNAME = "firstname"
 let k_USER_LASTNAME = "lastname"
 let k_USER_IMGURL = "profileUrl"
 let k_USER_SHARED = "shared"
+let k_USER_FRIENDS = "friends"
 
 class User: NSObject
 {

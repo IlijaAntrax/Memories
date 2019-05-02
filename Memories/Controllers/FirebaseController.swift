@@ -14,6 +14,7 @@ class FirebaseController
     static let k_db_users = "users"
     static let k_db_albums = "photoalbums"
     static let k_db_notifications = "notifications"
+    static let k_db_friendships = "friendships"
     
     static let dbRef = Database.database().reference()
     
