@@ -106,6 +106,9 @@
 		5BEE0915219DE5EF0043E54E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE0914219DE5EF0043E54E /* GoogleService-Info.plist */; };
 		5BEE0918219DE9750043E54E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE0917219DE9750043E54E /* README.md */; };
 		5BF2689921BAEC5900D1E66C /* ArchitectureDesign.docx in Resources */ = {isa = PBXBuildFile; fileRef = 5BF2689821BAEC5900D1E66C /* ArchitectureDesign.docx */; };
+		5BFF916F227B4467009D7887 /* resize_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BFF916C227B4467009D7887 /* resize_image.png */; };
+		5BFF9170227B4467009D7887 /* resize_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BFF916D227B4467009D7887 /* resize_image@2x.png */; };
+		5BFF9171227B4467009D7887 /* resize_image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BFF916E227B4467009D7887 /* resize_image@3x.png */; };
 		CD44CD1E21EF3A0800238F29 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD1D21EF3A0800238F29 /* AlbumViewController.swift */; };
 		CD44CD2121EF3C9E00238F29 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD2021EF3C9E00238F29 /* AlbumCell.swift */; };
 		CD44CD2521EF3DEE00238F29 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD2421EF3DEE00238F29 /* CALayer+.swift */; };
@@ -278,6 +281,9 @@
 		5BEE0914219DE5EF0043E54E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BEE0917219DE9750043E54E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5BF2689821BAEC5900D1E66C /* ArchitectureDesign.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArchitectureDesign.docx; sourceTree = "<group>"; };
+		5BFF916C227B4467009D7887 /* resize_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resize_image.png; sourceTree = "<group>"; };
+		5BFF916D227B4467009D7887 /* resize_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resize_image@2x.png"; sourceTree = "<group>"; };
+		5BFF916E227B4467009D7887 /* resize_image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resize_image@3x.png"; sourceTree = "<group>"; };
 		5D00EBB5709A1528950FA9E7 /* Pods-Memories.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memories.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Memories/Pods-Memories.debug.xcconfig"; sourceTree = "<group>"; };
 		AAC8AA4997EFFB50631972DE /* Pods-Memories.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memories.release.xcconfig"; path = "Pods/Target Support Files/Pods-Memories/Pods-Memories.release.xcconfig"; sourceTree = "<group>"; };
 		CD44CD1D21EF3A0800238F29 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
@@ -407,6 +413,9 @@
 		5B79FB9721A068AD00670313 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5BFF916C227B4467009D7887 /* resize_image.png */,
+				5BFF916D227B4467009D7887 /* resize_image@2x.png */,
+				5BFF916E227B4467009D7887 /* resize_image@3x.png */,
 				5B25407121E92B4C00E0463C /* search_icon.png */,
 				5B25407021E92B4B00E0463C /* search_icon@2x.png */,
 				5B25406F21E92B4A00E0463C /* search_icon@3x.png */,
@@ -912,14 +921,17 @@
 				5B33CE1121E5357500FE2DAF /* done.png in Resources */,
 				5BC6D8ED219DE0F900C80446 /* Assets.xcassets in Resources */,
 				5B33CE0621E5357500FE2DAF /* profie_inactive.png in Resources */,
+				5BFF916F227B4467009D7887 /* resize_image.png in Resources */,
 				5B33CE0521E5357500FE2DAF /* profie_active.png in Resources */,
 				5B33CE1421E5357500FE2DAF /* search_results.png in Resources */,
 				5BC6D8EB219DE0F700C80446 /* Main.storyboard in Resources */,
+				5BFF9170227B4467009D7887 /* resize_image@2x.png in Resources */,
 				5B33CE1721E5357500FE2DAF /* add_new_album.png in Resources */,
 				5B25406221E928D000E0463C /* album_icon@3x.png in Resources */,
 				5B33CE0721E5357500FE2DAF /* upload_icon.png in Resources */,
 				5B33CDFA21E5357500FE2DAF /* mail_icon.png in Resources */,
 				5B25407321E92B4C00E0463C /* search_icon@2x.png in Resources */,
+				5BFF9171227B4467009D7887 /* resize_image@3x.png in Resources */,
 				5B33CE1321E5357500FE2DAF /* profile_image_frame.png in Resources */,
 				5B25406E21E92A2F00E0463C /* myaccount_icon.png in Resources */,
 				5B33CE0C21E5357500FE2DAF /* invite_btn.png in Resources */,

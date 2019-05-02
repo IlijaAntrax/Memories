@@ -307,6 +307,13 @@ class EditorImageView: UIImageView
         }
     }
     
+    func initalPositionAnimated()
+    {
+        UIView.animate(withDuration: 0.2) {
+            self.initialPosition()
+        }
+    }
+    
     func align(animated: Bool)
     {
         guard let fixTransformations = fixTransformations() else { return }

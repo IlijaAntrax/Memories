@@ -93,6 +93,13 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
         
     }
     
+    @IBAction func resizeImageBtnPressed(_ sender: Any)
+    {
+        self.editorImageView.initalPositionAnimated()
+        self.photo?.transform = CATransform3DIdentity
+    }
+    
+    
     //MARK: Collection view delegate, data source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
