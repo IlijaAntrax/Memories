@@ -153,11 +153,27 @@ class PhotoController:FirebaseController
     }
     
     //DELETE
-    static func deletePhoto(_ photo: Photo, fromAlbum album:PhotoAlbum)
+    static func deletePhoto(_ photo: Photo?, fromAlbum album:PhotoAlbum?, completionHandler:@escaping (Bool) -> ())
     {
-        let photoQuery = dbRef.child(k_db_albums).child(album.ID).child(k_PHOTOALBUM_IMAGES).child(photo.ID)
+        guard let photo = photo, let album = album else {
+            completionHandler(false)
+            return
+        }
         
-        photoQuery.removeValue()
+        self.deleteImage(withUrlPath: photo.imgUrl!.absoluteString, completionHandler: { (success) in
+            if success {
+                let photoQuery = dbRef.child(k_db_albums).child(album.ID).child(k_PHOTOALBUM_IMAGES).child(photo.ID)
+                photoQuery.removeValue()
+                
+                if let index = album.photos.firstIndex(of: photo) {
+                    album.photos.remove(at: index)
+                }
+                
+                completionHandler(true)
+            } else {
+                completionHandler(false)
+            }
+        })
     }
     
     static func deleteImage(withUrlPath url:String, completionHandler:@escaping (Bool) -> ())
@@ -165,9 +181,8 @@ class PhotoController:FirebaseController
         let reference = Storage.storage().reference(forURL: url)
         
         reference.delete { (err) in
-            if let error = err
+            if let _ = err
             {
-                print(error)
                 completionHandler(false)
             }
             else

@@ -106,34 +106,6 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
     }
     
-    @objc func deletePhotosAction()
-    {
-        
-    }
-    
-    @objc func showDeleteAlert(_ notification: NSNotification)
-    {
-        if let photo = notification.object as? Photo
-        {
-            let deleteAlert = UIAlertController(title: "Delete photo!", message: "Are you sure, you want to delete this photo?", preferredStyle: .actionSheet)
-            let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
-                //delete photo
-                self.deletePhoto(photo: photo)
-                deleteAlert.dismiss(animated: true, completion: nil)
-            }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            
-            deleteAlert.addAction(yesAction)
-            deleteAlert.addAction(cancelAction)
-            self.present(deleteAlert, animated: true, completion: nil)
-        }
-    }
-    
-    func deletePhoto(photo: Photo?)
-    {
-        
-    }
-    
     @objc func reloadAlbum()
     {
         photosCollection.reloadData()

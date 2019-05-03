@@ -2484,7 +2484,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="U7k-mL-xwE"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Pnb-Kt-BUs"/>
+                    <navigationItem key="navigationItem" id="Pnb-Kt-BUs">
+                        <barButtonItem key="rightBarButtonItem" title="More" id="yYM-Pr-3oX">
+                            <connections>
+                                <action selector="moreBtnPressed:" destination="kTx-cZ-zqQ" id="qgR-d8-WyK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="editorOptionsBtn" destination="M4H-W7-ahb" id="mME-gE-dNH"/>
                         <outlet property="filtersCollection" destination="fh6-Ii-A41" id="Jtx-HS-GpO"/>
