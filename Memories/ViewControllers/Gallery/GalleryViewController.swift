@@ -161,9 +161,9 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
                     {
                         PhotoController.uploadAlbumImage(image: image) { (photoUrl) in
                             let photo = Photo.init(withID: "", imgUrl: photoUrl?.absoluteString ?? "", transform: CATransform3DIdentity, filter: FilterType.NoFilter.rawValue)
+                            PhotoController.addPhotoToAlbum(photo: photo, album: self.photoAlbum!)
                             photo.img = image
                             self.photoAlbum?.photos.append(photo)
-                            PhotoController.addPhotoToAlbum(photo: photo, album: self.photoAlbum!)
                             dispacthGroup.leave()
                         }
                     }

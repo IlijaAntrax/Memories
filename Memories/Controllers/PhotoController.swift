@@ -81,6 +81,8 @@ class PhotoController:FirebaseController
         photoDictionary.setValue(photo.filter.rawValue, forKey: k_PHOTO_FILTER)
         photoDictionary.setValue(photo.transform.toArray(), forKey: k_PHOTO_TRANSFORM)
         
+        photo.ID = photoQuery.key
+        
         photoQuery.setValue(photoDictionary)
     }
     
