@@ -163,6 +163,11 @@ class MyProfileHeaderView:UIView
                 self.profileImgView.image = profileImage
                 PhotoController.uploadProfileImage(image: profileImage, forUserID: MyAccount.sharedInstance.userId ?? "", completionHandler: { (success) in
                     print(success)
+                    if let imgUrl = MyAccount.sharedInstance.myUser?.profileImgUrl {
+                        PhotoController.deleteImage(withUrlPath: imgUrl.absoluteString, completionHandler: { (succes) in
+                            print(success)
+                        })
+                    }
                 })
             }
         }

@@ -109,9 +109,13 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
         alert.addAction(UIAlertAction(title: NSLocalizedString("Share photo", comment: ""), style: .default, handler: { _ in
             self.sharePhoto()
         }))
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Delete photo", comment: "This will delete photo."), style: .default, handler: { _ in
-            self.deletePhoto()
-        }))
+        if let owner = photoAlbum?.owner {
+            if owner == MyAccount.sharedInstance.email {
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Delete photo", comment: "This will delete photo."), style: .default, handler: { _ in
+                    self.deletePhoto()
+                }))
+            }
+        }
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
@@ -155,7 +159,7 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     func sharePhoto()
     {
-        if let img = self.photo?.img
+        if let img = self.photo?.img //TODO: add render image to share
         {
             let activityViewController = UIActivityViewController(activityItems: [img], applicationActivities: nil)
             self.present(activityViewController, animated: true, completion: {})

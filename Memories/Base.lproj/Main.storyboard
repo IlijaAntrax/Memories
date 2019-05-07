@@ -76,6 +76,7 @@
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OPO-Vk-2W1">
                                                 <rect key="frame" x="75" y="115.5" width="225" height="39.5"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="OPO-Vk-2W1" secondAttribute="height" multiplier="103:18" id="nlp-oM-S5S"/>
                                                 </constraints>
@@ -85,6 +86,7 @@
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TAX-zO-Vbz">
                                                 <rect key="frame" x="75" y="163" width="225" height="39"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="TAX-zO-Vbz" secondAttribute="height" multiplier="103:18" id="UDY-nl-deb"/>
                                                 </constraints>
