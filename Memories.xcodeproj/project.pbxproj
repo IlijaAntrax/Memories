@@ -109,6 +109,7 @@
 		5BFF916F227B4467009D7887 /* resize_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BFF916C227B4467009D7887 /* resize_image.png */; };
 		5BFF9170227B4467009D7887 /* resize_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BFF916D227B4467009D7887 /* resize_image@2x.png */; };
 		5BFF9171227B4467009D7887 /* resize_image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BFF916E227B4467009D7887 /* resize_image@3x.png */; };
+		CD085095228AB4B700206116 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD085094228AB4B700206116 /* KeychainService.swift */; };
 		CD44CD1E21EF3A0800238F29 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD1D21EF3A0800238F29 /* AlbumViewController.swift */; };
 		CD44CD2121EF3C9E00238F29 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD2021EF3C9E00238F29 /* AlbumCell.swift */; };
 		CD44CD2521EF3DEE00238F29 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD2421EF3DEE00238F29 /* CALayer+.swift */; };
@@ -286,6 +287,7 @@
 		5BFF916E227B4467009D7887 /* resize_image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resize_image@3x.png"; sourceTree = "<group>"; };
 		5D00EBB5709A1528950FA9E7 /* Pods-Memories.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memories.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Memories/Pods-Memories.debug.xcconfig"; sourceTree = "<group>"; };
 		AAC8AA4997EFFB50631972DE /* Pods-Memories.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memories.release.xcconfig"; path = "Pods/Target Support Files/Pods-Memories/Pods-Memories.release.xcconfig"; sourceTree = "<group>"; };
+		CD085094228AB4B700206116 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		CD44CD1D21EF3A0800238F29 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		CD44CD2021EF3C9E00238F29 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		CD44CD2421EF3DEE00238F29 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 		5B79FB9621A0689900670313 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5BA1B88321E7C6D3006F7C16 /* Fonts */,
 				5B79FB9721A068AD00670313 /* Images */,
 			);
 			path = Resources;
@@ -623,6 +626,7 @@
 		5BB71D9721C043B70065642D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				CD085093228AB44E00206116 /* KeychainService */,
 				CD44CD9021EF672A00238F29 /* Editor */,
 				CD44CD2C21EF485C00238F29 /* NVActivityIndicatorView */,
 				5B25408221E93FBC00E0463C /* ViewControllers */,
@@ -630,7 +634,6 @@
 				5BDDED2521D2D65D008B8428 /* State */,
 				5BA66BE021C183AF00E5C54B /* ExtensionsDecorators */,
 				5BB71D8C21C0438B0065642D /* Filters */,
-				5BA1B88321E7C6D3006F7C16 /* Fonts */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -706,6 +709,14 @@
 				15DCF83CB69CAA1C8F6B44B3 /* Pods_Memories.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CD085093228AB44E00206116 /* KeychainService */ = {
+			isa = PBXGroup;
+			children = (
+				CD085094228AB4B700206116 /* KeychainService.swift */,
+			);
+			path = KeychainService;
 			sourceTree = "<group>";
 		};
 		CD44CD1C21EF39D500238F29 /* Album */ = {
@@ -868,6 +879,11 @@
 				TargetAttributes = {
 					5BC6D8E1219DE0F700C80446 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1038,6 +1054,7 @@
 				5BA1B88A21E7E1AF006F7C16 /* HomeViewController.swift in Sources */,
 				5BB71D9621C0438B0065642D /* YUCIRGBToneCurve.m in Sources */,
 				5B25407A21E92CB300E0463C /* SharedAlbumsViewController.swift in Sources */,
+				CD085095228AB4B700206116 /* KeychainService.swift in Sources */,
 				CD44CD8421EF643800238F29 /* GalleryViewController.swift in Sources */,
 				5BA66BEC21C18ED800E5C54B /* UserController.swift in Sources */,
 				CD44CD5F21EF485C00238F29 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */,

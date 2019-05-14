@@ -159,6 +159,12 @@ class UserController:FirebaseController
         }
     }
     
+    //DELETE
+    static func removeUserFromAlbum(user:User, album:PhotoAlbum)
+    {
+        
+    }
+    
     //UPDATE
     static func updateMyAccount(user:User)
     {
