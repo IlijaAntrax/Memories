@@ -79,10 +79,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     }
                     completionHandler(.newData)
                 }
+                else
+                {
+                    completionHandler(.noData)
+                }
             }
         }
-        
-        completionHandler(.noData)
+        else
+        {
+            completionHandler(.noData)
+        }
     }
 
     //MARK: UNUserNotificationDelegate methods
