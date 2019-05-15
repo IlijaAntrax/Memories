@@ -96,11 +96,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UIApplication.shared.applicationIconBadgeNumber = 0;
         if response.actionIdentifier == ActionType.showSharedAlbums.rawValue
         {
-            print("Show shared album")
+            print("Show shared album.")
         }
-        else if response.actionIdentifier == ActionType.showPhoto.rawValue
+        else if response.actionIdentifier == ActionType.showAlbum.rawValue
         {
-            print("Show photo")
+            print("Show album, shared or my album.")
         }
     }
 }

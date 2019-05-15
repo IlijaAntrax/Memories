@@ -163,6 +163,13 @@
 		CD44CD8D21EF661E00238F29 /* FilterImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD8C21EF661E00238F29 /* FilterImageCell.swift */; };
 		CD44CD8F21EF666600238F29 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD8E21EF666600238F29 /* UIImage+.swift */; };
 		CD44CD9221EF673800238F29 /* EditorImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD9121EF673800238F29 /* EditorImageView.swift */; };
+		CD5658D0228C2C5A00E6315D /* notification_alert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5658CD228C2C5A00E6315D /* notification_alert@2x.png */; };
+		CD5658D1228C2C5A00E6315D /* notification_alert@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5658CE228C2C5A00E6315D /* notification_alert@3x.png */; };
+		CD5658D2228C2C5A00E6315D /* notification_alert.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5658CF228C2C5A00E6315D /* notification_alert.png */; };
+		CD5658D6228C391E00E6315D /* notification_bgd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5658D3228C391B00E6315D /* notification_bgd@2x.png */; };
+		CD5658D7228C391E00E6315D /* notification_bgd.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5658D4228C391C00E6315D /* notification_bgd.png */; };
+		CD5658D8228C391E00E6315D /* notification_bgd@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5658D5228C391D00E6315D /* notification_bgd@3x.png */; };
+		CD5658DA228C3FEA00E6315D /* InternalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5658D9228C3FEA00E6315D /* InternalNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -342,6 +349,14 @@
 		CD44CD8C21EF661E00238F29 /* FilterImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterImageCell.swift; sourceTree = "<group>"; };
 		CD44CD8E21EF666600238F29 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		CD44CD9121EF673800238F29 /* EditorImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorImageView.swift; sourceTree = "<group>"; };
+		CD5658CB228C135C00E6315D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		CD5658CD228C2C5A00E6315D /* notification_alert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification_alert@2x.png"; sourceTree = "<group>"; };
+		CD5658CE228C2C5A00E6315D /* notification_alert@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification_alert@3x.png"; sourceTree = "<group>"; };
+		CD5658CF228C2C5A00E6315D /* notification_alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_alert.png; sourceTree = "<group>"; };
+		CD5658D3228C391B00E6315D /* notification_bgd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification_bgd@2x.png"; sourceTree = "<group>"; };
+		CD5658D4228C391C00E6315D /* notification_bgd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_bgd.png; sourceTree = "<group>"; };
+		CD5658D5228C391D00E6315D /* notification_bgd@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification_bgd@3x.png"; sourceTree = "<group>"; };
+		CD5658D9228C3FEA00E6315D /* InternalNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -416,6 +431,12 @@
 		5B79FB9721A068AD00670313 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CD5658D4228C391C00E6315D /* notification_bgd.png */,
+				CD5658D3228C391B00E6315D /* notification_bgd@2x.png */,
+				CD5658D5228C391D00E6315D /* notification_bgd@3x.png */,
+				CD5658CF228C2C5A00E6315D /* notification_alert.png */,
+				CD5658CD228C2C5A00E6315D /* notification_alert@2x.png */,
+				CD5658CE228C2C5A00E6315D /* notification_alert@3x.png */,
 				5BFF916C227B4467009D7887 /* resize_image.png */,
 				5BFF916D227B4467009D7887 /* resize_image@2x.png */,
 				5BFF916E227B4467009D7887 /* resize_image@3x.png */,
@@ -610,6 +631,7 @@
 				5BA66BE721C187B700E5C54B /* PhotoAlbumController.swift */,
 				5BBFDBB121C5032F006578FB /* RemoteNotificationController.swift */,
 				5BBFDBB321C525C0006578FB /* FirebaseController.swift */,
+				CD5658D9228C3FEA00E6315D /* InternalNavigationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -706,6 +728,7 @@
 		A9B4D945BDEAAB061A60CEFF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD5658CB228C135C00E6315D /* AVFoundation.framework */,
 				15DCF83CB69CAA1C8F6B44B3 /* Pods_Memories.framework */,
 			);
 			name = Frameworks;
@@ -933,10 +956,13 @@
 				5B33CE1021E5357500FE2DAF /* delete.png in Resources */,
 				5B33CDF721E5357500FE2DAF /* footer_shadow.png in Resources */,
 				5B25405E21E927EA00E0463C /* album_icon@2x.png in Resources */,
+				CD5658D2228C2C5A00E6315D /* notification_alert.png in Resources */,
+				CD5658D8228C391E00E6315D /* notification_bgd@3x.png in Resources */,
 				5BB71D9521C0438B0065642D /* YUCIRGBToneCurve.cikernel in Resources */,
 				5B33CE1121E5357500FE2DAF /* done.png in Resources */,
 				5BC6D8ED219DE0F900C80446 /* Assets.xcassets in Resources */,
 				5B33CE0621E5357500FE2DAF /* profie_inactive.png in Resources */,
+				CD5658D1228C2C5A00E6315D /* notification_alert@3x.png in Resources */,
 				5BFF916F227B4467009D7887 /* resize_image.png in Resources */,
 				5B33CE0521E5357500FE2DAF /* profie_active.png in Resources */,
 				5B33CE1421E5357500FE2DAF /* search_results.png in Resources */,
@@ -961,8 +987,10 @@
 				5B33CE0121E5357500FE2DAF /* text_holder_selected.png in Resources */,
 				5B33CE1621E5357500FE2DAF /* notification_active.png in Resources */,
 				5BA1B88621E7C6EC006F7C16 /* SF-Pro-Display-Regular.otf in Resources */,
+				CD5658D7228C391E00E6315D /* notification_bgd.png in Resources */,
 				5B25407221E92B4C00E0463C /* search_icon@3x.png in Resources */,
 				5BA1B88721E7C6EC006F7C16 /* SF-Pro-Display-Bold.otf in Resources */,
+				CD5658D0228C2C5A00E6315D /* notification_alert@2x.png in Resources */,
 				5B33CE0D21E5357500FE2DAF /* photo_mask.png in Resources */,
 				5B33CE0321E5357500FE2DAF /* notification_inactive.png in Resources */,
 				5B33CE0A21E5357500FE2DAF /* empty_image.png in Resources */,
@@ -974,6 +1002,7 @@
 				5B33CE0921E5357500FE2DAF /* close_btn.png in Resources */,
 				5BB71D9421C0438B0065642D /* YUCIRGBToHSL.cikernel in Resources */,
 				5B25406D21E92A2F00E0463C /* myaccount_icon@2x.png in Resources */,
+				CD5658D6228C391E00E6315D /* notification_bgd@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1033,6 +1062,7 @@
 			files = (
 				5B25407821E92CA000E0463C /* MyAlbumsViewController.swift in Sources */,
 				5BBFDBB021C502D6006578FB /* RemoteNotification.swift in Sources */,
+				CD5658DA228C3FEA00E6315D /* InternalNavigationController.swift in Sources */,
 				5BA66BE621C187AA00E5C54B /* PhotoController.swift in Sources */,
 				5B25407D21E92CCE00E0463C /* NotificationsViewController.swift in Sources */,
 				5BB71D9321C0438B0065642D /* YUCIFilterConstructor.m in Sources */,
@@ -1271,6 +1301,7 @@
 				DEVELOPMENT_TEAM = 5EFM4H5FA3;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = Memories/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1294,6 +1325,7 @@
 				DEVELOPMENT_TEAM = 5EFM4H5FA3;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = Memories/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

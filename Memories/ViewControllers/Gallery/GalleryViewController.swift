@@ -173,11 +173,24 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         
         dispacthGroup.notify(queue: DispatchQueue.main) {
+            self.addNotificationsForUsers()
             self.hideLoader()
             self.navigationController?.popViewController(animated: true)
         }
     }
     
+    func addNotificationsForUsers()
+    {
+        if let album = self.photoAlbum {
+            UserController.getUsersOnAlbum(forAlbumId: album.ID) { (users) in
+                for user in users
+                {
+                    let notification = RemoteNotification(withId: "", title: "New photos", body: "\(MyAccount.sharedInstance.myUser!.username) added new photos at album \(album.name)", date: Date.init().getString(), action: ActionType.showAlbum.rawValue, objectId: album.ID, read: false)
+                    RemoteNotificationController.addNotification(notification: notification, forUser: user)
+                }
+            }
+        }
+    }
     
     //MARK: CollectionView delegate methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int

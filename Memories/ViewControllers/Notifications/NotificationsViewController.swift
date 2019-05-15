@@ -47,7 +47,36 @@ class NotificationsViewController: UIViewController, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        //TODO: show action depend on notification
+        let notification = self.notifications[indexPath.row]
+        
+        if !notification.readStatus
+        {
+            notification.readStatus = true
+            self.notificationsCollection.reloadData()
+            
+            RemoteNotificationController.markAsReadNotification(notification, forUserID: MyAccount.sharedInstance.myUser!.ID)
+        }
+        
+        if notification.actionType == ActionType.showSharedAlbums
+        {
+            InternalNavigationController.sharedInstance.navigateToSharedAlbums()
+        }
+        else if notification.actionType == ActionType.showMyAlbums
+        {
+            InternalNavigationController.sharedInstance.navigateToMyAlbums()
+        }
+        else if notification.actionType == ActionType.showAlbum
+        {
+            if let albumId = notification.objectActionId {
+                PhotoAlbumController.isSharedAlbum(albumID: albumId, forUser: MyAccount.sharedInstance.myUser!) { (contains) in
+                    if contains {
+                        InternalNavigationController.sharedInstance.navigateToSharedAlbums()
+                    } else {
+                        InternalNavigationController.sharedInstance.navigateToMyAlbums()
+                    }
+                }
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize

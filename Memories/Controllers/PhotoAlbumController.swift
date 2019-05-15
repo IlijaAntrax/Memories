@@ -199,6 +199,37 @@ class PhotoAlbumController:FirebaseController
         }
     }
     
+    static func isSharedAlbum(albumID:String, forUser user:User, completionHandler:@escaping (Bool) -> ())
+    {
+        let sharedQuery = dbRef.child(k_db_users).child(user.ID).child(k_USER_SHARED)
+        sharedQuery.observeSingleEvent(of: .value) { (dataSnapshot) in
+            if let albumsKeys = dataSnapshot.value as? [String]
+            {
+                if albumsKeys.contains(albumID) {
+                    completionHandler(true)
+                } else {
+                    completionHandler(false)
+                }
+            }
+            else if let albumsDict = dataSnapshot.value as? NSDictionary
+            {
+                if let albumsKeys = albumsDict.allValues as? [String] {
+                    if albumsKeys.contains(albumID) {
+                        completionHandler(true)
+                    } else {
+                        completionHandler(false)
+                    }
+                } else {
+                    completionHandler(false)
+                }
+            }
+            else
+            {
+                completionHandler(false)
+            }
+        }
+    }
+    
     //WRITE
     static func addPhotoAlbum(album:PhotoAlbum)
     {

@@ -477,30 +477,49 @@
                                             <rect key="frame" x="0.0" y="0.0" width="357" height="68"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profie_icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="a38-Xs-Qb5" userLabel="icon">
-                                                    <rect key="frame" x="5" y="3.5" width="61" height="61"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notification_bgd.png" translatesAutoresizingMaskIntoConstraints="NO" id="kk7-B0-Qlh">
+                                                    <rect key="frame" x="5" y="5" width="58" height="58"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="kk7-B0-Qlh" secondAttribute="height" multiplier="1:1" id="DXC-J6-IfJ"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notification_inactive.png" translatesAutoresizingMaskIntoConstraints="NO" id="a38-Xs-Qb5" userLabel="icon">
+                                                    <rect key="frame" x="13.5" y="13.5" width="41" height="41"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="a38-Xs-Qb5" secondAttribute="height" multiplier="1:1" id="z7W-j9-JCX"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DEJ-x5-XAT" userLabel="text">
-                                                    <rect key="frame" x="71" y="3.5" width="281" height="61"/>
+                                                    <rect key="frame" x="68" y="5" width="264" height="58"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notification_alert.png" translatesAutoresizingMaskIntoConstraints="NO" id="RXS-VV-fCf">
+                                                    <rect key="frame" x="337" y="5" width="15" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="15" id="CAx-o1-Y9t"/>
+                                                        <constraint firstAttribute="width" secondItem="RXS-VV-fCf" secondAttribute="height" multiplier="1:1" id="JOP-Lf-yOc"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="a38-Xs-Qb5" firstAttribute="leading" secondItem="JVI-Wm-lxm" secondAttribute="leading" constant="5" id="M76-M6-Flp"/>
-                                            <constraint firstItem="DEJ-x5-XAT" firstAttribute="leading" secondItem="a38-Xs-Qb5" secondAttribute="trailing" constant="5" id="RyN-Ee-Csj"/>
-                                            <constraint firstItem="a38-Xs-Qb5" firstAttribute="centerY" secondItem="JVI-Wm-lxm" secondAttribute="centerY" id="TBB-gd-aC1"/>
-                                            <constraint firstAttribute="trailing" secondItem="DEJ-x5-XAT" secondAttribute="trailing" constant="5" id="cwu-1N-cIR"/>
-                                            <constraint firstItem="a38-Xs-Qb5" firstAttribute="height" secondItem="JVI-Wm-lxm" secondAttribute="height" multiplier="0.9" id="e9r-cI-f4P"/>
+                                            <constraint firstAttribute="bottom" secondItem="kk7-B0-Qlh" secondAttribute="bottom" constant="5" id="A4v-8V-xX9"/>
+                                            <constraint firstItem="a38-Xs-Qb5" firstAttribute="centerX" secondItem="kk7-B0-Qlh" secondAttribute="centerX" id="M76-M6-Flp"/>
+                                            <constraint firstItem="kk7-B0-Qlh" firstAttribute="top" secondItem="JVI-Wm-lxm" secondAttribute="top" constant="5" id="PPH-uJ-VWx"/>
+                                            <constraint firstItem="DEJ-x5-XAT" firstAttribute="leading" secondItem="kk7-B0-Qlh" secondAttribute="trailing" constant="5" id="RyN-Ee-Csj"/>
+                                            <constraint firstItem="a38-Xs-Qb5" firstAttribute="centerY" secondItem="kk7-B0-Qlh" secondAttribute="centerY" id="TBB-gd-aC1"/>
+                                            <constraint firstItem="kk7-B0-Qlh" firstAttribute="leading" secondItem="JVI-Wm-lxm" secondAttribute="leading" constant="5" id="Wen-b2-fQb"/>
+                                            <constraint firstItem="RXS-VV-fCf" firstAttribute="leading" secondItem="DEJ-x5-XAT" secondAttribute="trailing" constant="5" id="cwu-1N-cIR"/>
+                                            <constraint firstItem="a38-Xs-Qb5" firstAttribute="height" secondItem="JVI-Wm-lxm" secondAttribute="height" multiplier="0.6" id="e9r-cI-f4P"/>
+                                            <constraint firstItem="RXS-VV-fCf" firstAttribute="top" secondItem="JVI-Wm-lxm" secondAttribute="top" constant="5" id="fMg-hV-hea"/>
                                             <constraint firstItem="DEJ-x5-XAT" firstAttribute="centerY" secondItem="JVI-Wm-lxm" secondAttribute="centerY" id="k7i-oc-Etv"/>
-                                            <constraint firstItem="DEJ-x5-XAT" firstAttribute="height" secondItem="a38-Xs-Qb5" secondAttribute="height" id="uVa-x8-Hcc"/>
+                                            <constraint firstItem="DEJ-x5-XAT" firstAttribute="height" secondItem="kk7-B0-Qlh" secondAttribute="height" id="uVa-x8-Hcc"/>
+                                            <constraint firstAttribute="trailing" secondItem="RXS-VV-fCf" secondAttribute="trailing" constant="5" id="wnb-fo-0FU"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="alertImgView" destination="RXS-VV-fCf" id="YZB-z9-H9L"/>
                                             <outlet property="iconImgView" destination="a38-Xs-Qb5" id="byN-fF-vub"/>
                                             <outlet property="textLbl" destination="DEJ-x5-XAT" id="adF-yt-0ap"/>
                                         </connections>
@@ -527,7 +546,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7h-qi-qZm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="201" y="3032"/>
+            <point key="canvasLocation" x="200.80000000000001" y="3031.9340329835086"/>
         </scene>
         <!--My Albums-->
         <scene sceneID="iMy-TL-nn6">
@@ -2513,6 +2532,9 @@
         <image name="footer.jpg" width="1242" height="130"/>
         <image name="log_out.png" width="130" height="130"/>
         <image name="myaccount_icon.png" width="25" height="25"/>
+        <image name="notification_alert.png" width="25" height="25"/>
+        <image name="notification_bgd.png" width="50" height="50"/>
+        <image name="notification_inactive.png" width="130" height="130"/>
         <image name="notifications_icon.png" width="25" height="25"/>
         <image name="profie_icon.png" width="302" height="302"/>
         <image name="profile_default_cover.jpg" width="1280" height="800"/>
