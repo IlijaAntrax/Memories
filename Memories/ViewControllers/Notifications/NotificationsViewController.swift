@@ -59,20 +59,28 @@ class NotificationsViewController: UIViewController, UICollectionViewDelegate, U
         
         if notification.actionType == ActionType.showSharedAlbums
         {
-            InternalNavigationController.sharedInstance.navigateToSharedAlbums()
+            if let albumId = notification.objectActionId {
+                InternalNavigationController.sharedInstance.navigateToSharedAlbum(albumId: albumId)
+            } else {
+                InternalNavigationController.sharedInstance.navigateToSharedAlbums()
+            }
         }
         else if notification.actionType == ActionType.showMyAlbums
         {
-            InternalNavigationController.sharedInstance.navigateToMyAlbums()
+            if let albumId = notification.objectActionId {
+                InternalNavigationController.sharedInstance.navigateToMyAlbum(albumId: albumId)
+            } else {
+                InternalNavigationController.sharedInstance.navigateToMyAlbums()
+            }
         }
         else if notification.actionType == ActionType.showAlbum
         {
             if let albumId = notification.objectActionId {
                 PhotoAlbumController.isSharedAlbum(albumID: albumId, forUser: MyAccount.sharedInstance.myUser!) { (contains) in
                     if contains {
-                        InternalNavigationController.sharedInstance.navigateToSharedAlbums()
+                        InternalNavigationController.sharedInstance.navigateToSharedAlbum(albumId: albumId)
                     } else {
-                        InternalNavigationController.sharedInstance.navigateToMyAlbums()
+                        InternalNavigationController.sharedInstance.navigateToMyAlbum(albumId: albumId)
                     }
                 }
             }

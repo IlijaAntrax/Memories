@@ -2546,7 +2546,7 @@
         <image name="upload_photos.png" width="373" height="373"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4Yl-Vc-vlv"/>
+        <segue reference="kxT-cL-1vs"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

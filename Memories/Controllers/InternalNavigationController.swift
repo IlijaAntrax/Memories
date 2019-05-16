@@ -51,10 +51,56 @@ final class InternalNavigationController
         }
     }
     
+    func navigateToSharedAlbum(albumId: String)
+    {
+        if let rootVC = self.getRootViewController() as? UITabBarController {
+            rootVC.selectedIndex = 1
+            
+            if let sharedAlbumVC = UIApplication.topViewController() as? SharedAlbumsViewController {
+                sharedAlbumVC.selectedAlbumID = albumId
+                sharedAlbumVC.performSegue(withIdentifier: "SharedAlbumSegueIdentifier", sender: sharedAlbumVC)
+            } else {
+                if let currentVC = UIApplication.topViewController() {
+                    currentVC.navigationController?.popViewController(animated: false)
+                    self.navigateToSharedAlbum(albumId: albumId)
+                    return
+                }
+            }
+        } else if let navRootVC = self.getRootViewController() as? UINavigationController {
+            navRootVC.dismiss(animated: false) {
+                self.navigateToSharedAlbums()
+                return
+            }
+        }
+    }
+    
     func navigateToMyAlbums()
     {
         if let rootVC = self.getRootViewController() as? UITabBarController {
             rootVC.selectedIndex = 0
+        } else if let navRootVC = self.getRootViewController() as? UINavigationController {
+            navRootVC.dismiss(animated: false) {
+                self.navigateToSharedAlbums()
+                return
+            }
+        }
+    }
+    
+    func navigateToMyAlbum(albumId: String)
+    {
+        if let rootVC = self.getRootViewController() as? UITabBarController {
+            rootVC.selectedIndex = 0
+            
+            if let myAlbumVC = UIApplication.topViewController() as? MyAlbumsViewController {
+                myAlbumVC.selectedAlbumID = albumId
+                myAlbumVC.performSegue(withIdentifier: "MyAlbumSegueIdentifier", sender: myAlbumVC)
+            } else {
+                if let currentVC = UIApplication.topViewController() {
+                    currentVC.navigationController?.popViewController(animated: false)
+                    self.navigateToMyAlbum(albumId: albumId)
+                    return
+                }
+            }
         } else if let navRootVC = self.getRootViewController() as? UINavigationController {
             navRootVC.dismiss(animated: false) {
                 self.navigateToSharedAlbums()

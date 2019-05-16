@@ -14,6 +14,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
     private let insetOffset:CGFloat = 5.0
     
     var isSharedAlbum = false
+    var photoAlbumID: String?
     var photoAlbum: PhotoAlbum?
     var albumUsers = [User]()
     
@@ -82,27 +83,31 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             self.inviteUserBtn.isHidden = true
         }
         
-        PhotoAlbumController.getAlbum(forAlbumId: self.photoAlbum!.ID) { (album) in
-            self.photoAlbum = album
-            self.photosCollection.reloadData()
+        if let id = self.photoAlbumID {
+            PhotoAlbumController.getAlbum(forAlbumId: id) { (album) in
+                self.photoAlbum = album
+                self.photosCollection.reloadData()
+            }
         }
     }
     
     func loadUsersForAlbum()
     {
-        UserController.getUsersOnAlbum(forAlbumId: photoAlbum?.ID ?? "") { (users) in
-            self.albumUsers = users
-            if self.isSharedAlbum {
-                if let owner = self.photoAlbum?.owner {
-                    UserController.getUser(forEmail: owner, completionHandler: { (user) in
-                        self.albumUsers.insert(user, at: 0)
+        if let id = self.photoAlbumID {
+            UserController.getUsersOnAlbum(forAlbumId: id) { (users) in
+                self.albumUsers = users
+                if self.isSharedAlbum {
+                    if let owner = self.photoAlbum?.owner {
+                        UserController.getUser(forEmail: owner, completionHandler: { (user) in
+                            self.albumUsers.insert(user, at: 0)
+                            self.usersCollection.reloadData()
+                        })
+                    } else {
                         self.usersCollection.reloadData()
-                    })
+                    }
                 } else {
                     self.usersCollection.reloadData()
                 }
-            } else {
-                self.usersCollection.reloadData()
             }
         }
     }

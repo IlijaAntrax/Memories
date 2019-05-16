@@ -32,8 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UNUserNotificationCenter.current().delegate = self
         
         //Set notifications categories
-        let photoAction = UNNotificationAction(identifier: ActionType.showPhoto.rawValue, title: "Show photo", options: [.foreground])
-        let photoCategory = UNNotificationCategory(identifier: ActionType.showPhoto.rawValue, actions: [photoAction], intentIdentifiers: [], options: [])
+        let photoAction = UNNotificationAction(identifier: ActionType.showAlbum.rawValue, title: "Show photo", options: [.foreground])
+        let photoCategory = UNNotificationCategory(identifier: ActionType.showAlbum.rawValue, actions: [photoAction], intentIdentifiers: [], options: [])
         
         let sharedAlbumsAction = UNNotificationAction(identifier: ActionType.showSharedAlbums.rawValue, title: "Show shared album", options: [.foreground])
         let sharedAlbumsCategory = UNNotificationCategory(identifier: ActionType.showSharedAlbums.rawValue, actions: [sharedAlbumsAction], intentIdentifiers: [], options: [])
@@ -96,11 +96,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UIApplication.shared.applicationIconBadgeNumber = 0;
         if response.actionIdentifier == ActionType.showSharedAlbums.rawValue
         {
-            print("Show shared album.")
+            InternalNavigationController.sharedInstance.navigateToSharedAlbums()
         }
-        else if response.actionIdentifier == ActionType.showAlbum.rawValue
+        else
         {
-            print("Show album, shared or my album.")
+            InternalNavigationController.sharedInstance.navigateToMyAlbums()
         }
     }
 }

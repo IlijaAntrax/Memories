@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UserProfileDelegate {
 
-    private var selectedAlbumIndex:Int = 0
+    var selectedAlbumID:String!
     var albums:[PhotoAlbum] = [PhotoAlbum]()
     
     @IBOutlet weak var albumsCollection: UICollectionView!
@@ -41,14 +41,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         {
             if let albumVC = segue.destination as? AlbumViewController
             {
-                albumVC.photoAlbum = self.albums[selectedAlbumIndex]
+                albumVC.photoAlbumID = self.selectedAlbumID
+                if let index = self.albums.firstIndex(where: { (photoAlbum) -> Bool in
+                    if photoAlbum.ID == self.selectedAlbumID {
+                        return true
+                    }
+                    return false
+                }) {
+                    albumVC.photoAlbum = self.albums[index]
+                }
             }
         }
     }
 
     func showAlbumVC(forIndex index:Int)
     {
-        self.selectedAlbumIndex = index
+        self.selectedAlbumID = self.albums[index].ID
         
         if self is MyAlbumsViewController {
             performSegue(withIdentifier: "MyAlbumSegueIdentifier", sender: self)
