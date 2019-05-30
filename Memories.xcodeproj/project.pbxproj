@@ -170,6 +170,12 @@
 		CD5658D7228C391E00E6315D /* notification_bgd.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5658D4228C391C00E6315D /* notification_bgd.png */; };
 		CD5658D8228C391E00E6315D /* notification_bgd@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5658D5228C391D00E6315D /* notification_bgd@3x.png */; };
 		CD5658DA228C3FEA00E6315D /* InternalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5658D9228C3FEA00E6315D /* InternalNavigationController.swift */; };
+		CDF4FADD229FF03C00FE4909 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4FADC229FF03C00FE4909 /* UserViewModel.swift */; };
+		CDF4FADF229FFE7200FE4909 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4FADE229FFE7200FE4909 /* PhotoViewModel.swift */; };
+		CDF4FAE122A00EBF00FE4909 /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4FAE022A00EBF00FE4909 /* AlbumViewModel.swift */; };
+		CDF4FAE422A0229D00FE4909 /* AlbumsStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4FAE322A0229D00FE4909 /* AlbumsStrategy.swift */; };
+		CDF4FAE822A023FD00FE4909 /* MyAlbumsStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4FAE722A023FD00FE4909 /* MyAlbumsStrategy.swift */; };
+		CDF4FAEA22A0242D00FE4909 /* SharedAlbumsStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4FAE922A0242D00FE4909 /* SharedAlbumsStrategy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -357,6 +363,12 @@
 		CD5658D4228C391C00E6315D /* notification_bgd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_bgd.png; sourceTree = "<group>"; };
 		CD5658D5228C391D00E6315D /* notification_bgd@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification_bgd@3x.png"; sourceTree = "<group>"; };
 		CD5658D9228C3FEA00E6315D /* InternalNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNavigationController.swift; sourceTree = "<group>"; };
+		CDF4FADC229FF03C00FE4909 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		CDF4FADE229FFE7200FE4909 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
+		CDF4FAE022A00EBF00FE4909 /* AlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewModel.swift; sourceTree = "<group>"; };
+		CDF4FAE322A0229D00FE4909 /* AlbumsStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsStrategy.swift; sourceTree = "<group>"; };
+		CDF4FAE722A023FD00FE4909 /* MyAlbumsStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlbumsStrategy.swift; sourceTree = "<group>"; };
+		CDF4FAE922A0242D00FE4909 /* SharedAlbumsStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedAlbumsStrategy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -682,8 +694,10 @@
 		5BC6D8E4219DE0F700C80446 /* Memories */ = {
 			isa = PBXGroup;
 			children = (
+				CDF4FAE222A0225B00FE4909 /* Strategy */,
 				5BDDED2821D2D6CA008B8428 /* Account */,
 				5BB71D8821C03E5C0065642D /* Models */,
+				CDF4FADB229FEF3E00FE4909 /* ViewModels */,
 				5BB71D8921C03E650065642D /* Controllers */,
 				5B33CE1B21E539C300FE2DAF /* ViewControllers */,
 				5BB71D9721C043B70065642D /* Helper */,
@@ -865,6 +879,42 @@
 				CD44CD9121EF673800238F29 /* EditorImageView.swift */,
 			);
 			path = Editor;
+			sourceTree = "<group>";
+		};
+		CDF4FADB229FEF3E00FE4909 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CDF4FADC229FF03C00FE4909 /* UserViewModel.swift */,
+				CDF4FADE229FFE7200FE4909 /* PhotoViewModel.swift */,
+				CDF4FAE022A00EBF00FE4909 /* AlbumViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CDF4FAE222A0225B00FE4909 /* Strategy */ = {
+			isa = PBXGroup;
+			children = (
+				CDF4FAE622A022B600FE4909 /* Albums */,
+			);
+			path = Strategy;
+			sourceTree = "<group>";
+		};
+		CDF4FAE522A022A700FE4909 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				CDF4FAE722A023FD00FE4909 /* MyAlbumsStrategy.swift */,
+				CDF4FAE922A0242D00FE4909 /* SharedAlbumsStrategy.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		CDF4FAE622A022B600FE4909 /* Albums */ = {
+			isa = PBXGroup;
+			children = (
+				CDF4FAE322A0229D00FE4909 /* AlbumsStrategy.swift */,
+				CDF4FAE522A022A700FE4909 /* Implementation */,
+			);
+			path = Albums;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1062,6 +1112,7 @@
 			files = (
 				5B25407821E92CA000E0463C /* MyAlbumsViewController.swift in Sources */,
 				5BBFDBB021C502D6006578FB /* RemoteNotification.swift in Sources */,
+				CDF4FAE122A00EBF00FE4909 /* AlbumViewModel.swift in Sources */,
 				CD5658DA228C3FEA00E6315D /* InternalNavigationController.swift in Sources */,
 				5BA66BE621C187AA00E5C54B /* PhotoController.swift in Sources */,
 				5B25407D21E92CCE00E0463C /* NotificationsViewController.swift in Sources */,
@@ -1085,6 +1136,8 @@
 				5BB71D9621C0438B0065642D /* YUCIRGBToneCurve.m in Sources */,
 				5B25407A21E92CB300E0463C /* SharedAlbumsViewController.swift in Sources */,
 				CD085095228AB4B700206116 /* KeychainService.swift in Sources */,
+				CDF4FADF229FFE7200FE4909 /* PhotoViewModel.swift in Sources */,
+				CDF4FAEA22A0242D00FE4909 /* SharedAlbumsStrategy.swift in Sources */,
 				CD44CD8421EF643800238F29 /* GalleryViewController.swift in Sources */,
 				5BA66BEC21C18ED800E5C54B /* UserController.swift in Sources */,
 				CD44CD5F21EF485C00238F29 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */,
@@ -1093,6 +1146,7 @@
 				5BBFDBB421C525C0006578FB /* FirebaseController.swift in Sources */,
 				CD44CD6521EF485C00238F29 /* NVActivityIndicatorAnimationBallZigZag.swift in Sources */,
 				CD44CD8F21EF666600238F29 /* UIImage+.swift in Sources */,
+				CDF4FADD229FF03C00FE4909 /* UserViewModel.swift in Sources */,
 				CD44CD8B21EF65ED00238F29 /* PhotoViewController.swift in Sources */,
 				5BDDED2A21D2D6EC008B8428 /* MyAccount.swift in Sources */,
 				CD44CD6321EF485C00238F29 /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */,
@@ -1103,6 +1157,8 @@
 				5BA1B87C21E7BF89006F7C16 /* RegisterViewController.swift in Sources */,
 				5BB71D8B21C041B60065642D /* Photo.swift in Sources */,
 				CD44CD7921EF485C00238F29 /* NVActivityIndicatorAnimationLineScaleParty.swift in Sources */,
+				CDF4FAE822A023FD00FE4909 /* MyAlbumsStrategy.swift in Sources */,
+				CDF4FAE422A0229D00FE4909 /* AlbumsStrategy.swift in Sources */,
 				5BB71D9B21C050510065642D /* PhotoAlbum.swift in Sources */,
 				CD44CD7B21EF485C00238F29 /* NVActivityIndicatorAnimationBallPulseRise.swift in Sources */,
 				5B25408421E93FDC00E0463C /* KeyboardViewController.swift in Sources */,

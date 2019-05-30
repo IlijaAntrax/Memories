@@ -128,7 +128,8 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserCell", for: indexPath) as! UserCell
         
-        cell.setUser(usersList[indexPath.item])
+        let userView = UserViewModel(user: usersList[indexPath.item])
+        userView.configure(cell)
         
         return cell
     }

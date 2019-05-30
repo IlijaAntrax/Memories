@@ -13,7 +13,7 @@ class FriendAccountOverviewViewController:AccountOverviewViewController, UIColle
     @IBOutlet var sharedAlbumsLbl: UILabel!
     @IBOutlet var sharedAlbumsCollection: UICollectionView!
     
-    private var sharedAlbums:[PhotoAlbum] = [PhotoAlbum]()
+    private var sharedAlbums:[AlbumViewModel] = [AlbumViewModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,9 @@ class FriendAccountOverviewViewController:AccountOverviewViewController, UIColle
         }
         
         PhotoAlbumController.getSharedАlbumsWith(user: MyAccount.sharedInstance.myUser!, forUserId: self.userAccount!.ID) { (albums) in
-            self.sharedAlbums = albums
+            for album in albums {
+                self.sharedAlbums.append(AlbumViewModel(album: album))
+            }
             self.sharedAlbumsCollection.reloadData()
         }
     }
@@ -57,7 +59,7 @@ class FriendAccountOverviewViewController:AccountOverviewViewController, UIColle
     {
         let sharedCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SharedAlbumCell", for: indexPath) as? SharedAlbumCell
         
-        sharedCell?.album = self.sharedAlbums[indexPath.item]
+        sharedCell?.albumView = self.sharedAlbums[indexPath.item]
         
         return sharedCell!
     }
@@ -65,7 +67,7 @@ class FriendAccountOverviewViewController:AccountOverviewViewController, UIColle
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         if let albumVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumViewController") as? AlbumViewController {
-            albumVC.photoAlbum = self.sharedAlbums[indexPath.row]
+            albumVC.photoAlbum = self.sharedAlbums[indexPath.row].photoAlbum
             self.navigationController?.pushViewController(albumVC, animated: true)
         }
     }

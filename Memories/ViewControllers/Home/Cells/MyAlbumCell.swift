@@ -32,25 +32,16 @@ class MyAlbumCell: AlbumCell, UICollectionViewDelegate, UICollectionViewDataSour
         albumUsersCollection.dataSource = self
     }
     
-    override func setup(album: PhotoAlbum)
-    {
-        super.setup(album: album)
-        
-        super.addMask()
-        
-        UserController.getUsersOnAlbum(forAlbumId: album.ID) { (users) in
-            self.peopleCountLbl.text = "shared with \(users.count) people" //TODO: add album users on album and setup cells
-            self.usersList = users
-            self.albumUsersCollection.reloadData()
+    var usersList:[User] = [User]() {
+        didSet {
+            //TODO: set constraints to collectio depends of number of users
         }
     }
     
-    var usersList:[User] = [User]()
-    {
-        didSet
-        {
-            //TODO: set constraints to collectio depends of number of users
-            self.albumUsersCollection.reloadData()
+    override var albumView: AlbumViewModel? {
+        didSet {
+            albumView?.configure(self)
+            albumView?.configureForUsers(self)
         }
     }
     
@@ -61,7 +52,9 @@ class MyAlbumCell: AlbumCell, UICollectionViewDelegate, UICollectionViewDataSour
     
     override func addNew()
     {
-        self.userDelegate?.addNewUserOnAlbum(self.album!)
+        if let album = self.albumView?.photoAlbum {
+            self.userDelegate?.addNewUserOnAlbum(album)
+        }
     }
     
     //MARK: Collection view delegate, data source
@@ -74,7 +67,8 @@ class MyAlbumCell: AlbumCell, UICollectionViewDelegate, UICollectionViewDataSour
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserCell", for: indexPath) as! UserCell
         
-        cell.user = usersList[indexPath.item]
+        let userView = UserViewModel(user: usersList[indexPath.item])
+        userView.configure(cell)
         cell.usernameLbl.font = Settings.sharedInstance.fontRegularSizeSmall()
         
         return cell

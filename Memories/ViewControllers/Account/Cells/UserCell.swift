@@ -44,52 +44,6 @@ class UserCell:UICollectionViewCell
         }
     }
     
-    func setUser(_ user:User)
-    {
-        if let currentUser = self.user
-        {
-            if currentUser.ID != user.ID
-            {
-                self.profileImgView.image = UIImage(named: "profie_icon.png")
-                self.user = user
-            }
-        }
-        else
-        {
-            self.user = user
-        }
-    }
-    
-    var user:User?
-    {
-        didSet
-        {
-            if let user = user
-            {
-                if let profileImg = user.profileImg
-                {
-                    profileImgView.image = profileImg
-                }
-                else
-                {
-                    PhotoController.downloadProfilePhoto(forUserID: user.ID) { (image) in
-                        if let img = image
-                        {
-                            self.profileImgView.image = img
-                            self.user?.profileImg = img
-                        }
-                        else
-                        {
-                            self.profileImgView.image = UIImage(named: "profie_icon.png")
-                        }
-                    }
-                }
-                
-                usernameLbl.text = user.username
-            }
-        }
-    }
-    
     func addMask(forView maskView:UIView)
     {
         if maskView.layer.mask == nil

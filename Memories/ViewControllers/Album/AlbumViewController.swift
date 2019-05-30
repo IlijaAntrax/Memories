@@ -17,6 +17,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
     var photoAlbumID: String?
     var photoAlbum: PhotoAlbum?
     var albumUsers = [User]()
+    var albumPhotoViews = [PhotoViewModel]()
     
     var selectedPhoto: Photo?
     
@@ -86,6 +87,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         if let id = self.photoAlbumID {
             PhotoAlbumController.getAlbum(forAlbumId: id) { (album) in
                 self.photoAlbum = album
+                self.generatePhotoViews(photos: album.photos)
                 self.photosCollection.reloadData()
             }
         }
@@ -109,6 +111,13 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
                     self.usersCollection.reloadData()
                 }
             }
+        }
+    }
+    
+    func generatePhotoViews(photos: [Photo])
+    {
+        for photo in photos {
+            self.albumPhotoViews.append(PhotoViewModel(photo: photo))
         }
     }
     
@@ -141,12 +150,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         else
         {
             let extraCells = 1
-            if let album = photoAlbum
-            {
-                return album.photos.count + extraCells
-            }
-            
-            return extraCells
+            return self.albumPhotoViews.count + extraCells
         }
     }
     
@@ -156,7 +160,8 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserCell", for: indexPath) as! UserCell
             
-            cell.user = albumUsers[indexPath.item]
+            let userView = UserViewModel(user: albumUsers[indexPath.item])
+            userView.configure(cell)
             cell.usernameLbl.font = Settings.sharedInstance.fontRegularSizeSmall()
             
             return cell
@@ -170,7 +175,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
             
-            cell.photo = photoAlbum?.photos[indexPath.row - 1]
+            self.albumPhotoViews[indexPath.item - 1].configure(cell)
             
             return cell
         }

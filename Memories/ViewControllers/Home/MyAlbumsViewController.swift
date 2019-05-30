@@ -11,6 +11,16 @@ import FirebaseAuth
 
 class MyAlbumsViewController: HomeViewController {
 
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        super.albumsInterface = MyAlbumsStrategy()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        super.albumsInterface = MyAlbumsStrategy()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,12 +44,6 @@ class MyAlbumsViewController: HomeViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    override func loadAlbum(completionHandler: @escaping ([PhotoAlbum]) -> ()) {
-        PhotoAlbumController.getAlbums(forUserEmail: MyAccount.sharedInstance.email ?? "") { (albums) in
-            completionHandler(albums)
-        }
-    }
     
     //MARK: Collection delegate
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
