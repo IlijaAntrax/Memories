@@ -49,6 +49,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
                     return false
                 }) {
                     albumVC.photoAlbum = self.albums[index].photoAlbum
+                    albumVC.albumUsers = self.albums[index].albumUsers
                 }
             }
         }
@@ -153,7 +154,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             //TODO: show albums
             let myAlbumCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumCell", for: indexPath) as? MyAlbumCell
             
-            myAlbumCell?.albumView = self.albums[indexPath.item - 2]
+            var shouldUpdate = true
+            if let album = myAlbumCell?.albumView {
+                if !albumsInterface.isAlbumDataUpdated(album, updatedAlbum: self.albums[indexPath.item - 2]) {
+                    shouldUpdate = false
+                }
+            }
+            if shouldUpdate {
+                myAlbumCell?.albumView = self.albums[indexPath.item - 2]
+            }
+            
             myAlbumCell?.userDelegate = self
             
             return myAlbumCell!

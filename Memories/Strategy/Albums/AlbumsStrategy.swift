@@ -10,4 +10,5 @@ import Foundation
 
 protocol AlbumsStrategy: class {
     func loadAlbums(completionHandler:@escaping ([PhotoAlbum]) -> ())
+    func isAlbumDataUpdated(_ album:AlbumViewModel, updatedAlbum:AlbumViewModel) -> Bool
 }

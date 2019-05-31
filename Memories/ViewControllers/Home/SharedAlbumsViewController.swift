@@ -47,7 +47,15 @@ class SharedAlbumsViewController: HomeViewController {
     {
         let sharedCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SharedAlbumCell", for: indexPath) as? SharedAlbumCell
         
-        sharedCell?.albumView = self.albums[indexPath.item]
+        var shouldUpdate = true
+        if let album = sharedCell?.albumView {
+            if !albumsInterface.isAlbumDataUpdated(album, updatedAlbum: self.albums[indexPath.item]) {
+                shouldUpdate = false
+            }
+        }
+        if shouldUpdate {
+            sharedCell?.albumView = self.albums[indexPath.item]
+        }
         
         return sharedCell!
     }

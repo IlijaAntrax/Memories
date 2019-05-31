@@ -68,6 +68,7 @@ class FriendAccountOverviewViewController:AccountOverviewViewController, UIColle
     {
         if let albumVC = self.storyboard?.instantiateViewController(withIdentifier: "AlbumViewController") as? AlbumViewController {
             albumVC.photoAlbum = self.sharedAlbums[indexPath.row].photoAlbum
+            albumVC.albumUsers = self.sharedAlbums[indexPath.row].albumUsers
             self.navigationController?.pushViewController(albumVC, animated: true)
         }
     }

@@ -11,10 +11,12 @@ import UIKit
 
 class AlbumViewModel
 {
-    private let album:PhotoAlbum
+    private var album:PhotoAlbum
+    private var users:[User]
     
     init(album: PhotoAlbum) {
         self.album = album
+        self.users = [User]()
     }
     
     var photoAlbum: PhotoAlbum {
@@ -22,6 +24,15 @@ class AlbumViewModel
     }
     
     var albumImage: UIImage?
+    
+    var albumUsers:[User] {
+        get {
+            return self.users
+        }
+        set {
+            self.users = newValue
+        }
+    }
     
     func configure(_ cell: AlbumCell) {
         
@@ -71,6 +82,7 @@ class AlbumViewModel
     
     func configureForUsers(_ cell: MyAlbumCell) {
         UserController.getUsersOnAlbum(forAlbumId: album.ID) { (users) in
+            self.albumUsers = users
             cell.peopleCountLbl.text = "shared with \(users.count) people" //TODO: add album users on album and setup cells
             cell.usersList = users
             cell.albumUsersCollection.reloadData()
