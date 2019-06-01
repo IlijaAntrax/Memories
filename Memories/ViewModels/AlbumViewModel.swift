@@ -13,6 +13,7 @@ class AlbumViewModel
 {
     private var album:PhotoAlbum
     private var users:[User]
+    private var albumImg:UIImage?
     
     init(album: PhotoAlbum) {
         self.album = album
@@ -23,7 +24,22 @@ class AlbumViewModel
         return self.album
     }
     
-    var albumImage: UIImage?
+    var albumImage: UIImage? {
+        get {
+            //load img locally
+            if let img = self.albumImg {
+                return img
+            } else {
+                loadAlbumImageFromLocal()
+                return self.albumImg
+            }
+        }
+        set {
+            //save img locally
+            self.albumImg = newValue
+            saveAlbumImageLocally()
+        }
+    }
     
     var albumUsers:[User] {
         get {
@@ -81,11 +97,38 @@ class AlbumViewModel
     }
     
     func configureForUsers(_ cell: MyAlbumCell) {
+        cell.usersList.removeAll()
+        cell.albumUsersCollection.reloadData()
         UserController.getUsersOnAlbum(forAlbumId: album.ID) { (users) in
             self.albumUsers = users
             cell.peopleCountLbl.text = "shared with \(users.count) people" //TODO: add album users on album and setup cells
             cell.usersList = users
             cell.albumUsersCollection.reloadData()
+        }
+    }
+    
+    //Album image save/load
+    func saveAlbumImageLocally() {
+        if let image = self.albumImg {
+            guard let data = UIImageJPEGRepresentation(image, 1) ?? UIImagePNGRepresentation(image) else {
+                return
+            }
+            guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
+                return
+            }
+            do {
+                try data.write(to: directory.appendingPathComponent(self.album.ID)!)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func loadAlbumImageFromLocal() {
+        if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
+            if let img = UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(self.album.ID).path) {
+                self.albumImg = img
+            }
         }
     }
 }

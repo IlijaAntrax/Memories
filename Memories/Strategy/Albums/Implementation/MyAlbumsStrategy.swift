@@ -44,7 +44,7 @@ class MyAlbumsStrategy: AlbumsStrategy
         }
         
         for user in album.albumUsers {
-            if updatedAlbum.albumUsers.contains(where: { (updatedUser) -> Bool in
+            if !updatedAlbum.albumUsers.contains(where: { (updatedUser) -> Bool in
                 if user.ID == updatedUser.ID {
                     return true
                 }
