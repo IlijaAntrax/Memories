@@ -41,7 +41,7 @@ class LoggedOutState: State
 
 class LoggedInState: State
 {
-    var user: User
+    private var user: User
     
     init(user: User)
     {

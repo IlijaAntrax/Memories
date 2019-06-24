@@ -110,6 +110,8 @@
 		5BFF9170227B4467009D7887 /* resize_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BFF916D227B4467009D7887 /* resize_image@2x.png */; };
 		5BFF9171227B4467009D7887 /* resize_image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BFF916E227B4467009D7887 /* resize_image@3x.png */; };
 		CD085095228AB4B700206116 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD085094228AB4B700206116 /* KeychainService.swift */; };
+		CD26622922C0BDFE00B1715A /* ViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD26622822C0BDFE00B1715A /* ViewModelDelegate.swift */; };
+		CD26622B22C0FAB000B1715A /* Projektni obrasci.docx in Resources */ = {isa = PBXBuildFile; fileRef = CD26622A22C0FAB000B1715A /* Projektni obrasci.docx */; };
 		CD44CD1E21EF3A0800238F29 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD1D21EF3A0800238F29 /* AlbumViewController.swift */; };
 		CD44CD2121EF3C9E00238F29 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD2021EF3C9E00238F29 /* AlbumCell.swift */; };
 		CD44CD2521EF3DEE00238F29 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD2421EF3DEE00238F29 /* CALayer+.swift */; };
@@ -301,6 +303,8 @@
 		5D00EBB5709A1528950FA9E7 /* Pods-Memories.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memories.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Memories/Pods-Memories.debug.xcconfig"; sourceTree = "<group>"; };
 		AAC8AA4997EFFB50631972DE /* Pods-Memories.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memories.release.xcconfig"; path = "Pods/Target Support Files/Pods-Memories/Pods-Memories.release.xcconfig"; sourceTree = "<group>"; };
 		CD085094228AB4B700206116 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		CD26622822C0BDFE00B1715A /* ViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelDelegate.swift; sourceTree = "<group>"; };
+		CD26622A22C0FAB000B1715A /* Projektni obrasci.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Projektni obrasci.docx"; sourceTree = "<group>"; };
 		CD44CD1D21EF3A0800238F29 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		CD44CD2021EF3C9E00238F29 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		CD44CD2421EF3DEE00238F29 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
@@ -734,6 +738,7 @@
 			children = (
 				5BA1B87E21E7C0A6006F7C16 /* Documents */,
 				5BA1B87D21E7C093006F7C16 /* Architecture */,
+				CD26622A22C0FAB000B1715A /* Projektni obrasci.docx */,
 				5BEE0917219DE9750043E54E /* README.md */,
 			);
 			path = ProjectDocumentation;
@@ -884,6 +889,7 @@
 		CDF4FADB229FEF3E00FE4909 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				CD26622822C0BDFE00B1715A /* ViewModelDelegate.swift */,
 				CDF4FADC229FF03C00FE4909 /* UserViewModel.swift */,
 				CDF4FADE229FFE7200FE4909 /* PhotoViewModel.swift */,
 				CDF4FAE022A00EBF00FE4909 /* AlbumViewModel.swift */,
@@ -998,6 +1004,7 @@
 				5B33CDFD21E5357500FE2DAF /* logo.png in Resources */,
 				5B25406121E928D000E0463C /* album_icon.png in Resources */,
 				5B33CE0B21E5357500FE2DAF /* upload_photos_disabled.png in Resources */,
+				CD26622B22C0FAB000B1715A /* Projektni obrasci.docx in Resources */,
 				5B25406C21E92A2F00E0463C /* myaccount_icon@3x.png in Resources */,
 				5B33CE1821E5357500FE2DAF /* add_user.png in Resources */,
 				5B33CE0421E5357500FE2DAF /* search_text_holder.png in Resources */,
@@ -1197,6 +1204,7 @@
 				CD44CD2921EF402900238F29 /* MyAlbumCell.swift in Sources */,
 				CD44CD2121EF3C9E00238F29 /* AlbumCell.swift in Sources */,
 				CD44CD7021EF485C00238F29 /* NVActivityIndicatorAnimationTriangleSkewSpin.swift in Sources */,
+				CD26622922C0BDFE00B1715A /* ViewModelDelegate.swift in Sources */,
 				CD44CD5C21EF485C00238F29 /* NVActivityIndicatorAnimationBallRotate.swift in Sources */,
 				5BC6D8E8219DE0F700C80446 /* ViewController.swift in Sources */,
 				5BA3735E21F4A12B005A047C /* FriendAccountOverviewViewController.swift in Sources */,

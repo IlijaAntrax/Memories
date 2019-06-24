@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class AlbumViewModel
+class AlbumViewModel:ViewModelDelegate
 {
     private var album:PhotoAlbum
     private var users:[User]
@@ -30,14 +30,14 @@ class AlbumViewModel
             if let img = self.albumImg {
                 return img
             } else {
-                loadAlbumImageFromLocal()
+                loadData()
                 return self.albumImg
             }
         }
         set {
             //save img locally
             self.albumImg = newValue
-            saveAlbumImageLocally()
+            saveData()
         }
     }
     
@@ -50,50 +50,52 @@ class AlbumViewModel
         }
     }
     
-    func configure(_ cell: AlbumCell) {
-        
-        cell.addLoaderMask()
-        cell.loaderView.startAnimating()
-        
-        cell.albumImgView.image = albumImage
-        
-        if cell.albumImgView.image == nil
-        {
-            if let firstPhoto = album.photos.first
+    func configure(_ cell: UICollectionViewCell) {
+        if let cell = cell as? AlbumCell {
+            
+            cell.addLoaderMask()
+            cell.loaderView.startAnimating()
+            
+            cell.albumImgView.image = albumImage
+            
+            if cell.albumImgView.image == nil
             {
-                if let image = firstPhoto.img
+                if let firstPhoto = album.photos.first
                 {
-                    cell.albumImgView.image = image
-                    self.albumImage = image
-                }
-                else if let url = firstPhoto.imgUrl
-                {
-                    PhotoController.downloadImage(fromUrl: url) { (image) in
-                        let img = FilterStore.filterImage(image: image, filterType: firstPhoto.filter, intensity: 0.5)
-                        
-                        cell.albumImgView.image = img
-                        self.albumImage = img
-                        
-                        cell.loaderView.stopAnimating()
+                    if let image = firstPhoto.img
+                    {
+                        cell.albumImgView.image = image
+                        self.albumImage = image
                     }
+                    else if let url = firstPhoto.imgUrl
+                    {
+                        PhotoController.downloadImage(fromUrl: url) { (image) in
+                            let img = FilterStore.filterImage(image: image, filterType: firstPhoto.filter, intensity: 0.5)
+                            
+                            cell.albumImgView.image = img
+                            self.albumImage = img
+                            
+                            cell.loaderView.stopAnimating()
+                        }
+                    }
+                }
+                else
+                {
+                    //TODO: set img holder for album image
+                    cell.albumImgView.image = Settings.sharedInstance.emptyAlbumImage()
+                    cell.loaderView.stopAnimating()
                 }
             }
             else
             {
-                //TODO: set img holder for album image
-                cell.albumImgView.image = Settings.sharedInstance.emptyAlbumImage()
                 cell.loaderView.stopAnimating()
             }
+            
+            cell.albumNameLbl.text = album.name
+            cell.photosCountLbl.text = String(album.photos.count) + " photos"
+            
+            cell.addMask()
         }
-        else
-        {
-            cell.loaderView.stopAnimating()
-        }
-        
-        cell.albumNameLbl.text = album.name
-        cell.photosCountLbl.text = String(album.photos.count) + " photos"
-        
-        cell.addMask()
     }
     
     func configureForUsers(_ cell: MyAlbumCell) {
@@ -108,7 +110,7 @@ class AlbumViewModel
     }
     
     //Album image save/load
-    func saveAlbumImageLocally() {
+    func saveData() {
         if let image = self.albumImg {
             guard let data = UIImageJPEGRepresentation(image, 1) ?? UIImagePNGRepresentation(image) else {
                 return
@@ -124,7 +126,7 @@ class AlbumViewModel
         }
     }
     
-    func loadAlbumImageFromLocal() {
+    func loadData() {
         if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
             if let img = UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent(self.album.ID).path) {
                 self.albumImg = img
