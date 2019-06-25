@@ -174,6 +174,7 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
         
         dispacthGroup.notify(queue: DispatchQueue.main) {
             self.addNotificationsForUsers()
+            NotificationCenter.default.post(name: .didChangeAlbumData, object: nil)
             self.hideLoader()
             self.navigationController?.popViewController(animated: true)
         }

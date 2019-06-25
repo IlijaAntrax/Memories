@@ -13,6 +13,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
     private let cellsInRow:Int = 3
     private let insetOffset:CGFloat = 5.0
     
+    var reloadUsers = false
     var isSharedAlbum = false
     var photoAlbumID: String?
     var photoAlbum: PhotoAlbum?
@@ -39,18 +40,19 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         usersCollection.delegate = self
         usersCollection.dataSource = self
         
-        self.loadUsersForAlbum()
+        self.setup()
         
-        setup()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadAlbumData), name: .didChangeAlbumData, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadUsersData), name: .didAddAlbumUsers, object: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool)
-    {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.photosCollection.reloadData()
+        if self.reloadUsers {
+            self.loadUsersForAlbum()
+        }
     }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == "GallerySegueIdentifier"
@@ -77,6 +79,11 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .didChangeAlbumData, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didAddAlbumUsers, object: nil)
+    }
+    
     func setup()
     {
         if self.isSharedAlbum
@@ -84,6 +91,11 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             self.inviteUserBtn.isHidden = true
         }
         
+        self.loadAlbum()
+    }
+    
+    func loadAlbum()
+    {
         if let id = self.photoAlbumID {
             PhotoAlbumController.getAlbum(forAlbumId: id) { (album) in
                 self.photoAlbum = album
@@ -91,6 +103,21 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
                 self.photosCollection.reloadData()
             }
         }
+    }
+    
+    @objc func reloadAlbumData()
+    {
+        DispatchQueue.main.async {
+            if let album = self.photoAlbum {
+                self.generatePhotoViews(photos: album.photos)
+                self.photosCollection.reloadData()
+            }
+        }
+    }
+    
+    @objc func reloadUsersData()
+    {
+        self.reloadUsers = true
     }
     
     func loadUsersForAlbum()
@@ -110,12 +137,14 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
                 } else {
                     self.usersCollection.reloadData()
                 }
+                self.reloadUsers = false
             }
         }
     }
     
     func generatePhotoViews(photos: [Photo])
     {
+        self.albumPhotoViews.removeAll()
         for photo in photos {
             self.albumPhotoViews.append(PhotoViewModel(photo: photo))
         }

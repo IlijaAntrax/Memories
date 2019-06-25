@@ -44,7 +44,7 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
         filtersCollection.delegate = self
         filtersCollection.dataSource = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(photoTransformed(_:)), name: NSNotification.Name.init(imageEditingEndedNotificaiton), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(photoTransformed(_:)), name: .imageEditingEnded, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,7 +137,16 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
     {
         PhotoController.deletePhoto(self.photo, fromAlbum: self.photoAlbum) { (success) in
             if success {
+                self.photoAlbum?.photos.removeAll(where: { (photo) -> Bool in
+                    if let id = self.photo?.ID {
+                        if photo.ID == id {
+                            return true
+                        }
+                    }
+                    return false
+                })
                 self.photo = nil
+                NotificationCenter.default.post(name: .didChangeAlbumData, object: nil)
                 let deleteAlert = UIAlertController(title: "Alert", message: "Photo is deleted.", preferredStyle: .alert)
                 deleteAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ (action) in
                     self.navigationController?.popViewController(animated: true)

@@ -84,6 +84,8 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
             let notification = RemoteNotification(withId: "", title: "New shared album", body: "\(MyAccount.sharedInstance.myUser!.username) added you on new album \(self.albumToShare!.name)", date: Date().getString(), action: ActionType.showSharedAlbums.rawValue, objectId: self.albumToShare!.ID, read: false)
             RemoteNotificationController.addNotification(notification: notification, forUser: self.selectedUser!)
             
+            NotificationCenter.default.post(name: .didAddAlbumUsers, object: nil)
+            
             let confirmAlert = UIAlertController(title: "User added", message: "User \(self.selectedUser?.username ?? "") is added on album.", preferredStyle: UIAlertControllerStyle.alert)
             confirmAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:nil))
             self.present(confirmAlert, animated: true, completion: nil)
