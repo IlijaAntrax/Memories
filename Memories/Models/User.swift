@@ -14,6 +14,7 @@ let k_USER_FIRSTNAME = "firstname"
 let k_USER_LASTNAME = "lastname"
 let k_USER_IMGURL = "profileUrl"
 let k_USER_SHARED = "shared"
+let k_USER_FRIENDS = "friends"
 
 class User: NSObject
 {
@@ -37,7 +38,7 @@ class User: NSObject
         self.email = email
         self.firstname = firstname
         self.lastname = lastname
-        self.profileImgUrl = URL(fileURLWithPath: imgUrl)
+        self.profileImgUrl = URL(string: imgUrl)
     }
     
     class func initWith(key:String, dictionary:NSDictionary) -> User

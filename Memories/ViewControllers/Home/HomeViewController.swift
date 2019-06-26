@@ -10,8 +10,9 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UserProfileDelegate {
 
-    private var selectedAlbumIndex:Int = 0
-    var albums:[PhotoAlbum] = [PhotoAlbum]()
+    var albumsInterface:AlbumsStrategy!
+    var selectedAlbumID:String!
+    var albums:[AlbumViewModel] = [AlbumViewModel]()
     
     @IBOutlet weak var albumsCollection: UICollectionView!
     
@@ -26,9 +27,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.loadAlbum { (photoAlbums) in
-            self.albums = photoAlbums
-            self.albumsCollection.reloadData()
+        albumsInterface.loadAlbums { (photoAlbums) in
+            self.setAlbums(photoAlbums)
         }
     }
     
@@ -41,14 +41,23 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         {
             if let albumVC = segue.destination as? AlbumViewController
             {
-                albumVC.photoAlbum = self.albums[selectedAlbumIndex]
+                albumVC.photoAlbumID = self.selectedAlbumID
+                if let index = self.albums.firstIndex(where: { (album) -> Bool in
+                    if album.photoAlbum.ID == self.selectedAlbumID {
+                        return true
+                    }
+                    return false
+                }) {
+                    albumVC.photoAlbum = self.albums[index].photoAlbum
+                    albumVC.albumUsers = self.albums[index].albumUsers
+                }
             }
         }
     }
 
     func showAlbumVC(forIndex index:Int)
     {
-        self.selectedAlbumIndex = index
+        self.selectedAlbumID = self.albums[index].photoAlbum.ID
         
         if self is MyAlbumsViewController {
             performSegue(withIdentifier: "MyAlbumSegueIdentifier", sender: self)
@@ -57,9 +66,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         }
     }
     
-    func loadAlbum(completionHandler:@escaping ([PhotoAlbum]) -> ())
+    private func setAlbums(_ albums: [PhotoAlbum])
     {
-        completionHandler(self.albums)
+        self.albums.removeAll()
+        for album in albums {
+            self.albums.append(AlbumViewModel(album: album))
+        }
+        self.albumsCollection.reloadData()
     }
     
     //MARK: Add new album control
@@ -89,9 +102,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
         PhotoAlbumController.addPhotoAlbum(album: album)
         
-        self.loadAlbum { (photoAlbums) in
-            self.albums = photoAlbums
-            self.albumsCollection.reloadData()
+        albumsInterface.loadAlbums { (photoAlbums) in
+            self.setAlbums(photoAlbums)
         }
     }
     
@@ -142,7 +154,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             //TODO: show albums
             let myAlbumCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyAlbumCell", for: indexPath) as? MyAlbumCell
             
-            myAlbumCell?.album = self.albums[indexPath.item - 2]
+            var shouldUpdate = true
+            if let album = myAlbumCell?.albumView {
+                if !albumsInterface.isAlbumDataUpdated(album, updatedAlbum: self.albums[indexPath.item - 2]) {
+                    shouldUpdate = false
+                }
+            }
+            if shouldUpdate {
+                myAlbumCell?.albumView = self.albums[indexPath.item - 2]
+            }
+            
             myAlbumCell?.userDelegate = self
             
             return myAlbumCell!

@@ -52,56 +52,11 @@ class AlbumCell: NewAlbumCell {
         }
     }
     
-    var album:PhotoAlbum?
-    {
-        didSet
-        {
-            if let album = album
-            {
-                setup(album: album)
+    var albumView:AlbumViewModel? {
+        didSet {
+            if let albumView = albumView {
+                albumView.configure(self)
             }
-        }
-    }
-    
-    func setup(album: PhotoAlbum)
-    {
-        setAlbumImg()
-        albumNameLbl.text = album.name
-        photosCountLbl.text = String(album.photos.count) + " photos"
-    }
-    
-    func setAlbumImg()
-    {
-        addLoaderMask()
-        loaderView.startAnimating()
-        
-        albumImgView.image = album?.photos.first?.img
-        
-        if albumImgView.image == nil
-        {
-            if let firstPhoto = album?.photos.first
-            {
-                if let url = firstPhoto.imgUrl
-                {
-                    PhotoController.downloadImage(fromUrl: url) { (image) in
-                        let img = FilterStore.filterImage(image: image, filterType: firstPhoto.filter, intensity: 0.5)
-                        
-                        self.albumImgView.image = img
-                        
-                        self.loaderView.stopAnimating()
-                    }
-                }
-            }
-            else
-            {
-                //TODO: set img holder for album image
-                self.albumImgView.image = Settings.sharedInstance.emptyAlbumImage()
-                self.loaderView.stopAnimating()
-            }
-        }
-        else
-        {
-            self.loaderView.stopAnimating()
         }
     }
     

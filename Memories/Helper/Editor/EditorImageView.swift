@@ -8,9 +8,6 @@
 
 import UIKit
 
-let imageEditingBeganNotification = "TouchesBeganNotification"
-let imageEditingEndedNotificaiton = "TouchesEndedNotification"
-
 class EditorImageView: UIImageView
 {
     var hasAutoAlign = true
@@ -98,7 +95,7 @@ class EditorImageView: UIImageView
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         super.touchesBegan(touches, with: event)
-        NotificationCenter.default.post(name: NSNotification.Name(imageEditingBeganNotification), object: self)
+        NotificationCenter.default.post(name: .imageEditingBegan, object: self)
         //set first touch
         if let _event = event, let _touches = _event.touches(for: self)
         {
@@ -222,7 +219,7 @@ class EditorImageView: UIImageView
                     self.fixMinimumScale(scale: minimumScale)
                 }
                 
-                NotificationCenter.default.post(name: NSNotification.Name(imageEditingEndedNotificaiton), object: self.layer.transform)
+                NotificationCenter.default.post(name: .imageEditingEnded, object: self.layer.transform)
             }
         }
         
@@ -304,6 +301,13 @@ class EditorImageView: UIImageView
             }
             
             self.frame = CGRect(x: (superviewSize.width - width) / 2.0, y: (superviewSize.height - height) / 2.0, width: width, height: height)
+        }
+    }
+    
+    func initalPositionAnimated()
+    {
+        UIView.animate(withDuration: 0.2) {
+            self.initialPosition()
         }
     }
     

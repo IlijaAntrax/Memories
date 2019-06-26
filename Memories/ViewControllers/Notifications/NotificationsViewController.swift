@@ -47,7 +47,44 @@ class NotificationsViewController: UIViewController, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        //TODO: show action depend on notification
+        let notification = self.notifications[indexPath.row]
+        
+        if !notification.readStatus
+        {
+            notification.readStatus = true
+            self.notificationsCollection.reloadData()
+            
+            RemoteNotificationController.markAsReadNotification(notification, forUserID: MyAccount.sharedInstance.myUser!.ID)
+        }
+        
+        if notification.actionType == ActionType.showSharedAlbums
+        {
+            if let albumId = notification.objectActionId {
+                InternalNavigationController.sharedInstance.navigateToSharedAlbum(albumId: albumId)
+            } else {
+                InternalNavigationController.sharedInstance.navigateToSharedAlbums()
+            }
+        }
+        else if notification.actionType == ActionType.showMyAlbums
+        {
+            if let albumId = notification.objectActionId {
+                InternalNavigationController.sharedInstance.navigateToMyAlbum(albumId: albumId)
+            } else {
+                InternalNavigationController.sharedInstance.navigateToMyAlbums()
+            }
+        }
+        else if notification.actionType == ActionType.showAlbum
+        {
+            if let albumId = notification.objectActionId {
+                PhotoAlbumController.isSharedAlbum(albumID: albumId, forUser: MyAccount.sharedInstance.myUser!) { (contains) in
+                    if contains {
+                        InternalNavigationController.sharedInstance.navigateToSharedAlbum(albumId: albumId)
+                    } else {
+                        InternalNavigationController.sharedInstance.navigateToMyAlbum(albumId: albumId)
+                    }
+                }
+            }
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize

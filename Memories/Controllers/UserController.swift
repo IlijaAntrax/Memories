@@ -66,10 +66,33 @@ class UserController:FirebaseController
             {
                 for userDict in usersDictionaries.enumerated()
                 {
-                    users.append(User.initWith(key: userDict.element.key as! String, dictionary: userDict.element.value as! NSDictionary))
+                    let userDictionary = userDict.element.value as! NSDictionary
+                    if let username = userDictionary[k_USER_USERNAME] as? String
+                    {
+                        if username.starts(with: name)
+                        {
+                            users.append(User.initWith(key: userDict.element.key as! String, dictionary: userDictionary))
+                        }
+                    }
                 }
             }
             completionHandler(users)
+        }
+    }
+    
+    static func getFriendsCount(forUserId userId:String, completionHandler:@escaping (Int) -> ())
+    {
+        let friendsQuery = dbRef.child(k_db_friendships).child(userId).child(k_USER_FRIENDS)
+        
+        friendsQuery.observeSingleEvent(of: .value) { (snapshot) in
+            if let friendsDict = snapshot.value as? NSDictionary
+            {
+                completionHandler(friendsDict.count)
+            }
+            else
+            {
+                completionHandler(0)
+            }
         }
     }
     
@@ -92,14 +115,19 @@ class UserController:FirebaseController
     
     static func addUserOnAlbum(user:User, album:PhotoAlbum)
     {
-        let userQuery = dbRef.child(k_db_users).child(user.ID).child(k_USER_SHARED).childByAutoId()
-        userQuery.setValue(album.ID)
-        
         let albumQuery = dbRef.child(k_db_albums).child(album.ID).child(k_PHOTOALBUM_USERS).child(user.ID)
-        let userDictionary = NSMutableDictionary()
-        userDictionary.setValue(user.username, forKey: k_USER_USERNAME)
-        userDictionary.setValue(user.email, forKey: k_USER_EMAIL)
-        albumQuery.setValue(userDictionary)
+        albumQuery.observeSingleEvent(of: .value) { (snapshot) in
+            if !snapshot.exists()
+            {
+                let userQuery = dbRef.child(k_db_users).child(user.ID).child(k_USER_SHARED).childByAutoId()
+                userQuery.setValue(album.ID)
+                
+                let userDictionary = NSMutableDictionary()
+                userDictionary.setValue(user.username, forKey: k_USER_USERNAME)
+                userDictionary.setValue(user.email, forKey: k_USER_EMAIL)
+                albumQuery.setValue(userDictionary)
+            }
+        }
     }
     
     static func addUsersOnAlbum(users:[User], album:PhotoAlbum)
@@ -108,6 +136,33 @@ class UserController:FirebaseController
         {
             self.addUserOnAlbum(user: user, album: album)
         }
+    }
+    
+    static func addFriend(userId:String, forUser myUserId:String)
+    {
+        let friendQuery = dbRef.child(k_db_friendships).child(myUserId).child(k_USER_FRIENDS).queryOrderedByKey()
+        
+        friendQuery.observeSingleEvent(of: .value) { (snapshot) in
+            guard let friendsList = snapshot.value as? NSDictionary else {
+                let newFriendQuery = dbRef.child(k_db_friendships).child(myUserId).child(k_USER_FRIENDS).childByAutoId()
+                newFriendQuery.setValue(userId)
+                return
+            }
+            if let friends = friendsList.allValues as? [String]
+            {
+                if !friends.contains(userId)
+                {
+                    let newFriendQuery = dbRef.child(k_db_friendships).child(myUserId).child(k_USER_FRIENDS).childByAutoId()
+                    newFriendQuery.setValue(userId)
+                }
+            }
+        }
+    }
+    
+    //DELETE
+    static func removeUserFromAlbum(user:User, album:PhotoAlbum)
+    {
+        
     }
     
     //UPDATE

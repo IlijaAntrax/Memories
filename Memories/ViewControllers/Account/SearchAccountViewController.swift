@@ -48,15 +48,15 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
     
     func searchUsersBy(name: String)
     {
-        self.usersList.removeAll()
-        self.usersCollection.reloadData()
-        
         if name != ""
         {
             self.loader.isHidden = false
             self.loader.startAnimating()
             
             UserController.searchUsers(byUsername: name) { (users) in
+                self.usersList.removeAll()
+                self.usersCollection.reloadData()
+                
                 self.usersList = users
                 self.usersCollection.reloadData()
                 
@@ -67,6 +67,7 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
         else
         {
             //TODO: show alert no users
+            
         }
     }
     
@@ -76,7 +77,15 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
         
         alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.cancel, handler:nil))
         alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler:{ (action) in
+            
             UserController.addUserOnAlbum(user: self.selectedUser!, album: self.albumToShare!)
+            UserController.addFriend(userId: self.selectedUser!.ID, forUser: MyAccount.sharedInstance.myUser!.ID)
+            
+            let notification = RemoteNotification(withId: "", title: "New shared album", body: "\(MyAccount.sharedInstance.myUser!.username) added you on new album \(self.albumToShare!.name)", date: Date().getString(), action: ActionType.showSharedAlbums.rawValue, objectId: self.albumToShare!.ID, read: false)
+            RemoteNotificationController.addNotification(notification: notification, forUser: self.selectedUser!)
+            
+            NotificationCenter.default.post(name: .didAddAlbumUsers, object: nil)
+            
             let confirmAlert = UIAlertController(title: "User added", message: "User \(self.selectedUser?.username ?? "") is added on album.", preferredStyle: UIAlertControllerStyle.alert)
             confirmAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:nil))
             self.present(confirmAlert, animated: true, completion: nil)
@@ -90,10 +99,23 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
     {
         textField.resignFirstResponder()
         
-        if let prefixName = textField.text
-        {
-            searchUsersBy(name: prefixName)
+        return true
+    }
+    
+    override func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        var currentString = ""
+        if range.length == 0 {
+            if let tfs = textField.text {
+                currentString = tfs
+            }
+            currentString.append(string)
+        } else {
+            currentString = textField.text!
+            currentString.removeLast()
         }
+        
+        print(currentString)
+        searchUsersBy(name: currentString)
         
         return true
     }
@@ -108,7 +130,8 @@ class SearchAccountViewController: KeyboardViewController, UICollectionViewDeleg
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserCell", for: indexPath) as! UserCell
         
-        cell.user = usersList[indexPath.item]
+        let userView = UserViewModel(user: usersList[indexPath.item])
+        userView.configure(cell)
         
         return cell
     }

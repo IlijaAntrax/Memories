@@ -52,8 +52,12 @@ class LoginViewController: KeyboardViewController {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
             if let err = error
             {
-                //TODO: Show alert with error
-                print(err)
+                self.loader.stopAnimating()
+                self.loader.isHidden = true
+                
+                let deleteAlert = UIAlertController(title: "Ops. Error occured!", message: "\(err.localizedDescription)", preferredStyle: .alert)
+                deleteAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(deleteAlert, animated: true, completion: nil)
             }
             else if let user = user
             {

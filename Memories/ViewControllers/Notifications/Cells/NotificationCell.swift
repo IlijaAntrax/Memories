@@ -11,8 +11,8 @@ import UIKit
 class NotificationCell: UICollectionViewCell {
     
     @IBOutlet weak var iconImgView:UIImageView!
-    
     @IBOutlet weak var textLbl:UILabel!
+    @IBOutlet var alertImgView: UIImageView!
     
     
     override func awakeFromNib()
@@ -32,10 +32,11 @@ class NotificationCell: UICollectionViewCell {
         {
             if let notificationData = self.notificationData
             {
-                //TODO: setup icon depends of notification action
+                self.iconImgView.image = notificationData.readStatus ? UIImage(named: "notification_active.png") : UIImage(named: "notification_inactive.png")
+                self.alertImgView.isHidden = notificationData.readStatus
                 //TODO: set atributed string
                 let time = abs(Int(notificationData.date.timeIntervalSinceNow / 60.0))
-                let txt = "\(notificationData.messageBody). \(time) min"
+                let txt = "\(notificationData.messageBody). \(time) min ago"
                 textLbl.text = txt
             }
         }

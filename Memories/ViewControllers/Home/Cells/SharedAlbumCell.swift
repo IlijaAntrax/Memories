@@ -14,16 +14,9 @@ class SharedAlbumCell: AlbumCell {
     {
         super.awakeFromNib()
         
-        albumNameLbl.font = Settings.sharedInstance.fontBoldSizeSmall()
-        albumNameLbl.textColor = Settings.sharedInstance.grayDarkColor()
-    }
-    
-    override func setup(album: PhotoAlbum)
-    {
-        super.setup(album: album)
-        
         photosCountLbl.isHidden = true
         
-        super.addMask()
+        albumNameLbl.font = Settings.sharedInstance.fontBoldSizeSmall()
+        albumNameLbl.textColor = Settings.sharedInstance.grayDarkColor()
     }
 }

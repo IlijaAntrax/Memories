@@ -44,7 +44,7 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
         filtersCollection.delegate = self
         filtersCollection.dataSource = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(photoTransformed(_:)), name: NSNotification.Name.init(imageEditingEndedNotificaiton), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(photoTransformed(_:)), name: .imageEditingEnded, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,7 +64,9 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        PhotoController.updatePhoto(self.photo!, atAlbum: self.photoAlbum!)
+        if let photo = self.photo {
+            PhotoController.updatePhoto(photo, atAlbum: self.photoAlbum!)
+        }
     }
 
     /*
@@ -91,6 +93,86 @@ class PhotoViewController: UIViewController, UICollectionViewDelegate, UICollect
     @IBAction func editorOptionsBtnPressed(_ sender: Any)
     {
         
+    }
+    
+    @IBAction func resizeImageBtnPressed(_ sender: Any)
+    {
+        self.editorImageView.initalPositionAnimated()
+        self.photo?.transform = CATransform3DIdentity
+    }
+    
+    @IBAction func moreBtnPressed(_ sender: Any)
+    {
+        //Show popup with options delete and share
+        let alert = UIAlertController(title: "More", message: "Choose action:", preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Share photo", comment: ""), style: .default, handler: { _ in
+            self.sharePhoto()
+        }))
+        if let owner = photoAlbum?.owner {
+            if owner == MyAccount.sharedInstance.email {
+                alert.addAction(UIAlertAction(title: NSLocalizedString("Delete photo", comment: "This will delete photo."), style: .default, handler: { _ in
+                    self.deletePhoto()
+                }))
+            }
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func deletePhoto()
+    {
+        //show confirm alert
+        let alert = UIAlertController(title: "Delete photo", message: "Are you sure that you want to delete this photo?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler:nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler:{ (action) in
+            self.deleteImage()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteImage()
+    {
+        PhotoController.deletePhoto(self.photo, fromAlbum: self.photoAlbum) { (success) in
+            if success {
+                self.photoAlbum?.photos.removeAll(where: { (photo) -> Bool in
+                    if let id = self.photo?.ID {
+                        if photo.ID == id {
+                            return true
+                        }
+                    }
+                    return false
+                })
+                self.photo = nil
+                NotificationCenter.default.post(name: .didChangeAlbumData, object: nil)
+                let deleteAlert = UIAlertController(title: "Alert", message: "Photo is deleted.", preferredStyle: .alert)
+                deleteAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler:{ (action) in
+                    self.navigationController?.popViewController(animated: true)
+                }))
+                self.present(deleteAlert, animated: true, completion: nil)
+            }
+            else {
+                self.showErrorDialog()
+            }
+        }
+    }
+    
+    func showErrorDialog()
+    {
+        let deleteAlert = UIAlertController(title: "Ops", message: "Something went wrong. Try again!", preferredStyle: .alert)
+        deleteAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(deleteAlert, animated: true, completion: nil)
+    }
+    
+    func sharePhoto()
+    {
+        if let img = self.photo?.img //TODO: add render image to share
+        {
+            let activityViewController = UIActivityViewController(activityItems: [img], applicationActivities: nil)
+            self.present(activityViewController, animated: true, completion: {})
+        }
     }
     
     //MARK: Collection view delegate, data source

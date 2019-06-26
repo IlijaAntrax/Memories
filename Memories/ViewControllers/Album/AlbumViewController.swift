@@ -13,9 +13,12 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
     private let cellsInRow:Int = 3
     private let insetOffset:CGFloat = 5.0
     
+    var reloadUsers = false
     var isSharedAlbum = false
+    var photoAlbumID: String?
     var photoAlbum: PhotoAlbum?
     var albumUsers = [User]()
+    var albumPhotoViews = [PhotoViewModel]()
     
     var selectedPhoto: Photo?
     
@@ -37,18 +40,19 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         usersCollection.delegate = self
         usersCollection.dataSource = self
         
-        self.loadUsersForAlbum()
+        self.setup()
         
-        setup()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadAlbumData), name: .didChangeAlbumData, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadUsersData), name: .didAddAlbumUsers, object: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool)
-    {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.photosCollection.reloadData()
+        if self.reloadUsers {
+            self.loadUsersForAlbum()
+        }
     }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == "GallerySegueIdentifier"
@@ -75,59 +79,75 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .didChangeAlbumData, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didAddAlbumUsers, object: nil)
+    }
+    
     func setup()
     {
         if self.isSharedAlbum
         {
             self.inviteUserBtn.isHidden = true
         }
+        
+        self.loadAlbum()
+    }
+    
+    func loadAlbum()
+    {
+        if let id = self.photoAlbumID {
+            PhotoAlbumController.getAlbum(forAlbumId: id) { (album) in
+                self.photoAlbum = album
+                self.generatePhotoViews(photos: album.photos)
+                self.photosCollection.reloadData()
+            }
+        }
+    }
+    
+    @objc func reloadAlbumData()
+    {
+        DispatchQueue.main.async {
+            if let album = self.photoAlbum {
+                self.generatePhotoViews(photos: album.photos)
+                self.photosCollection.reloadData()
+            }
+        }
+    }
+    
+    @objc func reloadUsersData()
+    {
+        self.reloadUsers = true
     }
     
     func loadUsersForAlbum()
     {
-        UserController.getUsersOnAlbum(forAlbumId: photoAlbum?.ID ?? "") { (users) in
-            self.albumUsers = users
-            if self.isSharedAlbum {
-                if let owner = self.photoAlbum?.owner {
-                    UserController.getUser(forEmail: owner, completionHandler: { (user) in
-                        self.albumUsers.insert(user, at: 0)
+        if let id = self.photoAlbumID {
+            UserController.getUsersOnAlbum(forAlbumId: id) { (users) in
+                self.albumUsers = users
+                if self.isSharedAlbum {
+                    if let owner = self.photoAlbum?.owner {
+                        UserController.getUser(forEmail: owner, completionHandler: { (user) in
+                            self.albumUsers.insert(user, at: 0)
+                            self.usersCollection.reloadData()
+                        })
+                    } else {
                         self.usersCollection.reloadData()
-                    })
+                    }
                 } else {
                     self.usersCollection.reloadData()
                 }
-            } else {
-                self.usersCollection.reloadData()
+                self.reloadUsers = false
             }
         }
     }
     
-    @objc func deletePhotosAction()
+    func generatePhotoViews(photos: [Photo])
     {
-        
-    }
-    
-    @objc func showDeleteAlert(_ notification: NSNotification)
-    {
-        if let photo = notification.object as? Photo
-        {
-            let deleteAlert = UIAlertController(title: "Delete photo!", message: "Are you sure, you want to delete this photo?", preferredStyle: .actionSheet)
-            let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
-                //delete photo
-                self.deletePhoto(photo: photo)
-                deleteAlert.dismiss(animated: true, completion: nil)
-            }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-            
-            deleteAlert.addAction(yesAction)
-            deleteAlert.addAction(cancelAction)
-            self.present(deleteAlert, animated: true, completion: nil)
+        self.albumPhotoViews.removeAll()
+        for photo in photos {
+            self.albumPhotoViews.append(PhotoViewModel(photo: photo))
         }
-    }
-    
-    func deletePhoto(photo: Photo?)
-    {
-        
     }
     
     @objc func reloadAlbum()
@@ -159,12 +179,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         else
         {
             let extraCells = 1
-            if let album = photoAlbum
-            {
-                return album.photos.count + extraCells
-            }
-            
-            return extraCells
+            return self.albumPhotoViews.count + extraCells
         }
     }
     
@@ -174,7 +189,8 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
         {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserCell", for: indexPath) as! UserCell
             
-            cell.user = albumUsers[indexPath.item]
+            let userView = UserViewModel(user: albumUsers[indexPath.item])
+            userView.configure(cell)
             cell.usernameLbl.font = Settings.sharedInstance.fontRegularSizeSmall()
             
             return cell
@@ -188,7 +204,7 @@ class AlbumViewController: UIViewController, UICollectionViewDelegate, UICollect
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
             
-            cell.photo = photoAlbum?.photos[indexPath.row - 1]
+            self.albumPhotoViews[indexPath.item - 1].configure(cell)
             
             return cell
         }

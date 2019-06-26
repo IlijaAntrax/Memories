@@ -161,9 +161,9 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
                     {
                         PhotoController.uploadAlbumImage(image: image) { (photoUrl) in
                             let photo = Photo.init(withID: "", imgUrl: photoUrl?.absoluteString ?? "", transform: CATransform3DIdentity, filter: FilterType.NoFilter.rawValue)
+                            PhotoController.addPhotoToAlbum(photo: photo, album: self.photoAlbum!)
                             photo.img = image
                             self.photoAlbum?.photos.append(photo)
-                            PhotoController.addPhotoToAlbum(photo: photo, album: self.photoAlbum!)
                             dispacthGroup.leave()
                         }
                     }
@@ -173,11 +173,25 @@ class GalleryViewController: UIViewController, UICollectionViewDelegate, UIColle
         }
         
         dispacthGroup.notify(queue: DispatchQueue.main) {
+            self.addNotificationsForUsers()
+            NotificationCenter.default.post(name: .didChangeAlbumData, object: nil)
             self.hideLoader()
             self.navigationController?.popViewController(animated: true)
         }
     }
     
+    func addNotificationsForUsers()
+    {
+        if let album = self.photoAlbum {
+            UserController.getUsersOnAlbum(forAlbumId: album.ID) { (users) in
+                for user in users
+                {
+                    let notification = RemoteNotification(withId: "", title: "New photos", body: "\(MyAccount.sharedInstance.myUser!.username) added new photos at album \(album.name)", date: Date.init().getString(), action: ActionType.showAlbum.rawValue, objectId: album.ID, read: false)
+                    RemoteNotificationController.addNotification(notification: notification, forUser: user)
+                }
+            }
+        }
+    }
     
     //MARK: CollectionView delegate methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int

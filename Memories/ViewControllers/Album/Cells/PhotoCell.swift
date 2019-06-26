@@ -69,65 +69,13 @@ class PhotoCell: UICollectionViewCell
         }
     }
     
-    
-    
     @IBAction func deleteBtnPressed(_ sender: Any)
     {
         //self.showDeleteAlert()
         //NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: NotificationDeletePhotoFromAlbum), object: photo, userInfo: nil)
     }
     
-    var isDownloading = false
-    
-    var photo: Photo?
-    {
-        didSet
-        {
-            if let photo = self.photo
-            {
-                self.addMask()
-                
-                if let image = photo.img
-                {
-                    if photo.filter != .NoFilter
-                    {
-                        let img = FilterStore.filterImage(image: image, filterType: photo.filter, intensity: 0.5)
-                        imgView.image = img
-                    }
-                    else
-                    {
-                        imgView.image = image
-                    }
-                    //imgView.layer.transform = self.photo?.transform ?? CATransform3DIdentity
-                }
-                else if !isDownloading
-                {
-                    if let url = photo.imgUrl
-                    {
-                        //download image
-                        self.loaderView.startAnimating()
-                        
-                        self.isDownloading = true
-                        
-                        PhotoController.downloadImage(fromUrl: url) { (image) in
-                            let img = FilterStore.filterImage(image: image, filterType: photo.filter, intensity: 0.5)
-                            self.imgView.image = img
-                            
-                            self.photo?.img = image
-                            
-                            //self.imgView.layer.transform = self.photo?.transform ?? CATransform3DIdentity
-                            
-                            self.loaderView.stopAnimating()
-                            
-                            self.isDownloading = false
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    func setupLoader()
+    private func setupLoader()
     {
         loaderView.padding = self.imgView.frame.width / 5
         loaderView.color = Settings.sharedInstance.activityIndicatorColor()

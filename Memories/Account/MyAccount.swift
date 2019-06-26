@@ -31,7 +31,11 @@ final class MyAccount
     {
         get
         {
-            return state.userId(account: self)
+            if let id = state.userId(account: self) {
+                return id
+            } else {
+                return KeychainService.loadPassword(service: kSecService, account: kSecAccount)
+            }
         }
     }
     
@@ -51,6 +55,19 @@ final class MyAccount
         }
     }
     
+    private var _token:String?
+    var token: String?
+    {
+        get
+        {
+            return self._token
+        }
+        set
+        {
+            self._token = newValue
+        }
+    }
+    
     func setProfileImage(image:UIImage)
     {
         state.myUser(account: self)?.profileImg = image
@@ -58,11 +75,21 @@ final class MyAccount
     
     func logIn(user: User)
     {
+        if let token = self._token {
+            RemoteNotificationController.setToken(token: token, forUser: user)
+        }
+        if let _ = KeychainService.loadPassword(service: kSecService, account: kSecAccount) {
+            KeychainService.updatePassword(service: kSecService, account: kSecAccount, data: user.ID)
+        } else {
+            KeychainService.savePassword(service: kSecService, account: kSecAccount, data: user.ID)
+        }
         self.state = LoggedInState(user: user)
     }
     
     func logOut()
     {
+        self.token = nil
+        KeychainService.removePassword(service: kSecService, account: kSecAccount)
         self.state = LoggedOutState()
     }
 }

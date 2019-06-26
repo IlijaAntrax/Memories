@@ -10,13 +10,21 @@ import UIKit
 
 class SharedAlbumsViewController: HomeViewController {
 
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        super.albumsInterface = SharedAlbumsStrategy()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        super.albumsInterface = SharedAlbumsStrategy()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
-
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -28,14 +36,7 @@ class SharedAlbumsViewController: HomeViewController {
             }
         }
     }
- 
     
-    override func loadAlbum(completionHandler: @escaping ([PhotoAlbum]) -> ()) {
-        PhotoAlbumController.getSharedAlbums(forUserId: MyAccount.sharedInstance.userId ?? "") { (albums) in
-            completionHandler(albums)
-        }
-    }
-
     //MARK: CollectionView delegate, data source
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
@@ -46,7 +47,15 @@ class SharedAlbumsViewController: HomeViewController {
     {
         let sharedCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SharedAlbumCell", for: indexPath) as? SharedAlbumCell
         
-        sharedCell?.album = self.albums[indexPath.item]
+        var shouldUpdate = true
+        if let album = sharedCell?.albumView {
+            if !albumsInterface.isAlbumDataUpdated(album, updatedAlbum: self.albums[indexPath.item]) {
+                shouldUpdate = false
+            }
+        }
+        if shouldUpdate {
+            sharedCell?.albumView = self.albums[indexPath.item]
+        }
         
         return sharedCell!
     }

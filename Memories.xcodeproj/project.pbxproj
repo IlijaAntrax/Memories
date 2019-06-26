@@ -101,11 +101,18 @@
 		5BC6D8EB219DE0F700C80446 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BC6D8E9219DE0F700C80446 /* Main.storyboard */; };
 		5BC6D8ED219DE0F900C80446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5BC6D8EC219DE0F900C80446 /* Assets.xcassets */; };
 		5BC6D8F0219DE0F900C80446 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BC6D8EE219DE0F900C80446 /* LaunchScreen.storyboard */; };
+		5BC7175122C285F300ED8A4F /* Notification+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC7175022C285F300ED8A4F /* Notification+.swift */; };
 		5BDDED2721D2D699008B8428 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDED2621D2D699008B8428 /* State.swift */; };
 		5BDDED2A21D2D6EC008B8428 /* MyAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDDED2921D2D6EB008B8428 /* MyAccount.swift */; };
 		5BEE0915219DE5EF0043E54E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE0914219DE5EF0043E54E /* GoogleService-Info.plist */; };
 		5BEE0918219DE9750043E54E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 5BEE0917219DE9750043E54E /* README.md */; };
 		5BF2689921BAEC5900D1E66C /* ArchitectureDesign.docx in Resources */ = {isa = PBXBuildFile; fileRef = 5BF2689821BAEC5900D1E66C /* ArchitectureDesign.docx */; };
+		5BFF916F227B4467009D7887 /* resize_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BFF916C227B4467009D7887 /* resize_image.png */; };
+		5BFF9170227B4467009D7887 /* resize_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BFF916D227B4467009D7887 /* resize_image@2x.png */; };
+		5BFF9171227B4467009D7887 /* resize_image@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BFF916E227B4467009D7887 /* resize_image@3x.png */; };
+		CD085095228AB4B700206116 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD085094228AB4B700206116 /* KeychainService.swift */; };
+		CD26622922C0BDFE00B1715A /* ViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD26622822C0BDFE00B1715A /* ViewModelDelegate.swift */; };
+		CD26622B22C0FAB000B1715A /* Projektni obrasci.docx in Resources */ = {isa = PBXBuildFile; fileRef = CD26622A22C0FAB000B1715A /* Projektni obrasci.docx */; };
 		CD44CD1E21EF3A0800238F29 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD1D21EF3A0800238F29 /* AlbumViewController.swift */; };
 		CD44CD2121EF3C9E00238F29 /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD2021EF3C9E00238F29 /* AlbumCell.swift */; };
 		CD44CD2521EF3DEE00238F29 /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD2421EF3DEE00238F29 /* CALayer+.swift */; };
@@ -159,6 +166,19 @@
 		CD44CD8D21EF661E00238F29 /* FilterImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD8C21EF661E00238F29 /* FilterImageCell.swift */; };
 		CD44CD8F21EF666600238F29 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD8E21EF666600238F29 /* UIImage+.swift */; };
 		CD44CD9221EF673800238F29 /* EditorImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD44CD9121EF673800238F29 /* EditorImageView.swift */; };
+		CD5658D0228C2C5A00E6315D /* notification_alert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5658CD228C2C5A00E6315D /* notification_alert@2x.png */; };
+		CD5658D1228C2C5A00E6315D /* notification_alert@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5658CE228C2C5A00E6315D /* notification_alert@3x.png */; };
+		CD5658D2228C2C5A00E6315D /* notification_alert.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5658CF228C2C5A00E6315D /* notification_alert.png */; };
+		CD5658D6228C391E00E6315D /* notification_bgd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5658D3228C391B00E6315D /* notification_bgd@2x.png */; };
+		CD5658D7228C391E00E6315D /* notification_bgd.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5658D4228C391C00E6315D /* notification_bgd.png */; };
+		CD5658D8228C391E00E6315D /* notification_bgd@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CD5658D5228C391D00E6315D /* notification_bgd@3x.png */; };
+		CD5658DA228C3FEA00E6315D /* InternalNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5658D9228C3FEA00E6315D /* InternalNavigationController.swift */; };
+		CDF4FADD229FF03C00FE4909 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4FADC229FF03C00FE4909 /* UserViewModel.swift */; };
+		CDF4FADF229FFE7200FE4909 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4FADE229FFE7200FE4909 /* PhotoViewModel.swift */; };
+		CDF4FAE122A00EBF00FE4909 /* AlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4FAE022A00EBF00FE4909 /* AlbumViewModel.swift */; };
+		CDF4FAE422A0229D00FE4909 /* AlbumsStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4FAE322A0229D00FE4909 /* AlbumsStrategy.swift */; };
+		CDF4FAE822A023FD00FE4909 /* MyAlbumsStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4FAE722A023FD00FE4909 /* MyAlbumsStrategy.swift */; };
+		CDF4FAEA22A0242D00FE4909 /* SharedAlbumsStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF4FAE922A0242D00FE4909 /* SharedAlbumsStrategy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -273,13 +293,20 @@
 		5BC6D8EC219DE0F900C80446 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5BC6D8EF219DE0F900C80446 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5BC6D8F1219DE0F900C80446 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BC7175022C285F300ED8A4F /* Notification+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+.swift"; sourceTree = "<group>"; };
 		5BDDED2621D2D699008B8428 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		5BDDED2921D2D6EB008B8428 /* MyAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccount.swift; sourceTree = "<group>"; };
 		5BEE0914219DE5EF0043E54E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5BEE0917219DE9750043E54E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5BF2689821BAEC5900D1E66C /* ArchitectureDesign.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = ArchitectureDesign.docx; sourceTree = "<group>"; };
+		5BFF916C227B4467009D7887 /* resize_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resize_image.png; sourceTree = "<group>"; };
+		5BFF916D227B4467009D7887 /* resize_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resize_image@2x.png"; sourceTree = "<group>"; };
+		5BFF916E227B4467009D7887 /* resize_image@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resize_image@3x.png"; sourceTree = "<group>"; };
 		5D00EBB5709A1528950FA9E7 /* Pods-Memories.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memories.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Memories/Pods-Memories.debug.xcconfig"; sourceTree = "<group>"; };
 		AAC8AA4997EFFB50631972DE /* Pods-Memories.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Memories.release.xcconfig"; path = "Pods/Target Support Files/Pods-Memories/Pods-Memories.release.xcconfig"; sourceTree = "<group>"; };
+		CD085094228AB4B700206116 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		CD26622822C0BDFE00B1715A /* ViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelDelegate.swift; sourceTree = "<group>"; };
+		CD26622A22C0FAB000B1715A /* Projektni obrasci.docx */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Projektni obrasci.docx"; sourceTree = "<group>"; };
 		CD44CD1D21EF3A0800238F29 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		CD44CD2021EF3C9E00238F29 /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
 		CD44CD2421EF3DEE00238F29 /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
@@ -334,6 +361,20 @@
 		CD44CD8C21EF661E00238F29 /* FilterImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterImageCell.swift; sourceTree = "<group>"; };
 		CD44CD8E21EF666600238F29 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		CD44CD9121EF673800238F29 /* EditorImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorImageView.swift; sourceTree = "<group>"; };
+		CD5658CB228C135C00E6315D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		CD5658CD228C2C5A00E6315D /* notification_alert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification_alert@2x.png"; sourceTree = "<group>"; };
+		CD5658CE228C2C5A00E6315D /* notification_alert@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification_alert@3x.png"; sourceTree = "<group>"; };
+		CD5658CF228C2C5A00E6315D /* notification_alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_alert.png; sourceTree = "<group>"; };
+		CD5658D3228C391B00E6315D /* notification_bgd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification_bgd@2x.png"; sourceTree = "<group>"; };
+		CD5658D4228C391C00E6315D /* notification_bgd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification_bgd.png; sourceTree = "<group>"; };
+		CD5658D5228C391D00E6315D /* notification_bgd@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification_bgd@3x.png"; sourceTree = "<group>"; };
+		CD5658D9228C3FEA00E6315D /* InternalNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNavigationController.swift; sourceTree = "<group>"; };
+		CDF4FADC229FF03C00FE4909 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		CDF4FADE229FFE7200FE4909 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
+		CDF4FAE022A00EBF00FE4909 /* AlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewModel.swift; sourceTree = "<group>"; };
+		CDF4FAE322A0229D00FE4909 /* AlbumsStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumsStrategy.swift; sourceTree = "<group>"; };
+		CDF4FAE722A023FD00FE4909 /* MyAlbumsStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAlbumsStrategy.swift; sourceTree = "<group>"; };
+		CDF4FAE922A0242D00FE4909 /* SharedAlbumsStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedAlbumsStrategy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -399,6 +440,7 @@
 		5B79FB9621A0689900670313 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5BA1B88321E7C6D3006F7C16 /* Fonts */,
 				5B79FB9721A068AD00670313 /* Images */,
 			);
 			path = Resources;
@@ -407,6 +449,15 @@
 		5B79FB9721A068AD00670313 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				CD5658D4228C391C00E6315D /* notification_bgd.png */,
+				CD5658D3228C391B00E6315D /* notification_bgd@2x.png */,
+				CD5658D5228C391D00E6315D /* notification_bgd@3x.png */,
+				CD5658CF228C2C5A00E6315D /* notification_alert.png */,
+				CD5658CD228C2C5A00E6315D /* notification_alert@2x.png */,
+				CD5658CE228C2C5A00E6315D /* notification_alert@3x.png */,
+				5BFF916C227B4467009D7887 /* resize_image.png */,
+				5BFF916D227B4467009D7887 /* resize_image@2x.png */,
+				5BFF916E227B4467009D7887 /* resize_image@3x.png */,
 				5B25407121E92B4C00E0463C /* search_icon.png */,
 				5B25407021E92B4B00E0463C /* search_icon@2x.png */,
 				5B25406F21E92B4A00E0463C /* search_icon@3x.png */,
@@ -575,6 +626,7 @@
 				CD44CD8E21EF666600238F29 /* UIImage+.swift */,
 				5BA3735221F352B3005A047C /* URL+.swift */,
 				5BA3735421F36C85005A047C /* Date+.swift */,
+				5BC7175022C285F300ED8A4F /* Notification+.swift */,
 			);
 			path = ExtensionsDecorators;
 			sourceTree = "<group>";
@@ -598,6 +650,7 @@
 				5BA66BE721C187B700E5C54B /* PhotoAlbumController.swift */,
 				5BBFDBB121C5032F006578FB /* RemoteNotificationController.swift */,
 				5BBFDBB321C525C0006578FB /* FirebaseController.swift */,
+				CD5658D9228C3FEA00E6315D /* InternalNavigationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -614,6 +667,7 @@
 		5BB71D9721C043B70065642D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				CD085093228AB44E00206116 /* KeychainService */,
 				CD44CD9021EF672A00238F29 /* Editor */,
 				CD44CD2C21EF485C00238F29 /* NVActivityIndicatorView */,
 				5B25408221E93FBC00E0463C /* ViewControllers */,
@@ -621,7 +675,6 @@
 				5BDDED2521D2D65D008B8428 /* State */,
 				5BA66BE021C183AF00E5C54B /* ExtensionsDecorators */,
 				5BB71D8C21C0438B0065642D /* Filters */,
-				5BA1B88321E7C6D3006F7C16 /* Fonts */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -648,8 +701,10 @@
 		5BC6D8E4219DE0F700C80446 /* Memories */ = {
 			isa = PBXGroup;
 			children = (
+				CDF4FAE222A0225B00FE4909 /* Strategy */,
 				5BDDED2821D2D6CA008B8428 /* Account */,
 				5BB71D8821C03E5C0065642D /* Models */,
+				CDF4FADB229FEF3E00FE4909 /* ViewModels */,
 				5BB71D8921C03E650065642D /* Controllers */,
 				5B33CE1B21E539C300FE2DAF /* ViewControllers */,
 				5BB71D9721C043B70065642D /* Helper */,
@@ -686,6 +741,7 @@
 			children = (
 				5BA1B87E21E7C0A6006F7C16 /* Documents */,
 				5BA1B87D21E7C093006F7C16 /* Architecture */,
+				CD26622A22C0FAB000B1715A /* Projektni obrasci.docx */,
 				5BEE0917219DE9750043E54E /* README.md */,
 			);
 			path = ProjectDocumentation;
@@ -694,9 +750,18 @@
 		A9B4D945BDEAAB061A60CEFF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD5658CB228C135C00E6315D /* AVFoundation.framework */,
 				15DCF83CB69CAA1C8F6B44B3 /* Pods_Memories.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CD085093228AB44E00206116 /* KeychainService */ = {
+			isa = PBXGroup;
+			children = (
+				CD085094228AB4B700206116 /* KeychainService.swift */,
+			);
+			path = KeychainService;
 			sourceTree = "<group>";
 		};
 		CD44CD1C21EF39D500238F29 /* Album */ = {
@@ -824,6 +889,43 @@
 			path = Editor;
 			sourceTree = "<group>";
 		};
+		CDF4FADB229FEF3E00FE4909 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				CD26622822C0BDFE00B1715A /* ViewModelDelegate.swift */,
+				CDF4FADC229FF03C00FE4909 /* UserViewModel.swift */,
+				CDF4FADE229FFE7200FE4909 /* PhotoViewModel.swift */,
+				CDF4FAE022A00EBF00FE4909 /* AlbumViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CDF4FAE222A0225B00FE4909 /* Strategy */ = {
+			isa = PBXGroup;
+			children = (
+				CDF4FAE622A022B600FE4909 /* Albums */,
+			);
+			path = Strategy;
+			sourceTree = "<group>";
+		};
+		CDF4FAE522A022A700FE4909 /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				CDF4FAE722A023FD00FE4909 /* MyAlbumsStrategy.swift */,
+				CDF4FAE922A0242D00FE4909 /* SharedAlbumsStrategy.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		CDF4FAE622A022B600FE4909 /* Albums */ = {
+			isa = PBXGroup;
+			children = (
+				CDF4FAE322A0229D00FE4909 /* AlbumsStrategy.swift */,
+				CDF4FAE522A022A700FE4909 /* Implementation */,
+			);
+			path = Albums;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -859,6 +961,11 @@
 				TargetAttributes = {
 					5BC6D8E1219DE0F700C80446 = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -900,6 +1007,7 @@
 				5B33CDFD21E5357500FE2DAF /* logo.png in Resources */,
 				5B25406121E928D000E0463C /* album_icon.png in Resources */,
 				5B33CE0B21E5357500FE2DAF /* upload_photos_disabled.png in Resources */,
+				CD26622B22C0FAB000B1715A /* Projektni obrasci.docx in Resources */,
 				5B25406C21E92A2F00E0463C /* myaccount_icon@3x.png in Resources */,
 				5B33CE1821E5357500FE2DAF /* add_user.png in Resources */,
 				5B33CE0421E5357500FE2DAF /* search_text_holder.png in Resources */,
@@ -908,18 +1016,24 @@
 				5B33CE1021E5357500FE2DAF /* delete.png in Resources */,
 				5B33CDF721E5357500FE2DAF /* footer_shadow.png in Resources */,
 				5B25405E21E927EA00E0463C /* album_icon@2x.png in Resources */,
+				CD5658D2228C2C5A00E6315D /* notification_alert.png in Resources */,
+				CD5658D8228C391E00E6315D /* notification_bgd@3x.png in Resources */,
 				5BB71D9521C0438B0065642D /* YUCIRGBToneCurve.cikernel in Resources */,
 				5B33CE1121E5357500FE2DAF /* done.png in Resources */,
 				5BC6D8ED219DE0F900C80446 /* Assets.xcassets in Resources */,
 				5B33CE0621E5357500FE2DAF /* profie_inactive.png in Resources */,
+				CD5658D1228C2C5A00E6315D /* notification_alert@3x.png in Resources */,
+				5BFF916F227B4467009D7887 /* resize_image.png in Resources */,
 				5B33CE0521E5357500FE2DAF /* profie_active.png in Resources */,
 				5B33CE1421E5357500FE2DAF /* search_results.png in Resources */,
 				5BC6D8EB219DE0F700C80446 /* Main.storyboard in Resources */,
+				5BFF9170227B4467009D7887 /* resize_image@2x.png in Resources */,
 				5B33CE1721E5357500FE2DAF /* add_new_album.png in Resources */,
 				5B25406221E928D000E0463C /* album_icon@3x.png in Resources */,
 				5B33CE0721E5357500FE2DAF /* upload_icon.png in Resources */,
 				5B33CDFA21E5357500FE2DAF /* mail_icon.png in Resources */,
 				5B25407321E92B4C00E0463C /* search_icon@2x.png in Resources */,
+				5BFF9171227B4467009D7887 /* resize_image@3x.png in Resources */,
 				5B33CE1321E5357500FE2DAF /* profile_image_frame.png in Resources */,
 				5B25406E21E92A2F00E0463C /* myaccount_icon.png in Resources */,
 				5B33CE0C21E5357500FE2DAF /* invite_btn.png in Resources */,
@@ -933,8 +1047,10 @@
 				5B33CE0121E5357500FE2DAF /* text_holder_selected.png in Resources */,
 				5B33CE1621E5357500FE2DAF /* notification_active.png in Resources */,
 				5BA1B88621E7C6EC006F7C16 /* SF-Pro-Display-Regular.otf in Resources */,
+				CD5658D7228C391E00E6315D /* notification_bgd.png in Resources */,
 				5B25407221E92B4C00E0463C /* search_icon@3x.png in Resources */,
 				5BA1B88721E7C6EC006F7C16 /* SF-Pro-Display-Bold.otf in Resources */,
+				CD5658D0228C2C5A00E6315D /* notification_alert@2x.png in Resources */,
 				5B33CE0D21E5357500FE2DAF /* photo_mask.png in Resources */,
 				5B33CE0321E5357500FE2DAF /* notification_inactive.png in Resources */,
 				5B33CE0A21E5357500FE2DAF /* empty_image.png in Resources */,
@@ -946,6 +1062,7 @@
 				5B33CE0921E5357500FE2DAF /* close_btn.png in Resources */,
 				5BB71D9421C0438B0065642D /* YUCIRGBToHSL.cikernel in Resources */,
 				5B25406D21E92A2F00E0463C /* myaccount_icon@2x.png in Resources */,
+				CD5658D6228C391E00E6315D /* notification_bgd@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1005,6 +1122,8 @@
 			files = (
 				5B25407821E92CA000E0463C /* MyAlbumsViewController.swift in Sources */,
 				5BBFDBB021C502D6006578FB /* RemoteNotification.swift in Sources */,
+				CDF4FAE122A00EBF00FE4909 /* AlbumViewModel.swift in Sources */,
+				CD5658DA228C3FEA00E6315D /* InternalNavigationController.swift in Sources */,
 				5BA66BE621C187AA00E5C54B /* PhotoController.swift in Sources */,
 				5B25407D21E92CCE00E0463C /* NotificationsViewController.swift in Sources */,
 				5BB71D9321C0438B0065642D /* YUCIFilterConstructor.m in Sources */,
@@ -1026,6 +1145,9 @@
 				5BA1B88A21E7E1AF006F7C16 /* HomeViewController.swift in Sources */,
 				5BB71D9621C0438B0065642D /* YUCIRGBToneCurve.m in Sources */,
 				5B25407A21E92CB300E0463C /* SharedAlbumsViewController.swift in Sources */,
+				CD085095228AB4B700206116 /* KeychainService.swift in Sources */,
+				CDF4FADF229FFE7200FE4909 /* PhotoViewModel.swift in Sources */,
+				CDF4FAEA22A0242D00FE4909 /* SharedAlbumsStrategy.swift in Sources */,
 				CD44CD8421EF643800238F29 /* GalleryViewController.swift in Sources */,
 				5BA66BEC21C18ED800E5C54B /* UserController.swift in Sources */,
 				CD44CD5F21EF485C00238F29 /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */,
@@ -1034,6 +1156,7 @@
 				5BBFDBB421C525C0006578FB /* FirebaseController.swift in Sources */,
 				CD44CD6521EF485C00238F29 /* NVActivityIndicatorAnimationBallZigZag.swift in Sources */,
 				CD44CD8F21EF666600238F29 /* UIImage+.swift in Sources */,
+				CDF4FADD229FF03C00FE4909 /* UserViewModel.swift in Sources */,
 				CD44CD8B21EF65ED00238F29 /* PhotoViewController.swift in Sources */,
 				5BDDED2A21D2D6EC008B8428 /* MyAccount.swift in Sources */,
 				CD44CD6321EF485C00238F29 /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */,
@@ -1044,6 +1167,8 @@
 				5BA1B87C21E7BF89006F7C16 /* RegisterViewController.swift in Sources */,
 				5BB71D8B21C041B60065642D /* Photo.swift in Sources */,
 				CD44CD7921EF485C00238F29 /* NVActivityIndicatorAnimationLineScaleParty.swift in Sources */,
+				CDF4FAE822A023FD00FE4909 /* MyAlbumsStrategy.swift in Sources */,
+				CDF4FAE422A0229D00FE4909 /* AlbumsStrategy.swift in Sources */,
 				5BB71D9B21C050510065642D /* PhotoAlbum.swift in Sources */,
 				CD44CD7B21EF485C00238F29 /* NVActivityIndicatorAnimationBallPulseRise.swift in Sources */,
 				5B25408421E93FDC00E0463C /* KeyboardViewController.swift in Sources */,
@@ -1051,6 +1176,7 @@
 				CD44CD6F21EF485C00238F29 /* NVActivityIndicatorAnimationAudioEqualizer.swift in Sources */,
 				CD44CD5E21EF485C00238F29 /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */,
 				CD44CD5721EF485C00238F29 /* NVActivityIndicatorAnimationDelegate.swift in Sources */,
+				5BC7175122C285F300ED8A4F /* Notification+.swift in Sources */,
 				CD44CD6E21EF485C00238F29 /* NVActivityIndicatorAnimationCircleStrokeSpin.swift in Sources */,
 				CD44CD7C21EF485C00238F29 /* NVActivityIndicatorAnimationOrbit.swift in Sources */,
 				CD44CD2B21EF47D100238F29 /* SharedAlbumCell.swift in Sources */,
@@ -1082,6 +1208,7 @@
 				CD44CD2921EF402900238F29 /* MyAlbumCell.swift in Sources */,
 				CD44CD2121EF3C9E00238F29 /* AlbumCell.swift in Sources */,
 				CD44CD7021EF485C00238F29 /* NVActivityIndicatorAnimationTriangleSkewSpin.swift in Sources */,
+				CD26622922C0BDFE00B1715A /* ViewModelDelegate.swift in Sources */,
 				CD44CD5C21EF485C00238F29 /* NVActivityIndicatorAnimationBallRotate.swift in Sources */,
 				5BC6D8E8219DE0F700C80446 /* ViewController.swift in Sources */,
 				5BA3735E21F4A12B005A047C /* FriendAccountOverviewViewController.swift in Sources */,
@@ -1242,6 +1369,7 @@
 				DEVELOPMENT_TEAM = 5EFM4H5FA3;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = Memories/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1265,6 +1393,7 @@
 				DEVELOPMENT_TEAM = 5EFM4H5FA3;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = Memories/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

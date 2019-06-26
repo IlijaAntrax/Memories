@@ -147,6 +147,10 @@ class MyProfileHeaderView:UIView
         PhotoAlbumController.getSharedAlbumsCount(forUserId: user?.ID ?? "") { (cnt) in
             self.sharedCntLbl.text = "\(cnt)"
         }
+        
+        UserController.getFriendsCount(forUserId: user?.ID ?? "") { (cnt) in
+            self.friendsCntLbl.text = "\(cnt)"
+        }
     }
     
     @IBAction func uploadProfileIm(_ sender: Any)
@@ -159,6 +163,11 @@ class MyProfileHeaderView:UIView
                 self.profileImgView.image = profileImage
                 PhotoController.uploadProfileImage(image: profileImage, forUserID: MyAccount.sharedInstance.userId ?? "", completionHandler: { (success) in
                     print(success)
+                    if let imgUrl = MyAccount.sharedInstance.myUser?.profileImgUrl {
+                        PhotoController.deleteImage(withUrlPath: imgUrl.absoluteString, completionHandler: { (succes) in
+                            print(success)
+                        })
+                    }
                 })
             }
         }

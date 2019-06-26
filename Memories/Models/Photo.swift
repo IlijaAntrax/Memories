@@ -23,7 +23,14 @@ class Photo: NSObject
     
     var ID:String
     {
-        return self._id ?? ""
+        get
+        {
+            return self._id ?? ""
+        }
+        set
+        {
+            self._id = newValue
+        }
     }
     
     init(withID id:String, imgUrl:String, transform:CATransform3D, filter:Int)
